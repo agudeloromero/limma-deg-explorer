@@ -1,0 +1,86 @@
+[
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Methods",
+    "section": "",
+    "text": "The validation dataset is GSE60450, a mouse mammary gland RNA-seq study comparing luminal and basal cell populations across three developmental stages (virgin, 18.5 day pregnancy, 2 day lactation). Raw count data were downloaded from the GEO FTP server.\nCitation: Fu NY et al. EGF-mediated induction of Mcl-1 at the switch to lactation is essential for alveolar cell survival. Nature Cell Biology 17, 365–375 (2015). https://doi.org/10.1038/ncb3117"
+  },
+  {
+    "objectID": "methods.html#data",
+    "href": "methods.html#data",
+    "title": "Methods",
+    "section": "",
+    "text": "The validation dataset is GSE60450, a mouse mammary gland RNA-seq study comparing luminal and basal cell populations across three developmental stages (virgin, 18.5 day pregnancy, 2 day lactation). Raw count data were downloaded from the GEO FTP server.\nCitation: Fu NY et al. EGF-mediated induction of Mcl-1 at the switch to lactation is essential for alveolar cell survival. Nature Cell Biology 17, 365–375 (2015). https://doi.org/10.1038/ncb3117"
+  },
+  {
+    "objectID": "methods.html#differential-expression",
+    "href": "methods.html#differential-expression",
+    "title": "Methods",
+    "section": "Differential expression",
+    "text": "Differential expression\n\nR implementation\nCounts were normalised using TMM normalisation (edgeR) and transformed with voom precision weights (limma). Differential expression between basal and luminal cells was assessed using a linear model with empirical Bayes moderation (limma::eBayes()). P-values were adjusted using the Benjamini–Hochberg method.\n\n\nPython implementation\nCounts were normalised to log2-CPM and differential expression was assessed using a two-sample t-test (scipy) with Benjamini–Hochberg correction (statsmodels). This is an approximation of the R limma-voom method and is provided to demonstrate the Python framework — for publishable results use the R implementation."
+  },
+  {
+    "objectID": "methods.html#gene-ontology-enrichment",
+    "href": "methods.html#gene-ontology-enrichment",
+    "title": "Methods",
+    "section": "Gene Ontology enrichment",
+    "text": "Gene Ontology enrichment\n\nR implementation\nGO enrichment was performed using clusterProfiler with the mouse annotation database org.Mm.eg.db (offline). All three ontologies (BP, MF, CC) are tested.\n\n\nPython implementation\nGO enrichment was performed using gseapy via the Enrichr web API. Internet access is required from the server running the app."
+  },
+  {
+    "objectID": "methods.html#reproducibility",
+    "href": "methods.html#reproducibility",
+    "title": "Methods",
+    "section": "Reproducibility",
+    "text": "Reproducibility\nBoth apps are designed following the ten rules described in the manuscript. All dependencies are locked:\n\nR: renv.lock\nPython: shiny_app_py_env.yml + requirements.txt\n\nTo exactly reproduce the environment:\n# R\nRscript -e \"renv::restore()\"\n\n# Python\nconda env create -f Python/shiny_app_py_env.yml\npip install -r Python/requirements.txt"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\n    Limma DEG Interactive Explorer\n  ",
+    "section": "",
+    "text": "Interactive web applications for differential gene expression analysis\n    using limma-voom, implemented in both R and Python Shiny."
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "\n    Limma DEG Interactive Explorer\n  ",
+    "section": "About",
+    "text": "About\nThis resource accompanies the manuscript:\n\n[PAPER TITLE]\nPatricia Agudelo-Romero · The Kids Research Institute Australia\n[Journal Name], [Year]. DOI: [DOI]\n\nThe paper describes ten practical rules for building reproducible, interactive data analysis applications in the life sciences. Two parallel implementations of the same Limma DEG Explorer app — one in R Shiny and one in Python Shiny — serve as the worked example throughout the manuscript.\nBoth applications accept a CSV file produced by limma::topTable() and provide real-time interactive visualisation of:\n\nDifferentially expressed genes (volcano plot, ranked bar plot, DEG table)\nGene Ontology enrichment (dot plot + table)\nDownloadable results folder (HTML report, CSV, Excel)\n\nThe validation dataset is GSE60450 (mouse mammary gland luminal vs basal cells; Fu et al. 2015)."
+  },
+  {
+    "objectID": "index.html#launch-the-apps",
+    "href": "index.html#launch-the-apps",
+    "title": "\n    Limma DEG Interactive Explorer\n  ",
+    "section": "Launch the apps",
+    "text": "Launch the apps\n\n\n  \n  \n    📊\n    R Shiny\n    \n      Built with R Shiny, ggplot2, limma-voom, clusterProfiler,\n      and org.Mm.eg.db. Runs fully offline.\n    \n    \n      Open R App →\n    \n  \n\n  \n  \n    🐍\n    Python Shiny\n    \n      Built with Python Shiny, matplotlib, scipy, gseapy (Enrichr API),\n      and Jinja2. Requires internet for GO enrichment.\n    \n    \n      Open Python App →"
+  },
+  {
+    "objectID": "index.html#key-differences-between-implementations",
+    "href": "index.html#key-differences-between-implementations",
+    "title": "\n    Limma DEG Interactive Explorer\n  ",
+    "section": "Key differences between implementations",
+    "text": "Key differences between implementations\n\n\n\nFeature\nR\nPython\n\n\n\n\nFramework\nR Shiny\nPython Shiny\n\n\nPlotting\nggplot2\nmatplotlib\n\n\nGene labels\nggrepel\nadjustText\n\n\nDEA method\nlimma-voom\nt-test (approx.)\n\n\nGO enrichment\nclusterProfiler\ngseapy (Enrichr API)\n\n\nGene annotation\norg.Mm.eg.db (offline)\nmygene API (online)\n\n\nReport engine\nR Markdown\nJinja2 + base64\n\n\nInternet required\nNo\nYes (GO enrichment)"
+  },
+  {
+    "objectID": "index.html#reproduce-the-analysis",
+    "href": "index.html#reproduce-the-analysis",
+    "title": "\n    Limma DEG Interactive Explorer\n  ",
+    "section": "Reproduce the analysis",
+    "text": "Reproduce the analysis\nAll code is available on GitHub. To run either app locally:\nR:\n# Install dependencies\nsource(\"R/00_setup.R\")\n\n# Download and prepare data\nsource(\"R/01_data_prep.R\")\n\n# Launch app\nshiny::runApp(\"R/\")\nPython:\n# Create environment and install dependencies\npython Python/00_setup.py\n\n# Activate environment\nconda activate shiny_app_py\n\n# Download and prepare data\npython Python/01_data_prep.py\n\n# Launch app\nshiny run Python/app.py"
+  },
+  {
+    "objectID": "index.html#citation",
+    "href": "index.html#citation",
+    "title": "\n    Limma DEG Interactive Explorer\n  ",
+    "section": "Citation",
+    "text": "Citation\nIf you use these applications in your research, please cite:\n\nAgudelo-Romero P. et al. [PAPER TITLE]. [Journal] [Year]; DOI: [DOI]"
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "\n    Limma DEG Interactive Explorer\n  ",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nPatricia Agudelo-Romero · The Kids Research Institute Australia\npatricia.agudeloromero@thekids.org.au\nValidation dataset: Fu et al. 2015, Nature Cell Biology. GEO accession GSE60450."
+  }
+]
