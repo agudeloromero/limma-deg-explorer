@@ -1,0 +1,22 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Limma DEG Interactive Explorer"
+  favicon: "assets/favicon.ico"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: methods.qmd
+        text: Methods
+    right:
+      - icon: github
+        href: https://github.com/YOUR_USERNAME/limma-deg-explorer
+
+format:
+  html:
+    theme: cosmo
+    css: assets/styles.css
+    toc: false

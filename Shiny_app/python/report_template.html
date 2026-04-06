@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!--
+  report_template.html  (Jinja2)
+  Rule 6 — Figures-only HTML report
+
+  Author:      Patricia Agudelo-Romero
+  Institution: The Kids Research Institute Australia
+
+  Difference from R: R Markdown renders ggplot2 objects directly.
+  Here, matplotlib figures are pre-rendered to PNG in app.py and
+  passed as base64 strings embedded in <img> tags. The result is
+  a fully self-contained HTML file — no Python or internet needed
+  to view it.
+
+  Accompanying files in the same ZIP folder:
+    DEG_results_TIMESTAMP.csv      — full filtered DEG table
+    GO_enrichment_TIMESTAMP.xlsx   — GO_BP, GO_MF, GO_CC sheets
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limma DEG Analysis Report</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      max-width: 960px; margin: 0 auto; padding: 24px 32px;
+      color: #222; line-height: 1.6;
+    }
+    h1 { color: #1F4E79; border-bottom: 3px solid #1F4E79; padding-bottom: 8px; }
+    h2 { color: #2E74B5; border-bottom: 1px solid #BDD7EE;
+         padding-bottom: 4px; margin-top: 40px; }
+    h3 { color: #1F4E79; margin-top: 28px; }
+    .meta { color: #666; margin-top: -10px; font-size: 0.9em; }
+    .note {
+      background: #EBF3FB; border-left: 5px solid #2E74B5;
+      padding: 12px 16px; border-radius: 4px; margin: 18px 0;
+      font-size: 0.9em;
+    }
+    table { border-collapse: collapse; width: 100%; font-size: 0.88em; }
+    th { background: #2E74B5; color: white; padding: 8px 10px; text-align: left; }
+    td { border: 1px solid #ddd; padding: 6px 10px; }
+    tr:nth-child(even) { background: #F7FBFF; }
+    .fig { text-align: center; margin: 20px 0; }
+    .fig img {
+      max-width: 100%; border: 1px solid #e5e5e5;
+      border-radius: 4px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .no-result { color: #888; font-style: italic; padding: 16px 0; }
+    .methods {
+      background: #F8F9FA; border: 1px solid #dee2e6;
+      border-radius: 4px; padding: 16px 20px; font-size: 0.9em; color: #444;
+    }
+    .summary-boxes { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+    .sbox {
+      padding: 8px 16px; border-radius: 6px;
+      font-weight: bold; font-size: 1em;
+    }
+    .box-total { background: #F0F0F0; color: #444; }
+    .box-up    { background: #EDE0F2; color: #7B2D8B; }
+    .box-down  { background: #DCF0E6; color: #2E8B57; }
+    footer {
+      margin-top: 48px; padding-top: 12px;
+      border-top: 1px solid #ddd; font-size: 0.82em; color: #888;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Limma DEG Analysis Report</h1>
+<p class="meta">
+  <strong>Generated:</strong> {{ date }} &nbsp;|&nbsp;
+  Application: Limma DEG Interactive Explorer (Python Shiny)
+</p>
+
+<div class="note">
+  <strong>Accompanying files in this ZIP folder:</strong><br>
+  <code>DEG_results_*.csv</code> &mdash; full filtered DEG table &nbsp;|&nbsp;
+  <code>GO_enrichment_*.xlsx</code> &mdash; GO_BP / GO_MF / GO_CC sheets
+</div>
+
+<!-- ── Parameters ──────────────────────────────────────── -->
+<h2>Analysis parameters</h2>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>DEG adj. P-value cutoff</td><td>&le; {{ deg_pval }}</td></tr>
+  <tr><td>DEG |log&#8322;FC| cutoff</td><td>&ge; {{ deg_lfc }}</td></tr>
+  <tr><td>Enrichment adj. P-value</td><td>&le; {{ enr_pval }}</td></tr>
+  <tr><td>Total genes tested</td><td>{{ n_total }}</td></tr>
+  <tr><td>DEGs identified</td><td>{{ n_degs }}</td></tr>
+  <tr><td>DEGs up-regulated</td><td>{{ n_up }}</td></tr>
+  <tr><td>DEGs down-regulated</td><td>{{ n_dn }}</td></tr>
+  <tr><td>GO_BP enriched terms</td><td>{{ n_bp }}</td></tr>
+  <tr><td>GO_MF enriched terms</td><td>{{ n_mf }}</td></tr>
+  <tr><td>GO_CC enriched terms</td><td>{{ n_cc }}</td></tr>
+</table>
+
+<div class="summary-boxes">
+  <span class="sbox box-total">{{ n_degs }} DEGs</span>
+  <span class="sbox box-up">&#9650; {{ n_up }} up</span>
+  <span class="sbox box-down">&#9660; {{ n_dn }} down</span>
+</div>
+
+<!-- ── Volcano plot ───────────────────────────────────── -->
+<h2>Volcano plot</h2>
+<p>Top 5 most significant up-regulated and top 5 down-regulated genes are labelled.
+   Purple = up-regulated in basal; green = up-regulated in luminal.</p>
+<div class="fig">
+  <img src="data:image/png;base64,{{ volcano_b64 }}"
+       alt="Volcano plot" width="700">
+</div>
+
+<!-- ── Top ranked genes ──────────────────────────────── -->
+<h2>Top ranked genes</h2>
+<p>Genes ranked by <strong>sign(log&#8322;FC) &times; &minus;log&#8321;&#8320;(adj.P.Val)</strong>
+   &mdash; rewards genes that are both strongly regulated and highly significant
+   (GSEA pre-ranked convention). Full table in <code>DEG_results.csv</code>.</p>
+<div class="fig">
+  <img src="data:image/png;base64,{{ barplot_b64 }}"
+       alt="Top ranked genes" width="620">
+</div>
+
+<!-- ── GO enrichment ─────────────────────────────────── -->
+<h2>GO enrichment</h2>
+<p>Full enrichment tables with gene lists are in <code>GO_enrichment.xlsx</code>.
+   Only the top 15 terms per ontology are shown here.<br>
+   <em>Note: enrichment was performed using gseapy / Enrichr (internet required),
+   not clusterProfiler. See Methods.</em></p>
+
+<h3>GO Biological Process</h3>
+{% if go_bp_b64 %}
+<div class="fig">
+  <img src="data:image/png;base64,{{ go_bp_b64 }}"
+       alt="GO Biological Process" width="750">
+</div>
+{% else %}
+<p class="no-result">No enriched GO Biological Process terms at adj. P-value &le; {{ enr_pval }}.</p>
+{% endif %}
+
+<h3>GO Molecular Function</h3>
+{% if go_mf_b64 %}
+<div class="fig">
+  <img src="data:image/png;base64,{{ go_mf_b64 }}"
+       alt="GO Molecular Function" width="750">
+</div>
+{% else %}
+<p class="no-result">No enriched GO Molecular Function terms at adj. P-value &le; {{ enr_pval }}.</p>
+{% endif %}
+
+<h3>GO Cellular Component</h3>
+{% if go_cc_b64 %}
+<div class="fig">
+  <img src="data:image/png;base64,{{ go_cc_b64 }}"
+       alt="GO Cellular Component" width="750">
+</div>
+{% else %}
+<p class="no-result">No enriched GO Cellular Component terms at adj. P-value &le; {{ enr_pval }}.</p>
+{% endif %}
+
+<!-- ── Methods ────────────────────────────────────────── -->
+<h2>Methods</h2>
+<div class="methods">
+  <p>Differentially expressed genes were identified from limma-voom output
+  (Ritchie <em>et al.</em>, 2015, <em>Nucleic Acids Research</em>; Law <em>et al.</em>,
+  2014, <em>Genome Biology</em>) using a threshold of adjusted P-value &le; {{ deg_pval }}
+  and |log&#8322;FC| &ge; {{ deg_lfc }} (Benjamini&ndash;Hochberg correction).
+  Genes were ranked by sign(log&#8322;FC) &times; &minus;log&#8321;&#8320;(adj.P.Val),
+  following the pre-ranked GSEA convention (Subramanian <em>et al.</em>, 2005,
+  <em>PNAS</em>).</p>
+
+  <p>Functional enrichment analysis was performed across three Gene Ontology domains
+  (Biological Process, Molecular Function, Cellular Component) using gseapy v
+  (Fang <em>et al.</em>, 2023) via the Enrichr web API (Chen <em>et al.</em>, 2013),
+  with results filtered by adjusted P-value &le; {{ enr_pval }}.</p>
+
+  <p><strong>Difference from R implementation:</strong> the R version uses
+  clusterProfiler with org.Mm.eg.db (offline, mouse annotation database),
+  which does not require an internet connection. The Python version queries
+  the Enrichr API and requires internet access. Gene set names differ between
+  implementations (clusterProfiler: GO ontology codes BP/MF/CC;
+  gseapy/Enrichr: GO_Biological_Process_2023 etc.).</p>
+
+  <p>The analysis was conducted using the Limma DEG Interactive Explorer
+  Python Shiny application described in [PAPER CITATION].</p>
+</div>
+
+<footer>
+  Generated by the Limma DEG Interactive Explorer (Python Shiny) &mdash;
+  {{ date }} &nbsp;|&nbsp;
+  Parameters are embedded automatically and cannot be altered retroactively.
+</footer>
+
+</body>
+</html>

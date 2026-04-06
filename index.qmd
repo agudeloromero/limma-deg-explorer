@@ -1,0 +1,164 @@
+---
+title: ""
+---
+
+```{=html}
+<div style="text-align: center; padding: 3rem 1rem 2rem;">
+  <h1 style="font-size: 2.2rem; font-weight: 700; color: #1F4E79;">
+    Limma DEG Interactive Explorer
+  </h1>
+  <p style="font-size: 1.15rem; color: #555; max-width: 680px; margin: 1rem auto;">
+    Interactive web applications for differential gene expression analysis
+    using limma-voom, implemented in both R and Python Shiny.
+  </p>
+</div>
+```
+
+## About
+
+This resource accompanies the manuscript:
+
+> **[PAPER TITLE]**  
+> Patricia Agudelo-Romero · The Kids Research Institute Australia  
+> *[Journal Name]*, [Year]. DOI: [DOI]
+
+The paper describes ten practical rules for building reproducible, interactive
+data analysis applications in the life sciences. Two parallel implementations
+of the same Limma DEG Explorer app — one in R Shiny and one in Python Shiny —
+serve as the worked example throughout the manuscript.
+
+Both applications accept a CSV file produced by `limma::topTable()` and
+provide real-time interactive visualisation of:
+
+- Differentially expressed genes (volcano plot, ranked bar plot, DEG table)
+- Gene Ontology enrichment (dot plot + table)
+- Downloadable results folder (HTML report, CSV, Excel)
+
+The validation dataset is GSE60450 (mouse mammary gland luminal vs basal
+cells; [Fu et al. 2015](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60450)).
+
+---
+
+## Launch the apps
+
+```{=html}
+<div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; margin: 2.5rem 0;">
+
+  <!-- R App -->
+  <div style="
+    flex: 1; min-width: 260px; max-width: 340px;
+    border: 1px solid #dee2e6; border-radius: 12px;
+    padding: 2rem 1.5rem; text-align: center;
+    background: #f8f9fa;
+  ">
+    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
+    <h3 style="color: #1F4E79; margin: 0 0 0.5rem;">R Shiny</h3>
+    <p style="color: #666; font-size: 0.9rem; min-height: 60px;">
+      Built with R Shiny, ggplot2, limma-voom, clusterProfiler,
+      and org.Mm.eg.db. Runs fully offline.
+    </p>
+    <a href="https://YOUR_USERNAME.shinyapps.io/limma-deg-explorer-r/"
+       target="_blank"
+       style="
+         display: inline-block; margin-top: 1rem;
+         background: #2E74B5; color: white;
+         padding: 0.6rem 1.4rem; border-radius: 6px;
+         text-decoration: none; font-weight: 600;
+       ">
+      Open R App →
+    </a>
+  </div>
+
+  <!-- Python App -->
+  <div style="
+    flex: 1; min-width: 260px; max-width: 340px;
+    border: 1px solid #dee2e6; border-radius: 12px;
+    padding: 2rem 1.5rem; text-align: center;
+    background: #f8f9fa;
+  ">
+    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐍</div>
+    <h3 style="color: #1E8449; margin: 0 0 0.5rem;">Python Shiny</h3>
+    <p style="color: #666; font-size: 0.9rem; min-height: 60px;">
+      Built with Python Shiny, matplotlib, scipy, gseapy (Enrichr API),
+      and Jinja2. Requires internet for GO enrichment.
+    </p>
+    <a href="https://huggingface.co/spaces/YOUR_USERNAME/limma-deg-explorer-py"
+       target="_blank"
+       style="
+         display: inline-block; margin-top: 1rem;
+         background: #1E8449; color: white;
+         padding: 0.6rem 1.4rem; border-radius: 6px;
+         text-decoration: none; font-weight: 600;
+       ">
+      Open Python App →
+    </a>
+  </div>
+
+</div>
+```
+
+---
+
+## Key differences between implementations
+
+| Feature | R | Python |
+|---|---|---|
+| Framework | R Shiny | Python Shiny |
+| Plotting | ggplot2 | matplotlib |
+| Gene labels | ggrepel | adjustText |
+| DEA method | limma-voom | t-test (approx.) |
+| GO enrichment | clusterProfiler | gseapy (Enrichr API) |
+| Gene annotation | org.Mm.eg.db (offline) | mygene API (online) |
+| Report engine | R Markdown | Jinja2 + base64 |
+| Internet required | No | Yes (GO enrichment) |
+
+---
+
+## Reproduce the analysis
+
+All code is available on GitHub. To run either app locally:
+
+**R:**
+```r
+# Install dependencies
+source("R/00_setup.R")
+
+# Download and prepare data
+source("R/01_data_prep.R")
+
+# Launch app
+shiny::runApp("R/")
+```
+
+**Python:**
+```bash
+# Create environment and install dependencies
+python Python/00_setup.py
+
+# Activate environment
+conda activate shiny_app_py
+
+# Download and prepare data
+python Python/01_data_prep.py
+
+# Launch app
+shiny run Python/app.py
+```
+
+---
+
+## Citation
+
+If you use these applications in your research, please cite:
+
+> Agudelo-Romero P. *et al.* **[PAPER TITLE]**. *[Journal]* [Year]; DOI: [DOI]
+
+---
+
+## Acknowledgements
+
+Patricia Agudelo-Romero · The Kids Research Institute Australia  
+[patricia.agudeloromero@thekids.org.au](mailto:patricia.agudeloromero@thekids.org.au)
+
+Validation dataset: Fu *et al.* 2015, *Nature Cell Biology*.
+GEO accession [GSE60450](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60450).
