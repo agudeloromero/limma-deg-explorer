@@ -19,8 +19,8 @@ title: ""
 This resource accompanies the manuscript:
 
 > **[PAPER TITLE]**  
-> Patricia Agudelo-Romero · The Kids Research Institute Australia  
-> *[Journal Name]*, [Year]. DOI: [DOI]
+> Agudelo-Romero et al., [Year]  
+> *[Journal Name]*. DOI: [DOI]
 
 The paper describes ten practical rules for building reproducible, interactive
 data analysis applications in the life sciences. Two parallel implementations
@@ -159,6 +159,7 @@ If you use these applications in your research, please cite:
 
 Patricia Agudelo-Romero · The Kids Research Institute Australia  
 [patricia.agudeloromero@thekids.org.au](mailto:patricia.agudeloromero@thekids.org.au)
+Senior Research Innovation Fellow | [Future Health Research and Innovation Fund](https://fhrifund.health.wa.gov.au/News-and-Events/2025/05/07/Pioneering-WA-health-and-medical-innovators-supported)
 
 Validation dataset: Fu *et al.* 2015, *Nature Cell Biology*.
 GEO accession [GSE60450](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60450).

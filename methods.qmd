@@ -52,7 +52,7 @@ Both apps are designed following the ten rules described in the manuscript.
 All dependencies are locked:
 
 - **R:** `renv.lock`
-- **Python:** `shiny_app_py_env.yml` + `requirements.txt`
+- **Python:** `shiny_app_py_env.yml`
 
 To exactly reproduce the environment:
 
