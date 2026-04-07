@@ -1,40 +1,5 @@
 [
   {
-    "objectID": "methods.html",
-    "href": "methods.html",
-    "title": "Methods",
-    "section": "",
-    "text": "The validation dataset is GSE60450, a mouse mammary gland RNA-seq study comparing luminal and basal cell populations across three developmental stages (virgin, 18.5 day pregnancy, 2 day lactation). Raw count data were downloaded from the GEO FTP server.\nCitation: Fu NY et al. EGF-mediated induction of Mcl-1 at the switch to lactation is essential for alveolar cell survival. Nature Cell Biology 17, 365–375 (2015). https://doi.org/10.1038/ncb3117"
-  },
-  {
-    "objectID": "methods.html#data",
-    "href": "methods.html#data",
-    "title": "Methods",
-    "section": "",
-    "text": "The validation dataset is GSE60450, a mouse mammary gland RNA-seq study comparing luminal and basal cell populations across three developmental stages (virgin, 18.5 day pregnancy, 2 day lactation). Raw count data were downloaded from the GEO FTP server.\nCitation: Fu NY et al. EGF-mediated induction of Mcl-1 at the switch to lactation is essential for alveolar cell survival. Nature Cell Biology 17, 365–375 (2015). https://doi.org/10.1038/ncb3117"
-  },
-  {
-    "objectID": "methods.html#differential-expression",
-    "href": "methods.html#differential-expression",
-    "title": "Methods",
-    "section": "Differential expression",
-    "text": "Differential expression\n\nR implementation\nCounts were normalised using TMM normalisation (edgeR) and transformed with voom precision weights (limma). Differential expression between basal and luminal cells was assessed using a linear model with empirical Bayes moderation (limma::eBayes()). P-values were adjusted using the Benjamini–Hochberg method.\n\n\nPython implementation\nCounts were normalised to log2-CPM and differential expression was assessed using a two-sample t-test (scipy) with Benjamini–Hochberg correction (statsmodels). This is an approximation of the R limma-voom method and is provided to demonstrate the Python framework — for publishable results use the R implementation."
-  },
-  {
-    "objectID": "methods.html#gene-ontology-enrichment",
-    "href": "methods.html#gene-ontology-enrichment",
-    "title": "Methods",
-    "section": "Gene Ontology enrichment",
-    "text": "Gene Ontology enrichment\n\nR implementation\nGO enrichment was performed using clusterProfiler with the mouse annotation database org.Mm.eg.db (offline). All three ontologies (BP, MF, CC) are tested.\n\n\nPython implementation\nGO enrichment was performed using gseapy via the Enrichr web API. Internet access is required from the server running the app."
-  },
-  {
-    "objectID": "methods.html#reproducibility",
-    "href": "methods.html#reproducibility",
-    "title": "Methods",
-    "section": "Reproducibility",
-    "text": "Reproducibility\nBoth apps are designed following the ten rules described in the manuscript. All dependencies are locked:\n\nR: renv.lock\nPython: shiny_app_py_env.yml\n\nTo exactly reproduce the environment:\n# R\nRscript -e \"renv::restore()\"\n\n# Python\nconda env create -f Python/shiny_app_py_env.yml\npip install -r Python/requirements.txt"
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "\n    Limma DEG Interactive Explorer\n  ",
@@ -82,5 +47,40 @@
     "title": "\n    Limma DEG Interactive Explorer\n  ",
     "section": "Acknowledgements",
     "text": "Acknowledgements\nPatricia Agudelo-Romero · The Kids Research Institute Australia\npatricia.agudeloromero@thekids.org.au Senior Research Innovation Fellow | Future Health Research and Innovation Fund\nValidation dataset: Fu et al. 2015, Nature Cell Biology. GEO accession GSE60450."
+  },
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Methods",
+    "section": "",
+    "text": "The validation dataset is GSE60450, a mouse mammary gland RNA-seq study comparing luminal and basal cell populations across three developmental stages (virgin, 18.5 day pregnancy, 2 day lactation). Raw count data were downloaded from the GEO FTP server.\nCitation: Fu NY et al. EGF-mediated induction of Mcl-1 at the switch to lactation is essential for alveolar cell survival. Nature Cell Biology 17, 365–375 (2015). https://doi.org/10.1038/ncb3117"
+  },
+  {
+    "objectID": "methods.html#data",
+    "href": "methods.html#data",
+    "title": "Methods",
+    "section": "",
+    "text": "The validation dataset is GSE60450, a mouse mammary gland RNA-seq study comparing luminal and basal cell populations across three developmental stages (virgin, 18.5 day pregnancy, 2 day lactation). Raw count data were downloaded from the GEO FTP server.\nCitation: Fu NY et al. EGF-mediated induction of Mcl-1 at the switch to lactation is essential for alveolar cell survival. Nature Cell Biology 17, 365–375 (2015). https://doi.org/10.1038/ncb3117"
+  },
+  {
+    "objectID": "methods.html#differential-expression",
+    "href": "methods.html#differential-expression",
+    "title": "Methods",
+    "section": "Differential expression",
+    "text": "Differential expression\n\nR implementation\nCounts were normalised using TMM normalisation (edgeR) and transformed with voom precision weights (limma). Differential expression between basal and luminal cells was assessed using a linear model with empirical Bayes moderation (limma::eBayes()). P-values were adjusted using the Benjamini–Hochberg method.\n\n\nPython implementation\nCounts were normalised to log2-CPM and differential expression was assessed using a two-sample t-test (scipy) with Benjamini–Hochberg correction (statsmodels). This is an approximation of the R limma-voom method and is provided to demonstrate the Python framework — for publishable results use the R implementation."
+  },
+  {
+    "objectID": "methods.html#gene-ontology-enrichment",
+    "href": "methods.html#gene-ontology-enrichment",
+    "title": "Methods",
+    "section": "Gene Ontology enrichment",
+    "text": "Gene Ontology enrichment\n\nR implementation\nGO enrichment was performed using clusterProfiler with the mouse annotation database org.Mm.eg.db (offline). All three ontologies (BP, MF, CC) are tested.\n\n\nPython implementation\nGO enrichment was performed using gseapy via the Enrichr web API. Internet access is required from the server running the app."
+  },
+  {
+    "objectID": "methods.html#reproducibility",
+    "href": "methods.html#reproducibility",
+    "title": "Methods",
+    "section": "Reproducibility",
+    "text": "Reproducibility\nBoth apps are designed following the ten rules described in the manuscript. All dependencies are locked:\n\nR: renv.lock\nPython: shiny_app_py_env.yml\n\nTo exactly reproduce the environment:\n# R\nRscript -e \"renv::restore()\"\n\n# Python\nconda env create -f Python/shiny_app_py_env.yml\npip install -r Python/requirements.txt"
   }
 ]
