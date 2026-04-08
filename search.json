@@ -1,38 +1,101 @@
 [
   {
-    "objectID": "supplementary-code-examples.html",
-    "href": "supplementary-code-examples.html",
-    "title": "Supplementary Code Examples",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
     "section": "",
-    "text": "The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.\nThese snippets are not intended to reproduce the entire applications. Full source code is available in the project repository."
+    "text": "This website supports the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
   },
   {
-    "objectID": "supplementary-code-examples.html#about-this-page",
-    "href": "supplementary-code-examples.html#about-this-page",
-    "title": "Supplementary Code Examples",
+    "objectID": "index.html#companion-website",
+    "href": "index.html#companion-website",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
     "section": "",
-    "text": "The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.\nThese snippets are not intended to reproduce the entire applications. Full source code is available in the project repository."
+    "text": "This website supports the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
   },
   {
-    "objectID": "supplementary-code-examples.html#figure-2-separate-data-logic-from-display-logic",
-    "href": "supplementary-code-examples.html#figure-2-separate-data-logic-from-display-logic",
-    "title": "Supplementary Code Examples",
-    "section": "Figure 2 — Separate data logic from display logic",
-    "text": "Figure 2 — Separate data logic from display logic\nThis example illustrates the principle behind Rule 3: filtering and shared data preparation should occur in reusable reactive objects, while plotting functions should only render the prepared result.\n\nR Shiny\ndegs &lt;- reactive({\n  df &lt;- raw_data()\n  req(df)\n  df[df$adj.P.Val &lt;= input$deg_pval &\n     abs(df$logFC) &gt;= input$deg_lfc, ]\n})\n\noutput$volcano &lt;- renderPlot({\n  df &lt;- degs()\n  ggplot(df, aes(logFC, -log10(adj.P.Val))) +\n    geom_point()\n})\n\n\nPython Shiny\n@reactive.calc\ndef degs():\n    df = raw_data()\n    if df is None:\n        return None\n    return df[\n        (df[\"adj.P.Val\"] &lt;= input.deg_pval()) &\n        (df[\"logFC\"].abs() &gt;= input.deg_lfc())\n    ]\n\n@output\n@render.plot\ndef volcano():\n    df = degs()\n    if df is None:\n        return\n    plt.scatter(df[\"logFC\"], -np.log10(df[\"adj.P.Val\"]))"
+    "objectID": "index.html#worked-example",
+    "href": "index.html#worked-example",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Worked example",
+    "text": "Worked example\nThe worked example used throughout the manuscript is an interactive application for differential gene expression exploration and Gene Ontology enrichment. Two implementations are provided:\n\nan R Shiny implementation, used as the reference implementation for the genomics workflow\na Python Shiny implementation, included as a parallel worked example illustrating the same design principles in a different ecosystem\n\nBoth applications accept a CSV derived from differential expression analysis and support interactive thresholding, visualisation, enrichment analysis, and downloadable reporting.\nThe validation dataset used in the worked example is GSE60450."
   },
   {
-    "objectID": "supplementary-code-examples.html#figure-3-validate-inputs-at-the-boundary",
-    "href": "supplementary-code-examples.html#figure-3-validate-inputs-at-the-boundary",
-    "title": "Supplementary Code Examples",
-    "section": "Figure 3 — Validate inputs at the boundary",
-    "text": "Figure 3 — Validate inputs at the boundary\nThis example illustrates the principle behind Rule 4: uploaded files should be checked immediately after import, before downstream filtering, plotting, or enrichment.\n\nR Shiny\nraw_data &lt;- reactive({\n  req(input$file)\n  df &lt;- read.csv(input$file$datapath)\n  required &lt;- c(\"gene\", \"logFC\", \"adj.P.Val\")\n  validate(\n    need(\n      all(required %in% names(df)),\n      \"Uploaded file is missing required columns.\"\n    )\n  )\n  df\n})\n\n\nPython Shiny\n@reactive.calc\ndef raw_data():\n    f = input.file()\n    if f is None:\n        return None\n    df = pd.read_csv(f[0][\"datapath\"])\n    required = [\"gene\", \"logFC\", \"adj.P.Val\"]\n    missing = [c for c in required if c not in df.columns]\n    if missing:\n        return None\n    return df"
+    "objectID": "index.html#launch-the-apps",
+    "href": "index.html#launch-the-apps",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Launch the apps",
+    "text": "Launch the apps\n\n\n  \n  \n    📊\n    R Shiny\n    \n      Reference implementation for the worked genomics example, \n      using R Shiny and Bioconductor-based tooling.\n    \n    \n      Open R App →\n    \n  \n\n  \n  \n    🐍\n    Python Shiny\n    \n      Parallel implementation illustrating the same design \n      principles in Python Shiny.\n    \n    \n      Open Python App →"
   },
   {
-    "objectID": "supplementary-code-examples.html#optional-extended-example-downloadable-reporting",
-    "href": "supplementary-code-examples.html#optional-extended-example-downloadable-reporting",
-    "title": "Supplementary Code Examples",
-    "section": "Optional extended example — Downloadable reporting",
-    "text": "Optional extended example — Downloadable reporting\nThe manuscript discusses downloadable reporting as part of Rule 6. Full implementation details are kept out of the paper body, but the applications support report generation that captures current analysis settings and outputs.\nSee the repository for the complete reporting logic used in the R and Python implementations."
+    "objectID": "index.html#what-this-site-provides",
+    "href": "index.html#what-this-site-provides",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "What this site provides",
+    "text": "What this site provides\n\nMethods: technical context for the worked example, including dataset choice and implementation notes\nSupplementary Code Examples: expanded paired snippets corresponding to Figures 2 and 3 in the manuscript\nReproducibility: environment restoration, setup, local execution, and deployment notes\nAvailability: data, code, repository, and citation information"
+  },
+  {
+    "objectID": "index.html#source-code",
+    "href": "index.html#source-code",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Source code",
+    "text": "Source code\nAll source code for the manuscript companion materials and both application implementations is available in the public GitHub repository:\nGitHub repository"
+  },
+  {
+    "objectID": "index.html#citation",
+    "href": "index.html#citation",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Citation",
+    "text": "Citation\nIf you use the code or applications, please cite the manuscript when bibliographic details become available.\n\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.\n[Journal and DOI]."
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nPatricia Agudelo-Romero The Kids Research Institute Australia\nValidation dataset: GSE60450."
+  },
+  {
+    "objectID": "availability.html",
+    "href": "availability.html",
+    "title": "Availability",
+    "section": "",
+    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
+  },
+  {
+    "objectID": "availability.html#code-availability",
+    "href": "availability.html#code-availability",
+    "title": "Availability",
+    "section": "",
+    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
+  },
+  {
+    "objectID": "availability.html#data-availability",
+    "href": "availability.html#data-availability",
+    "title": "Availability",
+    "section": "Data availability",
+    "text": "Data availability\nThe validation dataset used in the worked example is publicly available from GEO:\n\nGSE60450"
+  },
+  {
+    "objectID": "availability.html#live-applications",
+    "href": "availability.html#live-applications",
+    "title": "Availability",
+    "section": "Live applications",
+    "text": "Live applications\nLive application URLs are still being finalised and will be added here when available.\n\nR Shiny implementation: URL to be added\nPython Shiny implementation: URL to be added"
+  },
+  {
+    "objectID": "availability.html#manuscript-citation",
+    "href": "availability.html#manuscript-citation",
+    "title": "Availability",
+    "section": "Manuscript citation",
+    "text": "Manuscript citation\nThe companion website corresponds to the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n\nJournal details and DOI will be added when available."
+  },
+  {
+    "objectID": "availability.html#recommended-citation-practice",
+    "href": "availability.html#recommended-citation-practice",
+    "title": "Availability",
+    "section": "Recommended citation practice",
+    "text": "Recommended citation practice\nUntil journal details are available, please cite the repository and the manuscript title in descriptive form where needed. Once publication details are available, this page will be updated with the formal citation."
   },
   {
     "objectID": "methods.html",
@@ -89,104 +152,6 @@
     "title": "Methods",
     "section": "Relationship to the manuscript figures",
     "text": "Relationship to the manuscript figures\nThis website expands on material that was kept brief in the main manuscript.\n\nFigure 1 presents the ten-rule workflow conceptually\nFigure 2 illustrates separation of data logic from display logic\nFigure 3 illustrates boundary validation of uploaded inputs\n\nExpanded paired code examples corresponding to Figures 2 and 3 are provided on the Supplementary Code Examples page."
-  },
-  {
-    "objectID": "availability.html",
-    "href": "availability.html",
-    "title": "Availability",
-    "section": "",
-    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
-  },
-  {
-    "objectID": "availability.html#code-availability",
-    "href": "availability.html#code-availability",
-    "title": "Availability",
-    "section": "",
-    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
-  },
-  {
-    "objectID": "availability.html#data-availability",
-    "href": "availability.html#data-availability",
-    "title": "Availability",
-    "section": "Data availability",
-    "text": "Data availability\nThe validation dataset used in the worked example is publicly available from GEO:\n\nGSE60450"
-  },
-  {
-    "objectID": "availability.html#live-applications",
-    "href": "availability.html#live-applications",
-    "title": "Availability",
-    "section": "Live applications",
-    "text": "Live applications\nLive application URLs are still being finalised and will be added here when available.\n\nR Shiny implementation: URL to be added\nPython Shiny implementation: URL to be added"
-  },
-  {
-    "objectID": "availability.html#manuscript-citation",
-    "href": "availability.html#manuscript-citation",
-    "title": "Availability",
-    "section": "Manuscript citation",
-    "text": "Manuscript citation\nThe companion website corresponds to the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n\nJournal details and DOI will be added when available."
-  },
-  {
-    "objectID": "availability.html#recommended-citation-practice",
-    "href": "availability.html#recommended-citation-practice",
-    "title": "Availability",
-    "section": "Recommended citation practice",
-    "text": "Recommended citation practice\nUntil journal details are available, please cite the repository and the manuscript title in descriptive form where needed. Once publication details are available, this page will be updated with the formal citation."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "",
-    "text": "This website accompanies the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
-  },
-  {
-    "objectID": "index.html#companion-website",
-    "href": "index.html#companion-website",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "",
-    "text": "This website accompanies the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
-  },
-  {
-    "objectID": "index.html#worked-example",
-    "href": "index.html#worked-example",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Worked example",
-    "text": "Worked example\nThe worked example used throughout the manuscript is an interactive application for differential gene expression exploration and Gene Ontology enrichment. Two implementations are provided:\n\nan R Shiny implementation, used as the reference implementation for the genomics workflow\na Python Shiny implementation, included as a parallel worked example illustrating the same design principles in a different ecosystem\n\nBoth applications accept a CSV derived from differential expression analysis and support interactive thresholding, visualisation, enrichment analysis, and downloadable reporting.\nThe validation dataset used in the worked example is GSE60450."
-  },
-  {
-    "objectID": "index.html#launch-the-apps",
-    "href": "index.html#launch-the-apps",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Launch the apps",
-    "text": "Launch the apps\n\nR Shiny\nReference implementation for the worked genomics example, using R Shiny and Bioconductor-based tooling.\nOpen R app →\n\n\nPython Shiny\nParallel implementation illustrating the same design principles in Python Shiny.\nOpen Python app →"
-  },
-  {
-    "objectID": "index.html#what-this-site-provides",
-    "href": "index.html#what-this-site-provides",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "What this site provides",
-    "text": "What this site provides\n\nMethods: technical context for the worked example, including dataset choice and implementation notes\nSupplementary Code Examples: expanded paired snippets corresponding to Figures 2 and 3 in the manuscript\nReproducibility: environment restoration, setup, local execution, and deployment notes\nAvailability: data, code, repository, and citation information"
-  },
-  {
-    "objectID": "index.html#source-code",
-    "href": "index.html#source-code",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Source code",
-    "text": "Source code\nAll source code for the manuscript companion materials and both application implementations is available in the public GitHub repository:\nGitHub repository"
-  },
-  {
-    "objectID": "index.html#citation",
-    "href": "index.html#citation",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Citation",
-    "text": "Citation\nIf you use the code or applications, please cite the manuscript when bibliographic details become available.\n\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.\n[Journal and DOI]."
-  },
-  {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nPatricia Agudelo-Romero The Kids Research Institute Australia\nValidation dataset: GSE60450."
   },
   {
     "objectID": "reproducibility.html",
@@ -250,5 +215,40 @@
     "title": "Reproducibility",
     "section": "Troubleshooting notes",
     "text": "Troubleshooting notes\n\nUploaded file is rejected\nCheck that the uploaded file contains the expected column names and structure.\n\n\nPython enrichment does not run\nSome parts of the Python workflow may depend on internet-accessible services. Check server connectivity.\n\n\nEnvironment restores but app still fails\nRecreate the environment from the lock files rather than reusing a partially modified environment.\n\n\nResults differ between R and Python\nThe two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.\nFor the genomics example used in the manuscript, the R implementation should be treated as the reference implementation."
+  },
+  {
+    "objectID": "supplementary-code-examples.html",
+    "href": "supplementary-code-examples.html",
+    "title": "Supplementary Code Examples",
+    "section": "",
+    "text": "The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.\nThese snippets are not intended to reproduce the entire applications. Full source code is available in the project repository."
+  },
+  {
+    "objectID": "supplementary-code-examples.html#about-this-page",
+    "href": "supplementary-code-examples.html#about-this-page",
+    "title": "Supplementary Code Examples",
+    "section": "",
+    "text": "The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.\nThese snippets are not intended to reproduce the entire applications. Full source code is available in the project repository."
+  },
+  {
+    "objectID": "supplementary-code-examples.html#figure-2-separate-data-logic-from-display-logic",
+    "href": "supplementary-code-examples.html#figure-2-separate-data-logic-from-display-logic",
+    "title": "Supplementary Code Examples",
+    "section": "Figure 2 — Separate data logic from display logic",
+    "text": "Figure 2 — Separate data logic from display logic\nThis example illustrates the principle behind Rule 3: filtering and shared data preparation should occur in reusable reactive objects, while plotting functions should only render the prepared result.\n\nR Shiny\ndegs &lt;- reactive({\n  df &lt;- raw_data()\n  req(df)\n  df[df$adj.P.Val &lt;= input$deg_pval &\n     abs(df$logFC) &gt;= input$deg_lfc, ]\n})\n\noutput$volcano &lt;- renderPlot({\n  df &lt;- degs()\n  ggplot(df, aes(logFC, -log10(adj.P.Val))) +\n    geom_point()\n})\n\n\nPython Shiny\n@reactive.calc\ndef degs():\n    df = raw_data()\n    if df is None:\n        return None\n    return df[\n        (df[\"adj.P.Val\"] &lt;= input.deg_pval()) &\n        (df[\"logFC\"].abs() &gt;= input.deg_lfc())\n    ]\n\n@output\n@render.plot\ndef volcano():\n    df = degs()\n    if df is None:\n        return\n    plt.scatter(df[\"logFC\"], -np.log10(df[\"adj.P.Val\"]))"
+  },
+  {
+    "objectID": "supplementary-code-examples.html#figure-3-validate-inputs-at-the-boundary",
+    "href": "supplementary-code-examples.html#figure-3-validate-inputs-at-the-boundary",
+    "title": "Supplementary Code Examples",
+    "section": "Figure 3 — Validate inputs at the boundary",
+    "text": "Figure 3 — Validate inputs at the boundary\nThis example illustrates the principle behind Rule 4: uploaded files should be checked immediately after import, before downstream filtering, plotting, or enrichment.\n\nR Shiny\nraw_data &lt;- reactive({\n  req(input$file)\n  df &lt;- read.csv(input$file$datapath)\n  required &lt;- c(\"gene\", \"logFC\", \"adj.P.Val\")\n  validate(\n    need(\n      all(required %in% names(df)),\n      \"Uploaded file is missing required columns.\"\n    )\n  )\n  df\n})\n\n\nPython Shiny\n@reactive.calc\ndef raw_data():\n    f = input.file()\n    if f is None:\n        return None\n    df = pd.read_csv(f[0][\"datapath\"])\n    required = [\"gene\", \"logFC\", \"adj.P.Val\"]\n    missing = [c for c in required if c not in df.columns]\n    if missing:\n        return None\n    return df"
+  },
+  {
+    "objectID": "supplementary-code-examples.html#optional-extended-example-downloadable-reporting",
+    "href": "supplementary-code-examples.html#optional-extended-example-downloadable-reporting",
+    "title": "Supplementary Code Examples",
+    "section": "Optional extended example — Downloadable reporting",
+    "text": "Optional extended example — Downloadable reporting\nThe manuscript discusses downloadable reporting as part of Rule 6. Full implementation details are kept out of the paper body, but the applications support report generation that captures current analysis settings and outputs.\nSee the repository for the complete reporting logic used in the R and Python implementations."
   }
 ]
