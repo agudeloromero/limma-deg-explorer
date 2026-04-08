@@ -43,7 +43,7 @@ The validation dataset used in the worked example is **GSE60450**.
       Reference implementation for the worked genomics example, 
       using R Shiny and Bioconductor-based tooling.
     </p>
-    <a href="https://YOUR_USERNAME.shinyapps.io/limma-deg-explorer-r/"
+    <a href="https://agudeloromero.shinyapps.io/limma-deg-explorer"
        target="_blank"
        style="
          display: inline-block; margin-top: 1rem;
@@ -68,7 +68,7 @@ The validation dataset used in the worked example is **GSE60450**.
       Parallel implementation illustrating the same design 
       principles in Python Shiny.
     </p>
-    <a href="https://huggingface.co/spaces/YOUR_USERNAME/limma-deg-explorer-py"
+    <a href="https://huggingface.co/spaces/agudeloromero/limma-deg-explorer"
        target="_blank"
        style="
          display: inline-block; margin-top: 1rem;
