@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://agudeloromero.github.io/limma-deg-explorer/reproducibility.html</loc>
-    <lastmod>2026-04-08T07:16:33.023Z</lastmod>
-  </url>
-  <url>
-    <loc>https://agudeloromero.github.io/limma-deg-explorer/index.html</loc>
-    <lastmod>2026-04-08T07:16:33.023Z</lastmod>
-  </url>
-  <url>
     <loc>https://agudeloromero.github.io/limma-deg-explorer/supplementary-code-examples.html</loc>
-    <lastmod>2026-04-08T07:16:33.023Z</lastmod>
+    <lastmod>2026-04-08T07:13:56.344Z</lastmod>
   </url>
   <url>
     <loc>https://agudeloromero.github.io/limma-deg-explorer/methods.html</loc>
-    <lastmod>2026-04-08T07:16:33.023Z</lastmod>
+    <lastmod>2026-04-08T07:13:56.095Z</lastmod>
   </url>
   <url>
     <loc>https://agudeloromero.github.io/limma-deg-explorer/availability.html</loc>
-    <lastmod>2026-04-08T07:16:33.023Z</lastmod>
+    <lastmod>2026-04-08T07:13:55.812Z</lastmod>
+  </url>
+  <url>
+    <loc>https://agudeloromero.github.io/limma-deg-explorer/index.html</loc>
+    <lastmod>2026-04-08T07:13:55.951Z</lastmod>
+  </url>
+  <url>
+    <loc>https://agudeloromero.github.io/limma-deg-explorer/reproducibility.html</loc>
+    <lastmod>2026-04-08T07:13:56.219Z</lastmod>
   </url>
 </urlset>

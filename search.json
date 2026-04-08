@@ -1,124 +1,5 @@
 [
   {
-    "objectID": "reproducibility.html",
-    "href": "reproducibility.html",
-    "title": "Reproducibility",
-    "section": "",
-    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
-  },
-  {
-    "objectID": "reproducibility.html#overview",
-    "href": "reproducibility.html#overview",
-    "title": "Reproducibility",
-    "section": "",
-    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
-  },
-  {
-    "objectID": "reproducibility.html#repository-contents",
-    "href": "reproducibility.html#repository-contents",
-    "title": "Reproducibility",
-    "section": "Repository contents",
-    "text": "Repository contents\nThe repository contains:\n\nthe R Shiny implementation\nthe Python Shiny implementation\ndata-preparation scripts\ndependency-lock files\nmanuscript companion website files"
-  },
-  {
-    "objectID": "reproducibility.html#restore-the-r-environment",
-    "href": "reproducibility.html#restore-the-r-environment",
-    "title": "Reproducibility",
-    "section": "Restore the R environment",
-    "text": "Restore the R environment\nThe R implementation uses a locked project environment.\nRscript -e \"renv::restore()\""
-  },
-  {
-    "objectID": "reproducibility.html#restore-the-python-environment",
-    "href": "reproducibility.html#restore-the-python-environment",
-    "title": "Reproducibility",
-    "section": "Restore the Python environment",
-    "text": "Restore the Python environment\nThe Python implementation uses an environment definition plus Python package requirements.\nconda env create -f Python/shiny_app_py_env.yml\nconda activate shiny_app_py\npip install -r Python/requirements.txt"
-  },
-  {
-    "objectID": "reproducibility.html#prepare-the-validation-dataset",
-    "href": "reproducibility.html#prepare-the-validation-dataset",
-    "title": "Reproducibility",
-    "section": "Prepare the validation dataset",
-    "text": "Prepare the validation dataset\nUse the included data-preparation scripts to obtain and format the public validation dataset used in the manuscript.\n\nR workflow\nRscript R/00_setup.R\nRscript R/01_data_prep.R\n\n\nPython workflow\npython Python/00_setup.py\nconda activate shiny_app_py\npython Python/01_data_prep.py"
-  },
-  {
-    "objectID": "reproducibility.html#run-the-applications-locally",
-    "href": "reproducibility.html#run-the-applications-locally",
-    "title": "Reproducibility",
-    "section": "Run the applications locally",
-    "text": "Run the applications locally\n\nR Shiny\nRscript -e \"shiny::runApp('R')\"\n\n\nPython Shiny\nshiny run Python/app.py"
-  },
-  {
-    "objectID": "reproducibility.html#deployment-notes",
-    "href": "reproducibility.html#deployment-notes",
-    "title": "Reproducibility",
-    "section": "Deployment notes",
-    "text": "Deployment notes\nThe manuscript discusses deployment as a general principle rather than prescribing one hosting platform.\nIn the worked example:\n\nthe R Shiny implementation is suitable for standard Shiny-oriented deployment workflows\nthe Python Shiny implementation is suitable for Python-oriented deployment workflows, including container-based options"
-  },
-  {
-    "objectID": "reproducibility.html#troubleshooting-notes",
-    "href": "reproducibility.html#troubleshooting-notes",
-    "title": "Reproducibility",
-    "section": "Troubleshooting notes",
-    "text": "Troubleshooting notes\n\nUploaded file is rejected\nCheck that the uploaded file contains the expected column names and structure.\n\n\nPython enrichment does not run\nSome parts of the Python workflow may depend on internet-accessible services. Check server connectivity.\n\n\nEnvironment restores but app still fails\nRecreate the environment from the lock files rather than reusing a partially modified environment.\n\n\nResults differ between R and Python\nThe two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.\nFor the genomics example used in the manuscript, the R implementation should be treated as the reference implementation."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "",
-    "text": "This website accompanies the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
-  },
-  {
-    "objectID": "index.html#companion-website",
-    "href": "index.html#companion-website",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "",
-    "text": "This website accompanies the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
-  },
-  {
-    "objectID": "index.html#worked-example",
-    "href": "index.html#worked-example",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Worked example",
-    "text": "Worked example\nThe worked example used throughout the manuscript is an interactive application for differential gene expression exploration and Gene Ontology enrichment. Two implementations are provided:\n\nan R Shiny implementation, used as the reference implementation for the genomics workflow\na Python Shiny implementation, included as a parallel worked example illustrating the same design principles in a different ecosystem\n\nBoth applications accept a CSV derived from differential expression analysis and support interactive thresholding, visualisation, enrichment analysis, and downloadable reporting.\nThe validation dataset used in the worked example is GSE60450."
-  },
-  {
-    "objectID": "index.html#launch-the-apps",
-    "href": "index.html#launch-the-apps",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Launch the apps",
-    "text": "Launch the apps\n\nR Shiny\nReference implementation for the worked genomics example, using R Shiny and Bioconductor-based tooling.\nOpen R app →\n\n\nPython Shiny\nParallel implementation illustrating the same design principles in Python Shiny.\nOpen Python app →"
-  },
-  {
-    "objectID": "index.html#what-this-site-provides",
-    "href": "index.html#what-this-site-provides",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "What this site provides",
-    "text": "What this site provides\n\nMethods: technical context for the worked example, including dataset choice and implementation notes\nSupplementary Code Examples: expanded paired snippets corresponding to Figures 2 and 3 in the manuscript\nReproducibility: environment restoration, setup, local execution, and deployment notes\nAvailability: data, code, repository, and citation information"
-  },
-  {
-    "objectID": "index.html#source-code",
-    "href": "index.html#source-code",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Source code",
-    "text": "Source code\nAll source code for the manuscript companion materials and both application implementations is available in the public GitHub repository:\nGitHub repository"
-  },
-  {
-    "objectID": "index.html#citation",
-    "href": "index.html#citation",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Citation",
-    "text": "Citation\nIf you use the code or applications, please cite the manuscript when bibliographic details become available.\n\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.\n[Journal and DOI]."
-  },
-  {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nPatricia Agudelo-Romero The Kids Research Institute Australia\nValidation dataset: GSE60450."
-  },
-  {
     "objectID": "supplementary-code-examples.html",
     "href": "supplementary-code-examples.html",
     "title": "Supplementary Code Examples",
@@ -250,5 +131,124 @@
     "title": "Availability",
     "section": "Recommended citation practice",
     "text": "Recommended citation practice\nUntil journal details are available, please cite the repository and the manuscript title in descriptive form where needed. Once publication details are available, this page will be updated with the formal citation."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "",
+    "text": "This website accompanies the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
+  },
+  {
+    "objectID": "index.html#companion-website",
+    "href": "index.html#companion-website",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "",
+    "text": "This website accompanies the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
+  },
+  {
+    "objectID": "index.html#worked-example",
+    "href": "index.html#worked-example",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Worked example",
+    "text": "Worked example\nThe worked example used throughout the manuscript is an interactive application for differential gene expression exploration and Gene Ontology enrichment. Two implementations are provided:\n\nan R Shiny implementation, used as the reference implementation for the genomics workflow\na Python Shiny implementation, included as a parallel worked example illustrating the same design principles in a different ecosystem\n\nBoth applications accept a CSV derived from differential expression analysis and support interactive thresholding, visualisation, enrichment analysis, and downloadable reporting.\nThe validation dataset used in the worked example is GSE60450."
+  },
+  {
+    "objectID": "index.html#launch-the-apps",
+    "href": "index.html#launch-the-apps",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Launch the apps",
+    "text": "Launch the apps\n\nR Shiny\nReference implementation for the worked genomics example, using R Shiny and Bioconductor-based tooling.\nOpen R app →\n\n\nPython Shiny\nParallel implementation illustrating the same design principles in Python Shiny.\nOpen Python app →"
+  },
+  {
+    "objectID": "index.html#what-this-site-provides",
+    "href": "index.html#what-this-site-provides",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "What this site provides",
+    "text": "What this site provides\n\nMethods: technical context for the worked example, including dataset choice and implementation notes\nSupplementary Code Examples: expanded paired snippets corresponding to Figures 2 and 3 in the manuscript\nReproducibility: environment restoration, setup, local execution, and deployment notes\nAvailability: data, code, repository, and citation information"
+  },
+  {
+    "objectID": "index.html#source-code",
+    "href": "index.html#source-code",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Source code",
+    "text": "Source code\nAll source code for the manuscript companion materials and both application implementations is available in the public GitHub repository:\nGitHub repository"
+  },
+  {
+    "objectID": "index.html#citation",
+    "href": "index.html#citation",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Citation",
+    "text": "Citation\nIf you use the code or applications, please cite the manuscript when bibliographic details become available.\n\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.\n[Journal and DOI]."
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nPatricia Agudelo-Romero The Kids Research Institute Australia\nValidation dataset: GSE60450."
+  },
+  {
+    "objectID": "reproducibility.html",
+    "href": "reproducibility.html",
+    "title": "Reproducibility",
+    "section": "",
+    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
+  },
+  {
+    "objectID": "reproducibility.html#overview",
+    "href": "reproducibility.html#overview",
+    "title": "Reproducibility",
+    "section": "",
+    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
+  },
+  {
+    "objectID": "reproducibility.html#repository-contents",
+    "href": "reproducibility.html#repository-contents",
+    "title": "Reproducibility",
+    "section": "Repository contents",
+    "text": "Repository contents\nThe repository contains:\n\nthe R Shiny implementation\nthe Python Shiny implementation\ndata-preparation scripts\ndependency-lock files\nmanuscript companion website files"
+  },
+  {
+    "objectID": "reproducibility.html#restore-the-r-environment",
+    "href": "reproducibility.html#restore-the-r-environment",
+    "title": "Reproducibility",
+    "section": "Restore the R environment",
+    "text": "Restore the R environment\nThe R implementation uses a locked project environment.\nRscript -e \"renv::restore()\""
+  },
+  {
+    "objectID": "reproducibility.html#restore-the-python-environment",
+    "href": "reproducibility.html#restore-the-python-environment",
+    "title": "Reproducibility",
+    "section": "Restore the Python environment",
+    "text": "Restore the Python environment\nThe Python implementation uses an environment definition plus Python package requirements.\nconda env create -f Python/shiny_app_py_env.yml\nconda activate shiny_app_py\npip install -r Python/requirements.txt"
+  },
+  {
+    "objectID": "reproducibility.html#prepare-the-validation-dataset",
+    "href": "reproducibility.html#prepare-the-validation-dataset",
+    "title": "Reproducibility",
+    "section": "Prepare the validation dataset",
+    "text": "Prepare the validation dataset\nUse the included data-preparation scripts to obtain and format the public validation dataset used in the manuscript.\n\nR workflow\nRscript R/00_setup.R\nRscript R/01_data_prep.R\n\n\nPython workflow\npython Python/00_setup.py\nconda activate shiny_app_py\npython Python/01_data_prep.py"
+  },
+  {
+    "objectID": "reproducibility.html#run-the-applications-locally",
+    "href": "reproducibility.html#run-the-applications-locally",
+    "title": "Reproducibility",
+    "section": "Run the applications locally",
+    "text": "Run the applications locally\n\nR Shiny\nRscript -e \"shiny::runApp('R')\"\n\n\nPython Shiny\nshiny run Python/app.py"
+  },
+  {
+    "objectID": "reproducibility.html#deployment-notes",
+    "href": "reproducibility.html#deployment-notes",
+    "title": "Reproducibility",
+    "section": "Deployment notes",
+    "text": "Deployment notes\nThe manuscript discusses deployment as a general principle rather than prescribing one hosting platform.\nIn the worked example:\n\nthe R Shiny implementation is suitable for standard Shiny-oriented deployment workflows\nthe Python Shiny implementation is suitable for Python-oriented deployment workflows, including container-based options"
+  },
+  {
+    "objectID": "reproducibility.html#troubleshooting-notes",
+    "href": "reproducibility.html#troubleshooting-notes",
+    "title": "Reproducibility",
+    "section": "Troubleshooting notes",
+    "text": "Troubleshooting notes\n\nUploaded file is rejected\nCheck that the uploaded file contains the expected column names and structure.\n\n\nPython enrichment does not run\nSome parts of the Python workflow may depend on internet-accessible services. Check server connectivity.\n\n\nEnvironment restores but app still fails\nRecreate the environment from the lock files rather than reusing a partially modified environment.\n\n\nResults differ between R and Python\nThe two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.\nFor the genomics example used in the manuscript, the R implementation should be treated as the reference implementation."
   }
 ]
