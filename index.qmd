@@ -6,7 +6,7 @@ toc: false
 
 ## Companion website
 
-This website accompanies the manuscript:
+This website supports the manuscript:
 
 > **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications**  
 > Agudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.  
@@ -27,17 +27,62 @@ The validation dataset used in the worked example is **GSE60450**.
 
 ## Launch the apps
 
-### R Shiny
+```{=html}
+<div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; margin: 2.5rem 0;">
 
-Reference implementation for the worked genomics example, using R Shiny and Bioconductor-based tooling.
+  <!-- R App -->
+  <div style="
+    flex: 1; min-width: 260px; max-width: 340px;
+    border: 1px solid #dee2e6; border-radius: 12px;
+    padding: 2rem 1.5rem; text-align: center;
+    background: #f8f9fa;
+  ">
+    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
+    <h3 style="color: #1F4E79; margin: 0 0 0.5rem;">R Shiny</h3>
+    <p style="color: #666; font-size: 0.9rem; min-height: 60px;">
+      Reference implementation for the worked genomics example, 
+      using R Shiny and Bioconductor-based tooling.
+    </p>
+    <a href="https://YOUR_USERNAME.shinyapps.io/limma-deg-explorer-r/"
+       target="_blank"
+       style="
+         display: inline-block; margin-top: 1rem;
+         background: #2E74B5; color: white;
+         padding: 0.6rem 1.4rem; border-radius: 6px;
+         text-decoration: none; font-weight: 600;
+       ">
+      Open R App →
+    </a>
+  </div>
 
-[Open R app →](https://YOUR_USERNAME.shinyapps.io/YOUR_APP)
+  <!-- Python App -->
+  <div style="
+    flex: 1; min-width: 260px; max-width: 340px;
+    border: 1px solid #dee2e6; border-radius: 12px;
+    padding: 2rem 1.5rem; text-align: center;
+    background: #f8f9fa;
+  ">
+    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐍</div>
+    <h3 style="color: #1E8449; margin: 0 0 0.5rem;">Python Shiny</h3>
+    <p style="color: #666; font-size: 0.9rem; min-height: 60px;">
+      Parallel implementation illustrating the same design 
+      principles in Python Shiny.
+    </p>
+    <a href="https://huggingface.co/spaces/YOUR_USERNAME/limma-deg-explorer-py"
+       target="_blank"
+       style="
+         display: inline-block; margin-top: 1rem;
+         background: #1E8449; color: white;
+         padding: 0.6rem 1.4rem; border-radius: 6px;
+         text-decoration: none; font-weight: 600;
+       ">
+      Open Python App →
+    </a>
+  </div>
 
-### Python Shiny
+</div>
+```
 
-Parallel implementation illustrating the same design principles in Python Shiny.
-
-[Open Python app →](https://huggingface.co/spaces/YOUR_USERNAME/YOUR_APP)
 
 ## What this site provides
 
