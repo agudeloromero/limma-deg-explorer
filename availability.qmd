@@ -1,0 +1,36 @@
+---
+title: "Availability"
+page-layout: article
+---
+
+## Code availability
+
+All source code for the worked example applications and the companion website is available in the public GitHub repository:
+
+[GitHub repository](https://github.com/agudeloromero/limma-deg-explorer)
+
+## Data availability
+
+The validation dataset used in the worked example is publicly available from GEO:
+
+- **GSE60450**
+
+## Live applications
+
+Live application URLs are still being finalised and will be added here when available.
+
+- **R Shiny implementation**: URL to be added
+- **Python Shiny implementation**: URL to be added
+
+## Manuscript citation
+
+The companion website corresponds to the manuscript:
+
+> **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications**  
+> Agudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.
+
+Journal details and DOI will be added when available.
+
+## Recommended citation practice
+
+Until journal details are available, please cite the repository and the manuscript title in descriptive form where needed. Once publication details are available, this page will be updated with the formal citation.

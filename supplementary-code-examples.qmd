@@ -1,0 +1,96 @@
+---
+title: "Supplementary Code Examples"
+page-layout: article
+---
+
+## About this page
+
+The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.
+
+These snippets are not intended to reproduce the entire applications. Full source code is available in the project repository.
+
+## Figure 2 — Separate data logic from display logic
+
+This example illustrates the principle behind **Rule 3**: filtering and shared data preparation should occur in reusable reactive objects, while plotting functions should only render the prepared result.
+
+### R Shiny
+
+```r
+degs <- reactive({
+  df <- raw_data()
+  req(df)
+  df[df$adj.P.Val <= input$deg_pval &
+     abs(df$logFC) >= input$deg_lfc, ]
+})
+
+output$volcano <- renderPlot({
+  df <- degs()
+  ggplot(df, aes(logFC, -log10(adj.P.Val))) +
+    geom_point()
+})
+```
+
+### Python Shiny
+
+```python
+@reactive.calc
+def degs():
+    df = raw_data()
+    if df is None:
+        return None
+    return df[
+        (df["adj.P.Val"] <= input.deg_pval()) &
+        (df["logFC"].abs() >= input.deg_lfc())
+    ]
+
+@output
+@render.plot
+def volcano():
+    df = degs()
+    if df is None:
+        return
+    plt.scatter(df["logFC"], -np.log10(df["adj.P.Val"]))
+```
+
+## Figure 3 — Validate inputs at the boundary
+
+This example illustrates the principle behind **Rule 4**: uploaded files should be checked immediately after import, before downstream filtering, plotting, or enrichment.
+
+### R Shiny
+
+```r
+raw_data <- reactive({
+  req(input$file)
+  df <- read.csv(input$file$datapath)
+  required <- c("gene", "logFC", "adj.P.Val")
+  validate(
+    need(
+      all(required %in% names(df)),
+      "Uploaded file is missing required columns."
+    )
+  )
+  df
+})
+```
+
+### Python Shiny
+
+```python
+@reactive.calc
+def raw_data():
+    f = input.file()
+    if f is None:
+        return None
+    df = pd.read_csv(f[0]["datapath"])
+    required = ["gene", "logFC", "adj.P.Val"]
+    missing = [c for c in required if c not in df.columns]
+    if missing:
+        return None
+    return df
+```
+
+## Optional extended example — Downloadable reporting
+
+The manuscript discusses downloadable reporting as part of **Rule 6**. Full implementation details are kept out of the paper body, but the applications support report generation that captures current analysis settings and outputs.
+
+See the repository for the complete reporting logic used in the R and Python implementations.

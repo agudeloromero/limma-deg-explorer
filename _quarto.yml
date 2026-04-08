@@ -1,22 +1,37 @@
 project:
   type: website
-  output-dir: docs
 
 website:
-  title: "Limma DEG Interactive Explorer"
-  favicon: "assets/favicon.ico"
+  title: "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications"
+  site-url: "https://agudeloromero.github.io/limma-deg-explorer/"
+  repo-url: "https://github.com/agudeloromero/limma-deg-explorer"
+  repo-actions: [source, issue]
   navbar:
     left:
       - href: index.qmd
         text: Home
       - href: methods.qmd
         text: Methods
+      - href: supplementary-code-examples.qmd
+        text: Supplementary Code Examples
+      - href: reproducibility.qmd
+        text: Reproducibility
+      - href: availability.qmd
+        text: Availability
     right:
       - icon: github
         href: https://github.com/agudeloromero/limma-deg-explorer
+        aria-label: GitHub
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: cosmo
     css: assets/styles.css
-    toc: false
+    toc: true
+    toc-depth: 3
+    smooth-scroll: true
+    link-external-newwindow: true
+
+execute:
+  freeze: auto

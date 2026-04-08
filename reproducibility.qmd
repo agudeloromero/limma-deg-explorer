@@ -1,0 +1,98 @@
+---
+title: "Reproducibility"
+page-layout: article
+---
+
+## Overview
+
+This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally.
+
+## Repository contents
+
+The repository contains:
+
+- the R Shiny implementation
+- the Python Shiny implementation
+- data-preparation scripts
+- dependency-lock files
+- manuscript companion website files
+
+## Restore the R environment
+
+The R implementation uses a locked project environment.
+
+```bash
+Rscript -e "renv::restore()"
+```
+
+## Restore the Python environment
+
+The Python implementation uses an environment definition plus Python package requirements.
+
+```bash
+conda env create -f Python/shiny_app_py_env.yml
+conda activate shiny_app_py
+pip install -r Python/requirements.txt
+```
+
+## Prepare the validation dataset
+
+Use the included data-preparation scripts to obtain and format the public validation dataset used in the manuscript.
+
+### R workflow
+
+```bash
+Rscript R/00_setup.R
+Rscript R/01_data_prep.R
+```
+
+### Python workflow
+
+```bash
+python Python/00_setup.py
+conda activate shiny_app_py
+python Python/01_data_prep.py
+```
+
+## Run the applications locally
+
+### R Shiny
+
+```bash
+Rscript -e "shiny::runApp('R')"
+```
+
+### Python Shiny
+
+```bash
+shiny run Python/app.py
+```
+
+## Deployment notes
+
+The manuscript discusses deployment as a general principle rather than prescribing one hosting platform.
+
+In the worked example:
+
+- the **R Shiny** implementation is suitable for standard Shiny-oriented deployment workflows
+- the **Python Shiny** implementation is suitable for Python-oriented deployment workflows, including container-based options
+
+## Troubleshooting notes
+
+### Uploaded file is rejected
+
+Check that the uploaded file contains the expected column names and structure.
+
+### Python enrichment does not run
+
+Some parts of the Python workflow may depend on internet-accessible services. Check server connectivity.
+
+### Environment restores but app still fails
+
+Recreate the environment from the lock files rather than reusing a partially modified environment.
+
+### Results differ between R and Python
+
+The two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.
+
+For the genomics example used in the manuscript, the R implementation should be treated as the reference implementation.

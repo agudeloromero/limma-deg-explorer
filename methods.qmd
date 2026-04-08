@@ -1,66 +1,67 @@
 ---
 title: "Methods"
+page-layout: article
 ---
 
-## Data
+## Purpose of the worked example
 
-The validation dataset is GSE60450, a mouse mammary gland RNA-seq study
-comparing luminal and basal cell populations across three developmental
-stages (virgin, 18.5 day pregnancy, 2 day lactation).
-Raw count data were downloaded from the GEO FTP server.
+The manuscript is a **Ten Simple Rules** paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.
 
-**Citation:** Fu NY *et al.* EGF-mediated induction of Mcl-1 at the switch
-to lactation is essential for alveolar cell survival. *Nature Cell Biology*
-17, 365–375 (2015). <https://doi.org/10.1038/ncb3117>
+The worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state.
 
----
+## Validation dataset
 
-## Differential expression
+The worked example uses **GSE60450**, a public mouse mammary gland RNA-seq dataset comparing luminal and basal cell populations across developmental stages.
+
+This dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation.
+
+## Differential expression workflow
 
 ### R implementation
-Counts were normalised using TMM normalisation (edgeR) and transformed
-with voom precision weights (limma). Differential expression between
-basal and luminal cells was assessed using a linear model with empirical
-Bayes moderation (`limma::eBayes()`). P-values were adjusted using the
-Benjamini–Hochberg method.
+
+The R implementation follows a Bioconductor-oriented workflow. Counts are normalised and analysed using a limma-based pipeline, and the resulting table is used as input for the interactive application.
+
+This implementation serves as the reference implementation for the genomics workflow used in the manuscript.
 
 ### Python implementation
-Counts were normalised to log2-CPM and differential expression was
-assessed using a two-sample t-test (scipy) with Benjamini–Hochberg
-correction (statsmodels). This is an approximation of the R limma-voom
-method and is provided to demonstrate the Python framework — for
-publishable results use the R implementation.
 
----
+The Python implementation is included to demonstrate the same application-design principles in a Python Shiny environment. It supports the same general interactive workflow, but some analytical steps differ because the surrounding Python ecosystem does not fully mirror the Bioconductor stack used in R.
+
+For this reason, the Python implementation should be interpreted as an illustrative parallel implementation rather than as a claim of strict methodological equivalence.
 
 ## Gene Ontology enrichment
 
 ### R implementation
-GO enrichment was performed using clusterProfiler with the mouse
-annotation database org.Mm.eg.db (offline). All three ontologies
-(BP, MF, CC) are tested.
+
+The R implementation uses Bioconductor-oriented annotation and enrichment tooling and is suitable for environments where local annotation resources and offline operation are important.
 
 ### Python implementation
-GO enrichment was performed using gseapy via the Enrichr web API.
-**Internet access is required** from the server running the app.
 
----
+The Python implementation uses Python-native enrichment tooling and external services where needed. This makes deployment straightforward in some settings, but can introduce internet dependence for parts of the workflow.
 
-## Reproducibility
+## Why both implementations are shown
 
-Both apps are designed following the ten rules described in the manuscript.
-All dependencies are locked:
+The manuscript does not argue that one framework is universally superior. Instead, it uses both implementations to show that the same design principles can be applied across different ecosystems.
 
-- **R:** `renv.lock`
-- **Python:** `shiny_app_py_env.yml`
+The practical choice between frameworks depends on the location of critical dependencies, the surrounding analytical environment, deployment constraints, and the needs of the intended users.
 
-To exactly reproduce the environment:
+## Main practical differences
 
-```bash
-# R
-Rscript -e "renv::restore()"
+For the worked example in the manuscript, the most relevant differences are:
 
-# Python
-conda env create -f Python/shiny_app_py_env.yml
-pip install -r Python/requirements.txt
-```
+- **bioinformatics ecosystem maturity**
+- **offline versus internet-dependent enrichment**
+- **report-generation workflow**
+- **deployment and containerisation options**
+
+These trade-offs are summarised in **Table 1** of the manuscript.
+
+## Relationship to the manuscript figures
+
+This website expands on material that was kept brief in the main manuscript.
+
+- **Figure 1** presents the ten-rule workflow conceptually
+- **Figure 2** illustrates separation of data logic from display logic
+- **Figure 3** illustrates boundary validation of uploaded inputs
+
+Expanded paired code examples corresponding to Figures 2 and 3 are provided on the **Supplementary Code Examples** page.
