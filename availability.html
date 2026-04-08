@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Methods – Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</title>
+<title>Availability – Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -98,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./methods.html" aria-current="page"> 
+    <a class="nav-link" href="./methods.html"> 
 <span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
@@ -110,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Reproducibility</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./availability.html"> 
+    <a class="nav-link active" href="./availability.html" aria-current="page"> 
 <span class="menu-text">Availability</span></a>
   </li>  
 </ul>
@@ -136,30 +136,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#purpose-of-the-worked-example" id="toc-purpose-of-the-worked-example" class="nav-link active" data-scroll-target="#purpose-of-the-worked-example">Purpose of the worked example</a></li>
-  <li><a href="#validation-dataset" id="toc-validation-dataset" class="nav-link" data-scroll-target="#validation-dataset">Validation dataset</a></li>
-  <li><a href="#differential-expression-workflow" id="toc-differential-expression-workflow" class="nav-link" data-scroll-target="#differential-expression-workflow">Differential expression workflow</a>
-  <ul class="collapse">
-  <li><a href="#r-implementation" id="toc-r-implementation" class="nav-link" data-scroll-target="#r-implementation">R implementation</a></li>
-  <li><a href="#python-implementation" id="toc-python-implementation" class="nav-link" data-scroll-target="#python-implementation">Python implementation</a></li>
-  </ul></li>
-  <li><a href="#gene-ontology-enrichment" id="toc-gene-ontology-enrichment" class="nav-link" data-scroll-target="#gene-ontology-enrichment">Gene Ontology enrichment</a>
-  <ul class="collapse">
-  <li><a href="#r-implementation-1" id="toc-r-implementation-1" class="nav-link" data-scroll-target="#r-implementation-1">R implementation</a></li>
-  <li><a href="#python-implementation-1" id="toc-python-implementation-1" class="nav-link" data-scroll-target="#python-implementation-1">Python implementation</a></li>
-  </ul></li>
-  <li><a href="#why-both-implementations-are-shown" id="toc-why-both-implementations-are-shown" class="nav-link" data-scroll-target="#why-both-implementations-are-shown">Why both implementations are shown</a></li>
-  <li><a href="#main-practical-differences" id="toc-main-practical-differences" class="nav-link" data-scroll-target="#main-practical-differences">Main practical differences</a></li>
-  <li><a href="#relationship-to-the-manuscript-figures" id="toc-relationship-to-the-manuscript-figures" class="nav-link" data-scroll-target="#relationship-to-the-manuscript-figures">Relationship to the manuscript figures</a></li>
+  <li><a href="#code-availability" id="toc-code-availability" class="nav-link active" data-scroll-target="#code-availability">Code availability</a></li>
+  <li><a href="#data-availability" id="toc-data-availability" class="nav-link" data-scroll-target="#data-availability">Data availability</a></li>
+  <li><a href="#live-applications" id="toc-live-applications" class="nav-link" data-scroll-target="#live-applications">Live applications</a></li>
+  <li><a href="#manuscript-citation" id="toc-manuscript-citation" class="nav-link" data-scroll-target="#manuscript-citation">Manuscript citation</a></li>
+  <li><a href="#recommended-citation-practice" id="toc-recommended-citation-practice" class="nav-link" data-scroll-target="#recommended-citation-practice">Recommended citation practice</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/availability.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Methods</h1>
+<h1 class="title">Availability</h1>
 </div>
 
 
@@ -176,65 +166,38 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="purpose-of-the-worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="purpose-of-the-worked-example">Purpose of the worked example</h2>
-<p>The manuscript is a <strong>Ten Simple Rules</strong> paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.</p>
-<p>The worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state.</p>
+<section id="code-availability" class="level2">
+<h2 class="anchored" data-anchor-id="code-availability">Code availability</h2>
+<p>All source code for the worked example applications and the companion website is available in the public GitHub repository:</p>
+<p><a href="https://github.com/agudeloromero/limma-deg-explorer">GitHub repository</a></p>
 </section>
-<section id="validation-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="validation-dataset">Validation dataset</h2>
-<p>The worked example uses <strong>GSE60450</strong>, a public mouse mammary gland RNA-seq dataset comparing luminal and basal cell populations across developmental stages.</p>
-<p>This dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation.</p>
-</section>
-<section id="differential-expression-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="differential-expression-workflow">Differential expression workflow</h2>
-<section id="r-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="r-implementation">R implementation</h3>
-<p>The R implementation follows a Bioconductor-oriented workflow. Counts are normalised and analysed using a limma-based pipeline, and the resulting table is used as input for the interactive application.</p>
-<p>This implementation serves as the reference implementation for the genomics workflow used in the manuscript.</p>
-</section>
-<section id="python-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="python-implementation">Python implementation</h3>
-<p>The Python implementation is included to demonstrate the same application-design principles in a Python Shiny environment. It supports the same general interactive workflow, but some analytical steps differ because the surrounding Python ecosystem does not fully mirror the Bioconductor stack used in R.</p>
-<p>For this reason, the Python implementation should be interpreted as an illustrative parallel implementation rather than as a claim of strict methodological equivalence.</p>
-</section>
-</section>
-<section id="gene-ontology-enrichment" class="level2">
-<h2 class="anchored" data-anchor-id="gene-ontology-enrichment">Gene Ontology enrichment</h2>
-<section id="r-implementation-1" class="level3">
-<h3 class="anchored" data-anchor-id="r-implementation-1">R implementation</h3>
-<p>The R implementation uses Bioconductor-oriented annotation and enrichment tooling and is suitable for environments where local annotation resources and offline operation are important.</p>
-</section>
-<section id="python-implementation-1" class="level3">
-<h3 class="anchored" data-anchor-id="python-implementation-1">Python implementation</h3>
-<p>The Python implementation uses Python-native enrichment tooling and external services where needed. This makes deployment straightforward in some settings, but can introduce internet dependence for parts of the workflow.</p>
-</section>
-</section>
-<section id="why-both-implementations-are-shown" class="level2">
-<h2 class="anchored" data-anchor-id="why-both-implementations-are-shown">Why both implementations are shown</h2>
-<p>The manuscript does not argue that one framework is universally superior. Instead, it uses both implementations to show that the same design principles can be applied across different ecosystems.</p>
-<p>The practical choice between frameworks depends on the location of critical dependencies, the surrounding analytical environment, deployment constraints, and the needs of the intended users.</p>
-</section>
-<section id="main-practical-differences" class="level2">
-<h2 class="anchored" data-anchor-id="main-practical-differences">Main practical differences</h2>
-<p>For the worked example in the manuscript, the most relevant differences are:</p>
+<section id="data-availability" class="level2">
+<h2 class="anchored" data-anchor-id="data-availability">Data availability</h2>
+<p>The validation dataset used in the worked example is publicly available from GEO:</p>
 <ul>
-<li><strong>bioinformatics ecosystem maturity</strong></li>
-<li><strong>offline versus internet-dependent enrichment</strong></li>
-<li><strong>report-generation workflow</strong></li>
-<li><strong>deployment and containerisation options</strong></li>
+<li><strong>GSE60450</strong></li>
 </ul>
-<p>These trade-offs are summarised in <strong>Table 1</strong> of the manuscript.</p>
 </section>
-<section id="relationship-to-the-manuscript-figures" class="level2">
-<h2 class="anchored" data-anchor-id="relationship-to-the-manuscript-figures">Relationship to the manuscript figures</h2>
-<p>This website expands on material that was kept brief in the main manuscript.</p>
+<section id="live-applications" class="level2">
+<h2 class="anchored" data-anchor-id="live-applications">Live applications</h2>
+<p>Live application URLs are still being finalised and will be added here when available.</p>
 <ul>
-<li><strong>Figure 1</strong> presents the ten-rule workflow conceptually</li>
-<li><strong>Figure 2</strong> illustrates separation of data logic from display logic</li>
-<li><strong>Figure 3</strong> illustrates boundary validation of uploaded inputs</li>
+<li><strong>R Shiny implementation</strong>: URL to be added</li>
+<li><strong>Python Shiny implementation</strong>: URL to be added</li>
 </ul>
-<p>Expanded paired code examples corresponding to Figures 2 and 3 are provided on the <strong>Supplementary Code Examples</strong> page.</p>
+</section>
+<section id="manuscript-citation" class="level2">
+<h2 class="anchored" data-anchor-id="manuscript-citation">Manuscript citation</h2>
+<p>The companion website corresponds to the manuscript:</p>
+<blockquote class="blockquote">
+<p><strong>Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</strong><br>
+Agudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.</p>
+</blockquote>
+<p>Journal details and DOI will be added when available.</p>
+</section>
+<section id="recommended-citation-practice" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-citation-practice">Recommended citation practice</h2>
+<p>Until journal details are available, please cite the repository and the manuscript title in descriptive form where needed. Once publication details are available, this page will be updated with the formal citation.</p>
 
 
 </section>
@@ -650,5 +613,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/availability.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Methods – Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</title>
+<title>Supplementary Code Examples – Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -98,11 +133,11 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./methods.html" aria-current="page"> 
+    <a class="nav-link" href="./methods.html"> 
 <span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./supplementary-code-examples.html"> 
+    <a class="nav-link active" href="./supplementary-code-examples.html" aria-current="page"> 
 <span class="menu-text">Supplementary Code Examples</span></a>
   </li>  
   <li class="nav-item">
@@ -136,30 +171,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#purpose-of-the-worked-example" id="toc-purpose-of-the-worked-example" class="nav-link active" data-scroll-target="#purpose-of-the-worked-example">Purpose of the worked example</a></li>
-  <li><a href="#validation-dataset" id="toc-validation-dataset" class="nav-link" data-scroll-target="#validation-dataset">Validation dataset</a></li>
-  <li><a href="#differential-expression-workflow" id="toc-differential-expression-workflow" class="nav-link" data-scroll-target="#differential-expression-workflow">Differential expression workflow</a>
+  <li><a href="#about-this-page" id="toc-about-this-page" class="nav-link active" data-scroll-target="#about-this-page">About this page</a></li>
+  <li><a href="#figure-2-separate-data-logic-from-display-logic" id="toc-figure-2-separate-data-logic-from-display-logic" class="nav-link" data-scroll-target="#figure-2-separate-data-logic-from-display-logic">Figure 2 — Separate data logic from display logic</a>
   <ul class="collapse">
-  <li><a href="#r-implementation" id="toc-r-implementation" class="nav-link" data-scroll-target="#r-implementation">R implementation</a></li>
-  <li><a href="#python-implementation" id="toc-python-implementation" class="nav-link" data-scroll-target="#python-implementation">Python implementation</a></li>
+  <li><a href="#r-shiny" id="toc-r-shiny" class="nav-link" data-scroll-target="#r-shiny">R Shiny</a></li>
+  <li><a href="#python-shiny" id="toc-python-shiny" class="nav-link" data-scroll-target="#python-shiny">Python Shiny</a></li>
   </ul></li>
-  <li><a href="#gene-ontology-enrichment" id="toc-gene-ontology-enrichment" class="nav-link" data-scroll-target="#gene-ontology-enrichment">Gene Ontology enrichment</a>
+  <li><a href="#figure-3-validate-inputs-at-the-boundary" id="toc-figure-3-validate-inputs-at-the-boundary" class="nav-link" data-scroll-target="#figure-3-validate-inputs-at-the-boundary">Figure 3 — Validate inputs at the boundary</a>
   <ul class="collapse">
-  <li><a href="#r-implementation-1" id="toc-r-implementation-1" class="nav-link" data-scroll-target="#r-implementation-1">R implementation</a></li>
-  <li><a href="#python-implementation-1" id="toc-python-implementation-1" class="nav-link" data-scroll-target="#python-implementation-1">Python implementation</a></li>
+  <li><a href="#r-shiny-1" id="toc-r-shiny-1" class="nav-link" data-scroll-target="#r-shiny-1">R Shiny</a></li>
+  <li><a href="#python-shiny-1" id="toc-python-shiny-1" class="nav-link" data-scroll-target="#python-shiny-1">Python Shiny</a></li>
   </ul></li>
-  <li><a href="#why-both-implementations-are-shown" id="toc-why-both-implementations-are-shown" class="nav-link" data-scroll-target="#why-both-implementations-are-shown">Why both implementations are shown</a></li>
-  <li><a href="#main-practical-differences" id="toc-main-practical-differences" class="nav-link" data-scroll-target="#main-practical-differences">Main practical differences</a></li>
-  <li><a href="#relationship-to-the-manuscript-figures" id="toc-relationship-to-the-manuscript-figures" class="nav-link" data-scroll-target="#relationship-to-the-manuscript-figures">Relationship to the manuscript figures</a></li>
+  <li><a href="#optional-extended-example-downloadable-reporting" id="toc-optional-extended-example-downloadable-reporting" class="nav-link" data-scroll-target="#optional-extended-example-downloadable-reporting">Optional extended example — Downloadable reporting</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/supplementary-code-examples.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Methods</h1>
+<h1 class="title">Supplementary Code Examples</h1>
 </div>
 
 
@@ -176,65 +208,87 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="purpose-of-the-worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="purpose-of-the-worked-example">Purpose of the worked example</h2>
-<p>The manuscript is a <strong>Ten Simple Rules</strong> paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.</p>
-<p>The worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state.</p>
+<section id="about-this-page" class="level2">
+<h2 class="anchored" data-anchor-id="about-this-page">About this page</h2>
+<p>The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.</p>
+<p>These snippets are not intended to reproduce the entire applications. Full source code is available in the project repository.</p>
 </section>
-<section id="validation-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="validation-dataset">Validation dataset</h2>
-<p>The worked example uses <strong>GSE60450</strong>, a public mouse mammary gland RNA-seq dataset comparing luminal and basal cell populations across developmental stages.</p>
-<p>This dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation.</p>
+<section id="figure-2-separate-data-logic-from-display-logic" class="level2">
+<h2 class="anchored" data-anchor-id="figure-2-separate-data-logic-from-display-logic">Figure 2 — Separate data logic from display logic</h2>
+<p>This example illustrates the principle behind <strong>Rule 3</strong>: filtering and shared data preparation should occur in reusable reactive objects, while plotting functions should only render the prepared result.</p>
+<section id="r-shiny" class="level3">
+<h3 class="anchored" data-anchor-id="r-shiny">R Shiny</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>degs <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">raw_data</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req</span>(df)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  df[df<span class="sc">$</span>adj.P.Val <span class="sc">&lt;=</span> input<span class="sc">$</span>deg_pval <span class="sc">&amp;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">abs</span>(df<span class="sc">$</span>logFC) <span class="sc">&gt;=</span> input<span class="sc">$</span>deg_lfc, ]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>output<span class="sc">$</span>volcano <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">degs</span>()</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(logFC, <span class="sc">-</span><span class="fu">log10</span>(adj.P.Val))) <span class="sc">+</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="differential-expression-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="differential-expression-workflow">Differential expression workflow</h2>
-<section id="r-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="r-implementation">R implementation</h3>
-<p>The R implementation follows a Bioconductor-oriented workflow. Counts are normalised and analysed using a limma-based pipeline, and the resulting table is used as input for the interactive application.</p>
-<p>This implementation serves as the reference implementation for the genomics workflow used in the manuscript.</p>
-</section>
-<section id="python-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="python-implementation">Python implementation</h3>
-<p>The Python implementation is included to demonstrate the same application-design principles in a Python Shiny environment. It supports the same general interactive workflow, but some analytical steps differ because the surrounding Python ecosystem does not fully mirror the Bioconductor stack used in R.</p>
-<p>For this reason, the Python implementation should be interpreted as an illustrative parallel implementation rather than as a claim of strict methodological equivalence.</p>
-</section>
-</section>
-<section id="gene-ontology-enrichment" class="level2">
-<h2 class="anchored" data-anchor-id="gene-ontology-enrichment">Gene Ontology enrichment</h2>
-<section id="r-implementation-1" class="level3">
-<h3 class="anchored" data-anchor-id="r-implementation-1">R implementation</h3>
-<p>The R implementation uses Bioconductor-oriented annotation and enrichment tooling and is suitable for environments where local annotation resources and offline operation are important.</p>
-</section>
-<section id="python-implementation-1" class="level3">
-<h3 class="anchored" data-anchor-id="python-implementation-1">Python implementation</h3>
-<p>The Python implementation uses Python-native enrichment tooling and external services where needed. This makes deployment straightforward in some settings, but can introduce internet dependence for parts of the workflow.</p>
+<section id="python-shiny" class="level3">
+<h3 class="anchored" data-anchor-id="python-shiny">Python Shiny</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@reactive.calc</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> degs():</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> raw_data()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> df <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df[</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        (df[<span class="st">"adj.P.Val"</span>] <span class="op">&lt;=</span> <span class="bu">input</span>.deg_pval()) <span class="op">&amp;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        (df[<span class="st">"logFC"</span>].<span class="bu">abs</span>() <span class="op">&gt;=</span> <span class="bu">input</span>.deg_lfc())</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">@output</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">@render.plot</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> volcano():</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> degs()</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> df <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    plt.scatter(df[<span class="st">"logFC"</span>], <span class="op">-</span>np.log10(df[<span class="st">"adj.P.Val"</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="why-both-implementations-are-shown" class="level2">
-<h2 class="anchored" data-anchor-id="why-both-implementations-are-shown">Why both implementations are shown</h2>
-<p>The manuscript does not argue that one framework is universally superior. Instead, it uses both implementations to show that the same design principles can be applied across different ecosystems.</p>
-<p>The practical choice between frameworks depends on the location of critical dependencies, the surrounding analytical environment, deployment constraints, and the needs of the intended users.</p>
+<section id="figure-3-validate-inputs-at-the-boundary" class="level2">
+<h2 class="anchored" data-anchor-id="figure-3-validate-inputs-at-the-boundary">Figure 3 — Validate inputs at the boundary</h2>
+<p>This example illustrates the principle behind <strong>Rule 4</strong>: uploaded files should be checked immediately after import, before downstream filtering, plotting, or enrichment.</p>
+<section id="r-shiny-1" class="level3">
+<h3 class="anchored" data-anchor-id="r-shiny-1">R Shiny</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">req</span>(input<span class="sc">$</span>file)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(input<span class="sc">$</span>file<span class="sc">$</span>datapath)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  required <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"gene"</span>, <span class="st">"logFC"</span>, <span class="st">"adj.P.Val"</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">validate</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">need</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">all</span>(required <span class="sc">%in%</span> <span class="fu">names</span>(df)),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Uploaded file is missing required columns."</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  df</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="main-practical-differences" class="level2">
-<h2 class="anchored" data-anchor-id="main-practical-differences">Main practical differences</h2>
-<p>For the worked example in the manuscript, the most relevant differences are:</p>
-<ul>
-<li><strong>bioinformatics ecosystem maturity</strong></li>
-<li><strong>offline versus internet-dependent enrichment</strong></li>
-<li><strong>report-generation workflow</strong></li>
-<li><strong>deployment and containerisation options</strong></li>
-</ul>
-<p>These trade-offs are summarised in <strong>Table 1</strong> of the manuscript.</p>
+<section id="python-shiny-1" class="level3">
+<h3 class="anchored" data-anchor-id="python-shiny-1">Python Shiny</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">@reactive.calc</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> raw_data():</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    f <span class="op">=</span> <span class="bu">input</span>.<span class="bu">file</span>()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> f <span class="kw">is</span> <span class="va">None</span>:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.read_csv(f[<span class="dv">0</span>][<span class="st">"datapath"</span>])</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    required <span class="op">=</span> [<span class="st">"gene"</span>, <span class="st">"logFC"</span>, <span class="st">"adj.P.Val"</span>]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    missing <span class="op">=</span> [c <span class="cf">for</span> c <span class="kw">in</span> required <span class="cf">if</span> c <span class="kw">not</span> <span class="kw">in</span> df.columns]</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> missing:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">None</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="relationship-to-the-manuscript-figures" class="level2">
-<h2 class="anchored" data-anchor-id="relationship-to-the-manuscript-figures">Relationship to the manuscript figures</h2>
-<p>This website expands on material that was kept brief in the main manuscript.</p>
-<ul>
-<li><strong>Figure 1</strong> presents the ten-rule workflow conceptually</li>
-<li><strong>Figure 2</strong> illustrates separation of data logic from display logic</li>
-<li><strong>Figure 3</strong> illustrates boundary validation of uploaded inputs</li>
-</ul>
-<p>Expanded paired code examples corresponding to Figures 2 and 3 are provided on the <strong>Supplementary Code Examples</strong> page.</p>
+</section>
+<section id="optional-extended-example-downloadable-reporting" class="level2">
+<h2 class="anchored" data-anchor-id="optional-extended-example-downloadable-reporting">Optional extended example — Downloadable reporting</h2>
+<p>The manuscript discusses downloadable reporting as part of <strong>Rule 6</strong>. Full implementation details are kept out of the paper body, but the applications support report generation that captures current analysis settings and outputs.</p>
+<p>See the repository for the complete reporting logic used in the R and Python implementations.</p>
 
 
 </section>
@@ -650,5 +704,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/supplementary-code-examples.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Limma DEG Interactive Explorer</title>
+<title>Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -68,7 +33,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./assets/favicon.ico" rel="icon">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -106,6 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="assets/styles.css">
@@ -119,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Limma DEG Interactive Explorer</span>
+    <span class="navbar-title">Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -136,10 +101,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./methods.html"> 
 <span class="menu-text">Methods</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./supplementary-code-examples.html"> 
+<span class="menu-text">Supplementary Code Examples</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./reproducibility.html"> 
+<span class="menu-text">Reproducibility</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./availability.html"> 
+<span class="menu-text">Availability</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/agudeloromero/limma-deg-explorer"> <i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/agudeloromero/limma-deg-explorer"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -156,185 +133,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 style="font-size: 2.2rem; font-weight: 700; color: #1F4E79;" class="title display-7">
-    Limma DEG Interactive Explorer
-  </h1></header>
+<main class="content" id="quarto-document-content">
 
-
-
-
-<div style="text-align: center; padding: 3rem 1rem 2rem;">
-  
-  <p style="font-size: 1.15rem; color: #555; max-width: 680px; margin: 1rem auto;">
-    Interactive web applications for differential gene expression analysis
-    using limma-voom, implemented in both R and Python Shiny.
-  </p>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</h1>
 </div>
-<section id="about" class="level2">
-<h2 class="anchored" data-anchor-id="about">About</h2>
-<p>This resource accompanies the manuscript:</p>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="companion-website" class="level2">
+<h2 class="anchored" data-anchor-id="companion-website">Companion website</h2>
+<p>This website accompanies the manuscript:</p>
 <blockquote class="blockquote">
-<p><strong>[PAPER TITLE]</strong><br>
-Agudelo-Romero et al., [Year]<br>
-<em>[Journal Name]</em>. DOI: [DOI]</p>
+<p><strong>Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</strong><br>
+Agudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.<br>
+[Journal and DOI].</p>
 </blockquote>
-<p>The paper describes ten practical rules for building reproducible, interactive data analysis applications in the life sciences. Two parallel implementations of the same Limma DEG Explorer app — one in R Shiny and one in Python Shiny — serve as the worked example throughout the manuscript.</p>
-<p>Both applications accept a CSV file produced by <code>limma::topTable()</code> and provide real-time interactive visualisation of:</p>
+<p>The manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity.</p>
+</section>
+<section id="worked-example" class="level2">
+<h2 class="anchored" data-anchor-id="worked-example">Worked example</h2>
+<p>The worked example used throughout the manuscript is an interactive application for differential gene expression exploration and Gene Ontology enrichment. Two implementations are provided:</p>
 <ul>
-<li>Differentially expressed genes (volcano plot, ranked bar plot, DEG table)</li>
-<li>Gene Ontology enrichment (dot plot + table)</li>
-<li>Downloadable results folder (HTML report, CSV, Excel)</li>
+<li>an <strong>R Shiny</strong> implementation, used as the reference implementation for the genomics workflow</li>
+<li>a <strong>Python Shiny</strong> implementation, included as a parallel worked example illustrating the same design principles in a different ecosystem</li>
 </ul>
-<p>The validation dataset is GSE60450 (mouse mammary gland luminal vs basal cells; <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60450">Fu et al.&nbsp;2015</a>).</p>
-<hr>
+<p>Both applications accept a CSV derived from differential expression analysis and support interactive thresholding, visualisation, enrichment analysis, and downloadable reporting.</p>
+<p>The validation dataset used in the worked example is <strong>GSE60450</strong>.</p>
 </section>
 <section id="launch-the-apps" class="level2">
 <h2 class="anchored" data-anchor-id="launch-the-apps">Launch the apps</h2>
-<div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; margin: 2.5rem 0;">
-
-  <!-- R App -->
-  <div style="
-    flex: 1; min-width: 260px; max-width: 340px;
-    border: 1px solid #dee2e6; border-radius: 12px;
-    padding: 2rem 1.5rem; text-align: center;
-    background: #f8f9fa;
-  ">
-    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
-    <h3 style="color: #1F4E79; margin: 0 0 0.5rem;" class="anchored">R Shiny</h3>
-    <p style="color: #666; font-size: 0.9rem; min-height: 60px;">
-      Built with R Shiny, ggplot2, limma-voom, clusterProfiler,
-      and org.Mm.eg.db. Runs fully offline.
-    </p>
-    <a href="https://YOUR_USERNAME.shinyapps.io/limma-deg-explorer-r/" target="_blank" style="
-         display: inline-block; margin-top: 1rem;
-         background: #2E74B5; color: white;
-         padding: 0.6rem 1.4rem; border-radius: 6px;
-         text-decoration: none; font-weight: 600;
-       ">
-      Open R App →
-    </a>
-  </div>
-
-  <!-- Python App -->
-  <div style="
-    flex: 1; min-width: 260px; max-width: 340px;
-    border: 1px solid #dee2e6; border-radius: 12px;
-    padding: 2rem 1.5rem; text-align: center;
-    background: #f8f9fa;
-  ">
-    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐍</div>
-    <h3 style="color: #1E8449; margin: 0 0 0.5rem;" class="anchored">Python Shiny</h3>
-    <p style="color: #666; font-size: 0.9rem; min-height: 60px;">
-      Built with Python Shiny, matplotlib, scipy, gseapy (Enrichr API),
-      and Jinja2. Requires internet for GO enrichment.
-    </p>
-    <a href="https://huggingface.co/spaces/YOUR_USERNAME/limma-deg-explorer-py" target="_blank" style="
-         display: inline-block; margin-top: 1rem;
-         background: #1E8449; color: white;
-         padding: 0.6rem 1.4rem; border-radius: 6px;
-         text-decoration: none; font-weight: 600;
-       ">
-      Open Python App →
-    </a>
-  </div>
-
-</div>
-<hr>
+<section id="r-shiny" class="level3">
+<h3 class="anchored" data-anchor-id="r-shiny">R Shiny</h3>
+<p>Reference implementation for the worked genomics example, using R Shiny and Bioconductor-based tooling.</p>
+<p><a href="https://YOUR_USERNAME.shinyapps.io/YOUR_APP">Open R app →</a></p>
 </section>
-<section id="key-differences-between-implementations" class="level2">
-<h2 class="anchored" data-anchor-id="key-differences-between-implementations">Key differences between implementations</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Feature</th>
-<th>R</th>
-<th>Python</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Framework</td>
-<td>R Shiny</td>
-<td>Python Shiny</td>
-</tr>
-<tr class="even">
-<td>Plotting</td>
-<td>ggplot2</td>
-<td>matplotlib</td>
-</tr>
-<tr class="odd">
-<td>Gene labels</td>
-<td>ggrepel</td>
-<td>adjustText</td>
-</tr>
-<tr class="even">
-<td>DEA method</td>
-<td>limma-voom</td>
-<td>t-test (approx.)</td>
-</tr>
-<tr class="odd">
-<td>GO enrichment</td>
-<td>clusterProfiler</td>
-<td>gseapy (Enrichr API)</td>
-</tr>
-<tr class="even">
-<td>Gene annotation</td>
-<td>org.Mm.eg.db (offline)</td>
-<td>mygene API (online)</td>
-</tr>
-<tr class="odd">
-<td>Report engine</td>
-<td>R Markdown</td>
-<td>Jinja2 + base64</td>
-</tr>
-<tr class="even">
-<td>Internet required</td>
-<td>No</td>
-<td>Yes (GO enrichment)</td>
-</tr>
-</tbody>
-</table>
-<hr>
+<section id="python-shiny" class="level3">
+<h3 class="anchored" data-anchor-id="python-shiny">Python Shiny</h3>
+<p>Parallel implementation illustrating the same design principles in Python Shiny.</p>
+<p><a href="https://huggingface.co/spaces/YOUR_USERNAME/YOUR_APP">Open Python app →</a></p>
 </section>
-<section id="reproduce-the-analysis" class="level2">
-<h2 class="anchored" data-anchor-id="reproduce-the-analysis">Reproduce the analysis</h2>
-<p>All code is available on GitHub. To run either app locally:</p>
-<p><strong>R:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install dependencies</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/00_setup.R"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and prepare data</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"R/01_data_prep.R"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch app</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>shiny<span class="sc">::</span><span class="fu">runApp</span>(<span class="st">"R/"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Python:</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create environment and install dependencies</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Python/00_setup.py</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Activate environment</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate shiny_app_py</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Download and prepare data</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Python/01_data_prep.py</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Launch app</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run Python/app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<hr>
+</section>
+<section id="what-this-site-provides" class="level2">
+<h2 class="anchored" data-anchor-id="what-this-site-provides">What this site provides</h2>
+<ul>
+<li><strong>Methods</strong>: technical context for the worked example, including dataset choice and implementation notes</li>
+<li><strong>Supplementary Code Examples</strong>: expanded paired snippets corresponding to Figures 2 and 3 in the manuscript</li>
+<li><strong>Reproducibility</strong>: environment restoration, setup, local execution, and deployment notes</li>
+<li><strong>Availability</strong>: data, code, repository, and citation information</li>
+</ul>
+</section>
+<section id="source-code" class="level2">
+<h2 class="anchored" data-anchor-id="source-code">Source code</h2>
+<p>All source code for the manuscript companion materials and both application implementations is available in the public GitHub repository:</p>
+<p><a href="https://github.com/agudeloromero/limma-deg-explorer">GitHub repository</a></p>
 </section>
 <section id="citation" class="level2">
 <h2 class="anchored" data-anchor-id="citation">Citation</h2>
-<p>If you use these applications in your research, please cite:</p>
+<p>If you use the code or applications, please cite the manuscript when bibliographic details become available.</p>
 <blockquote class="blockquote">
-<p>Agudelo-Romero P. <em>et al.</em> <strong>[PAPER TITLE]</strong>. <em>[Journal]</em> [Year]; DOI: [DOI]</p>
+<p>Agudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.<br>
+<strong>Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.</strong><br>
+[Journal and DOI].</p>
 </blockquote>
-<hr>
 </section>
 <section id="acknowledgements" class="level2">
 <h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
-<p>Patricia Agudelo-Romero · The Kids Research Institute Australia<br>
-<a href="mailto:patricia.agudeloromero@thekids.org.au">patricia.agudeloromero@thekids.org.au</a> Senior Research Innovation Fellow | <a href="https://fhrifund.health.wa.gov.au/News-and-Events/2025/05/07/Pioneering-WA-health-and-medical-innovators-supported">Future Health Research and Innovation Fund</a></p>
-<p>Validation dataset: Fu <em>et al.</em> 2015, <em>Nature Cell Biology</em>. GEO accession <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE60450">GSE60450</a>.</p>
+<p>Patricia Agudelo-Romero The Kids Research Institute Australia</p>
+<p>Validation dataset: <strong>GSE60450</strong>.</p>
 
 
 </section>
@@ -427,6 +306,11 @@ Agudelo-Romero et al., [Year]<br>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -745,4 +629,5 @@ Agudelo-Romero et al., [Year]<br>
 
 
 
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

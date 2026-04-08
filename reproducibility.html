@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Methods – Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</title>
+<title>Reproducibility – Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -98,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./methods.html" aria-current="page"> 
+    <a class="nav-link" href="./methods.html"> 
 <span class="menu-text">Methods</span></a>
   </li>  
   <li class="nav-item">
@@ -106,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Supplementary Code Examples</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./reproducibility.html"> 
+    <a class="nav-link active" href="./reproducibility.html" aria-current="page"> 
 <span class="menu-text">Reproducibility</span></a>
   </li>  
   <li class="nav-item">
@@ -136,30 +171,37 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#purpose-of-the-worked-example" id="toc-purpose-of-the-worked-example" class="nav-link active" data-scroll-target="#purpose-of-the-worked-example">Purpose of the worked example</a></li>
-  <li><a href="#validation-dataset" id="toc-validation-dataset" class="nav-link" data-scroll-target="#validation-dataset">Validation dataset</a></li>
-  <li><a href="#differential-expression-workflow" id="toc-differential-expression-workflow" class="nav-link" data-scroll-target="#differential-expression-workflow">Differential expression workflow</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#repository-contents" id="toc-repository-contents" class="nav-link" data-scroll-target="#repository-contents">Repository contents</a></li>
+  <li><a href="#restore-the-r-environment" id="toc-restore-the-r-environment" class="nav-link" data-scroll-target="#restore-the-r-environment">Restore the R environment</a></li>
+  <li><a href="#restore-the-python-environment" id="toc-restore-the-python-environment" class="nav-link" data-scroll-target="#restore-the-python-environment">Restore the Python environment</a></li>
+  <li><a href="#prepare-the-validation-dataset" id="toc-prepare-the-validation-dataset" class="nav-link" data-scroll-target="#prepare-the-validation-dataset">Prepare the validation dataset</a>
   <ul class="collapse">
-  <li><a href="#r-implementation" id="toc-r-implementation" class="nav-link" data-scroll-target="#r-implementation">R implementation</a></li>
-  <li><a href="#python-implementation" id="toc-python-implementation" class="nav-link" data-scroll-target="#python-implementation">Python implementation</a></li>
+  <li><a href="#r-workflow" id="toc-r-workflow" class="nav-link" data-scroll-target="#r-workflow">R workflow</a></li>
+  <li><a href="#python-workflow" id="toc-python-workflow" class="nav-link" data-scroll-target="#python-workflow">Python workflow</a></li>
   </ul></li>
-  <li><a href="#gene-ontology-enrichment" id="toc-gene-ontology-enrichment" class="nav-link" data-scroll-target="#gene-ontology-enrichment">Gene Ontology enrichment</a>
+  <li><a href="#run-the-applications-locally" id="toc-run-the-applications-locally" class="nav-link" data-scroll-target="#run-the-applications-locally">Run the applications locally</a>
   <ul class="collapse">
-  <li><a href="#r-implementation-1" id="toc-r-implementation-1" class="nav-link" data-scroll-target="#r-implementation-1">R implementation</a></li>
-  <li><a href="#python-implementation-1" id="toc-python-implementation-1" class="nav-link" data-scroll-target="#python-implementation-1">Python implementation</a></li>
+  <li><a href="#r-shiny" id="toc-r-shiny" class="nav-link" data-scroll-target="#r-shiny">R Shiny</a></li>
+  <li><a href="#python-shiny" id="toc-python-shiny" class="nav-link" data-scroll-target="#python-shiny">Python Shiny</a></li>
   </ul></li>
-  <li><a href="#why-both-implementations-are-shown" id="toc-why-both-implementations-are-shown" class="nav-link" data-scroll-target="#why-both-implementations-are-shown">Why both implementations are shown</a></li>
-  <li><a href="#main-practical-differences" id="toc-main-practical-differences" class="nav-link" data-scroll-target="#main-practical-differences">Main practical differences</a></li>
-  <li><a href="#relationship-to-the-manuscript-figures" id="toc-relationship-to-the-manuscript-figures" class="nav-link" data-scroll-target="#relationship-to-the-manuscript-figures">Relationship to the manuscript figures</a></li>
+  <li><a href="#deployment-notes" id="toc-deployment-notes" class="nav-link" data-scroll-target="#deployment-notes">Deployment notes</a></li>
+  <li><a href="#troubleshooting-notes" id="toc-troubleshooting-notes" class="nav-link" data-scroll-target="#troubleshooting-notes">Troubleshooting notes</a>
+  <ul class="collapse">
+  <li><a href="#uploaded-file-is-rejected" id="toc-uploaded-file-is-rejected" class="nav-link" data-scroll-target="#uploaded-file-is-rejected">Uploaded file is rejected</a></li>
+  <li><a href="#python-enrichment-does-not-run" id="toc-python-enrichment-does-not-run" class="nav-link" data-scroll-target="#python-enrichment-does-not-run">Python enrichment does not run</a></li>
+  <li><a href="#environment-restores-but-app-still-fails" id="toc-environment-restores-but-app-still-fails" class="nav-link" data-scroll-target="#environment-restores-but-app-still-fails">Environment restores but app still fails</a></li>
+  <li><a href="#results-differ-between-r-and-python" id="toc-results-differ-between-r-and-python" class="nav-link" data-scroll-target="#results-differ-between-r-and-python">Results differ between R and Python</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/reproducibility.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Methods</h1>
+<h1 class="title">Reproducibility</h1>
 </div>
 
 
@@ -176,67 +218,89 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="purpose-of-the-worked-example" class="level2">
-<h2 class="anchored" data-anchor-id="purpose-of-the-worked-example">Purpose of the worked example</h2>
-<p>The manuscript is a <strong>Ten Simple Rules</strong> paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.</p>
-<p>The worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally.</p>
 </section>
-<section id="validation-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="validation-dataset">Validation dataset</h2>
-<p>The worked example uses <strong>GSE60450</strong>, a public mouse mammary gland RNA-seq dataset comparing luminal and basal cell populations across developmental stages.</p>
-<p>This dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation.</p>
-</section>
-<section id="differential-expression-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="differential-expression-workflow">Differential expression workflow</h2>
-<section id="r-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="r-implementation">R implementation</h3>
-<p>The R implementation follows a Bioconductor-oriented workflow. Counts are normalised and analysed using a limma-based pipeline, and the resulting table is used as input for the interactive application.</p>
-<p>This implementation serves as the reference implementation for the genomics workflow used in the manuscript.</p>
-</section>
-<section id="python-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="python-implementation">Python implementation</h3>
-<p>The Python implementation is included to demonstrate the same application-design principles in a Python Shiny environment. It supports the same general interactive workflow, but some analytical steps differ because the surrounding Python ecosystem does not fully mirror the Bioconductor stack used in R.</p>
-<p>For this reason, the Python implementation should be interpreted as an illustrative parallel implementation rather than as a claim of strict methodological equivalence.</p>
-</section>
-</section>
-<section id="gene-ontology-enrichment" class="level2">
-<h2 class="anchored" data-anchor-id="gene-ontology-enrichment">Gene Ontology enrichment</h2>
-<section id="r-implementation-1" class="level3">
-<h3 class="anchored" data-anchor-id="r-implementation-1">R implementation</h3>
-<p>The R implementation uses Bioconductor-oriented annotation and enrichment tooling and is suitable for environments where local annotation resources and offline operation are important.</p>
-</section>
-<section id="python-implementation-1" class="level3">
-<h3 class="anchored" data-anchor-id="python-implementation-1">Python implementation</h3>
-<p>The Python implementation uses Python-native enrichment tooling and external services where needed. This makes deployment straightforward in some settings, but can introduce internet dependence for parts of the workflow.</p>
-</section>
-</section>
-<section id="why-both-implementations-are-shown" class="level2">
-<h2 class="anchored" data-anchor-id="why-both-implementations-are-shown">Why both implementations are shown</h2>
-<p>The manuscript does not argue that one framework is universally superior. Instead, it uses both implementations to show that the same design principles can be applied across different ecosystems.</p>
-<p>The practical choice between frameworks depends on the location of critical dependencies, the surrounding analytical environment, deployment constraints, and the needs of the intended users.</p>
-</section>
-<section id="main-practical-differences" class="level2">
-<h2 class="anchored" data-anchor-id="main-practical-differences">Main practical differences</h2>
-<p>For the worked example in the manuscript, the most relevant differences are:</p>
+<section id="repository-contents" class="level2">
+<h2 class="anchored" data-anchor-id="repository-contents">Repository contents</h2>
+<p>The repository contains:</p>
 <ul>
-<li><strong>bioinformatics ecosystem maturity</strong></li>
-<li><strong>offline versus internet-dependent enrichment</strong></li>
-<li><strong>report-generation workflow</strong></li>
-<li><strong>deployment and containerisation options</strong></li>
+<li>the R Shiny implementation</li>
+<li>the Python Shiny implementation</li>
+<li>data-preparation scripts</li>
+<li>dependency-lock files</li>
+<li>manuscript companion website files</li>
 </ul>
-<p>These trade-offs are summarised in <strong>Table 1</strong> of the manuscript.</p>
 </section>
-<section id="relationship-to-the-manuscript-figures" class="level2">
-<h2 class="anchored" data-anchor-id="relationship-to-the-manuscript-figures">Relationship to the manuscript figures</h2>
-<p>This website expands on material that was kept brief in the main manuscript.</p>
+<section id="restore-the-r-environment" class="level2">
+<h2 class="anchored" data-anchor-id="restore-the-r-environment">Restore the R environment</h2>
+<p>The R implementation uses a locked project environment.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"renv::restore()"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="restore-the-python-environment" class="level2">
+<h2 class="anchored" data-anchor-id="restore-the-python-environment">Restore the Python environment</h2>
+<p>The Python implementation uses an environment definition plus Python package requirements.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> Python/shiny_app_py_env.yml</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate shiny_app_py</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> Python/requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="prepare-the-validation-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-the-validation-dataset">Prepare the validation dataset</h2>
+<p>Use the included data-preparation scripts to obtain and format the public validation dataset used in the manuscript.</p>
+<section id="r-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="r-workflow">R workflow</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/00_setup.R</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/01_data_prep.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="python-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="python-workflow">Python workflow</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Python/00_setup.py</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate shiny_app_py</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Python/01_data_prep.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="run-the-applications-locally" class="level2">
+<h2 class="anchored" data-anchor-id="run-the-applications-locally">Run the applications locally</h2>
+<section id="r-shiny" class="level3">
+<h3 class="anchored" data-anchor-id="r-shiny">R Shiny</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"shiny::runApp('R')"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="python-shiny" class="level3">
+<h3 class="anchored" data-anchor-id="python-shiny">Python Shiny</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run Python/app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="deployment-notes" class="level2">
+<h2 class="anchored" data-anchor-id="deployment-notes">Deployment notes</h2>
+<p>The manuscript discusses deployment as a general principle rather than prescribing one hosting platform.</p>
+<p>In the worked example:</p>
 <ul>
-<li><strong>Figure 1</strong> presents the ten-rule workflow conceptually</li>
-<li><strong>Figure 2</strong> illustrates separation of data logic from display logic</li>
-<li><strong>Figure 3</strong> illustrates boundary validation of uploaded inputs</li>
+<li>the <strong>R Shiny</strong> implementation is suitable for standard Shiny-oriented deployment workflows</li>
+<li>the <strong>Python Shiny</strong> implementation is suitable for Python-oriented deployment workflows, including container-based options</li>
 </ul>
-<p>Expanded paired code examples corresponding to Figures 2 and 3 are provided on the <strong>Supplementary Code Examples</strong> page.</p>
+</section>
+<section id="troubleshooting-notes" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting-notes">Troubleshooting notes</h2>
+<section id="uploaded-file-is-rejected" class="level3">
+<h3 class="anchored" data-anchor-id="uploaded-file-is-rejected">Uploaded file is rejected</h3>
+<p>Check that the uploaded file contains the expected column names and structure.</p>
+</section>
+<section id="python-enrichment-does-not-run" class="level3">
+<h3 class="anchored" data-anchor-id="python-enrichment-does-not-run">Python enrichment does not run</h3>
+<p>Some parts of the Python workflow may depend on internet-accessible services. Check server connectivity.</p>
+</section>
+<section id="environment-restores-but-app-still-fails" class="level3">
+<h3 class="anchored" data-anchor-id="environment-restores-but-app-still-fails">Environment restores but app still fails</h3>
+<p>Recreate the environment from the lock files rather than reusing a partially modified environment.</p>
+</section>
+<section id="results-differ-between-r-and-python" class="level3">
+<h3 class="anchored" data-anchor-id="results-differ-between-r-and-python">Results differ between R and Python</h3>
+<p>The two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.</p>
+<p>For the genomics example used in the manuscript, the R implementation should be treated as the reference implementation.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -650,5 +714,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/methods.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/reproducibility.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
