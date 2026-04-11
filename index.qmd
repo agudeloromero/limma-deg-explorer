@@ -83,9 +83,6 @@ The validation dataset used in the worked example is **GSE60450**.
 </div>
 ```
 
-Validation dataset: **GSE60450**.
-
-
 ## What this site provides
 
 - **Methods**: technical context for the worked example, including dataset choice and implementation notes
@@ -97,7 +94,7 @@ Validation dataset: **GSE60450**.
 
 All source code for the manuscript companion materials and both application implementations is available in the public GitHub repository:
 
-[GitHub repository](https://github.com/agudeloromero/limma-deg-explorer)
+GitHub repository: [https://github.com/agudeloromero/limma-deg-explorer](https://github.com/agudeloromero/limma-deg-explorer)
 
 ## Citation
 
@@ -105,10 +102,10 @@ If you use the code or applications, please cite the manuscript when bibliograph
 
 > Agudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.  
 > **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.**  
-> [Journal and DOI].
+> [Journal, year  and DOI].
 
 ## Contact
 
-Patricia Agudelo-Romero
-Senior Research Fellow
+Patricia Agudelo-Romero |
+Senior Research Fellow |
 The Kids Research Institute Australia
