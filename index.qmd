@@ -9,8 +9,8 @@ toc: false
 This website supports the manuscript:
 
 > **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications**  
-> Agudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.  
-> [Journal and DOI].
+> Agudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.  
+> [Journal, year and DOI].
 
 The manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity.
 
@@ -83,6 +83,8 @@ The validation dataset used in the worked example is **GSE60450**.
 </div>
 ```
 
+Validation dataset: **GSE60450**.
+
 
 ## What this site provides
 
@@ -105,9 +107,8 @@ If you use the code or applications, please cite the manuscript when bibliograph
 > **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.**  
 > [Journal and DOI].
 
-## Acknowledgements
+## Contact
 
 Patricia Agudelo-Romero
+Senior Research Fellow
 The Kids Research Institute Australia
-
-Validation dataset: **GSE60450**.

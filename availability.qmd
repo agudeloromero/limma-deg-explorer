@@ -27,9 +27,8 @@ Live application URLs are still being finalised and will be added here when avai
 The companion website corresponds to the manuscript:
 
 > **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications**  
-> Agudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.
-
-Journal details and DOI will be added when available.
+> Agudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.
+> [Journal, year and DOI].
 
 ## Recommended citation practice
 
