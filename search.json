@@ -1,5 +1,159 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "",
+    "text": "This website supports the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
+  },
+  {
+    "objectID": "index.html#companion-website",
+    "href": "index.html#companion-website",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "",
+    "text": "This website supports the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
+  },
+  {
+    "objectID": "index.html#worked-example",
+    "href": "index.html#worked-example",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Worked example",
+    "text": "Worked example\nThe worked example used throughout the manuscript is an interactive application for differential gene expression exploration and Gene Ontology enrichment. Two implementations are provided:\n\nan R Shiny implementation, used as the reference implementation for the genomics workflow\na Python Shiny implementation, included as a parallel worked example illustrating the same design principles in a different ecosystem\n\nBoth applications accept a CSV derived from differential expression analysis and support interactive thresholding, visualisation, enrichment analysis, and downloadable reporting.\nThe validation dataset used in the worked example is GSE60450."
+  },
+  {
+    "objectID": "index.html#launch-the-apps",
+    "href": "index.html#launch-the-apps",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Launch the apps",
+    "text": "Launch the apps\n\n\n  \n  \n    📊\n    R Shiny\n    \n      Reference implementation for the worked genomics example, \n      using R Shiny and Bioconductor-based tooling.\n    \n    \n      Open R App →\n    \n  \n\n  \n  \n    🐍\n    Python Shiny\n    \n      Parallel implementation illustrating the same design \n      principles in Python Shiny.\n    \n    \n      Open Python App →"
+  },
+  {
+    "objectID": "index.html#what-this-site-provides",
+    "href": "index.html#what-this-site-provides",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "What this site provides",
+    "text": "What this site provides\n\nMethods: technical context for the worked example, including dataset choice and implementation notes\nSupplementary Code Examples: expanded paired snippets corresponding to Figures 2 and 3 in the manuscript\nReproducibility: environment restoration, setup, local execution, and deployment notes\nAvailability: data, code, repository, and citation information"
+  },
+  {
+    "objectID": "index.html#source-code",
+    "href": "index.html#source-code",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Source code",
+    "text": "Source code\nAll source code for the manuscript companion materials and both application implementations is available in the public GitHub repository:\nGitHub repository"
+  },
+  {
+    "objectID": "index.html#citation",
+    "href": "index.html#citation",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Citation",
+    "text": "Citation\nIf you use the code or applications, please cite the manuscript when bibliographic details become available.\n\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.\n[Journal and DOI]."
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nPatricia Agudelo-Romero The Kids Research Institute Australia\nValidation dataset: GSE60450."
+  },
+  {
+    "objectID": "availability.html",
+    "href": "availability.html",
+    "title": "Availability",
+    "section": "",
+    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
+  },
+  {
+    "objectID": "availability.html#code-availability",
+    "href": "availability.html#code-availability",
+    "title": "Availability",
+    "section": "",
+    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
+  },
+  {
+    "objectID": "availability.html#data-availability",
+    "href": "availability.html#data-availability",
+    "title": "Availability",
+    "section": "Data availability",
+    "text": "Data availability\nThe validation dataset used in the worked example is publicly available from GEO:\n\nGSE60450"
+  },
+  {
+    "objectID": "availability.html#live-applications",
+    "href": "availability.html#live-applications",
+    "title": "Availability",
+    "section": "Live applications",
+    "text": "Live applications\nLive application URLs are still being finalised and will be added here when available.\n\nR Shiny implementation: URL to be added\nPython Shiny implementation: URL to be added"
+  },
+  {
+    "objectID": "availability.html#manuscript-citation",
+    "href": "availability.html#manuscript-citation",
+    "title": "Availability",
+    "section": "Manuscript citation",
+    "text": "Manuscript citation\nThe companion website corresponds to the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n\nJournal details and DOI will be added when available."
+  },
+  {
+    "objectID": "availability.html#recommended-citation-practice",
+    "href": "availability.html#recommended-citation-practice",
+    "title": "Availability",
+    "section": "Recommended citation practice",
+    "text": "Recommended citation practice\nUntil journal details are available, please cite the repository and the manuscript title in descriptive form where needed. Once publication details are available, this page will be updated with the formal citation."
+  },
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Methods",
+    "section": "",
+    "text": "The manuscript is a Ten Simple Rules paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.\nThe worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state."
+  },
+  {
+    "objectID": "methods.html#purpose-of-the-worked-example",
+    "href": "methods.html#purpose-of-the-worked-example",
+    "title": "Methods",
+    "section": "",
+    "text": "The manuscript is a Ten Simple Rules paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.\nThe worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state."
+  },
+  {
+    "objectID": "methods.html#validation-dataset",
+    "href": "methods.html#validation-dataset",
+    "title": "Methods",
+    "section": "Validation dataset",
+    "text": "Validation dataset\nThe worked example uses GSE60450, a public mouse mammary gland RNA-seq dataset comparing luminal and basal cell populations across developmental stages.\nThis dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation."
+  },
+  {
+    "objectID": "methods.html#differential-expression-workflow",
+    "href": "methods.html#differential-expression-workflow",
+    "title": "Methods",
+    "section": "Differential expression workflow",
+    "text": "Differential expression workflow\n\nR implementation\nThe R implementation follows a Bioconductor-oriented workflow. Counts are normalised and analysed using a limma-based pipeline, and the resulting table is used as input for the interactive application.\nThis implementation serves as the reference implementation for the genomics workflow used in the manuscript.\n\n\nPython implementation\nThe Python implementation is included to demonstrate the same application-design principles in a Python Shiny environment. It supports the same general interactive workflow, but some analytical steps differ because the surrounding Python ecosystem does not fully mirror the Bioconductor stack used in R.\nFor this reason, the Python implementation should be interpreted as an illustrative parallel implementation rather than as a claim of strict methodological equivalence."
+  },
+  {
+    "objectID": "methods.html#gene-ontology-enrichment",
+    "href": "methods.html#gene-ontology-enrichment",
+    "title": "Methods",
+    "section": "Gene Ontology enrichment",
+    "text": "Gene Ontology enrichment\n\nR implementation\nThe R implementation uses Bioconductor-oriented annotation and enrichment tooling and is suitable for environments where local annotation resources and offline operation are important.\n\n\nPython implementation\nThe Python implementation uses Python-native enrichment tooling and external services where needed. This makes deployment straightforward in some settings, but can introduce internet dependence for parts of the workflow."
+  },
+  {
+    "objectID": "methods.html#why-both-implementations-are-shown",
+    "href": "methods.html#why-both-implementations-are-shown",
+    "title": "Methods",
+    "section": "Why both implementations are shown",
+    "text": "Why both implementations are shown\nThe manuscript does not argue that one framework is universally superior. Instead, it uses both implementations to show that the same design principles can be applied across different ecosystems.\nThe practical choice between frameworks depends on the location of critical dependencies, the surrounding analytical environment, deployment constraints, and the needs of the intended users."
+  },
+  {
+    "objectID": "methods.html#main-practical-differences",
+    "href": "methods.html#main-practical-differences",
+    "title": "Methods",
+    "section": "Main practical differences",
+    "text": "Main practical differences\nFor the worked example in the manuscript, the most relevant differences are:\n\nbioinformatics ecosystem maturity\noffline versus internet-dependent enrichment\nreport-generation workflow\ndeployment and containerisation options\n\nThese trade-offs are summarised in Table 1 of the manuscript."
+  },
+  {
+    "objectID": "methods.html#relationship-to-the-manuscript-figures",
+    "href": "methods.html#relationship-to-the-manuscript-figures",
+    "title": "Methods",
+    "section": "Relationship to the manuscript figures",
+    "text": "Relationship to the manuscript figures\nThis website expands on material that was kept brief in the main manuscript.\n\nFigure 1 presents the ten-rule workflow conceptually\nFigure 2 illustrates separation of data logic from display logic\nFigure 3 illustrates boundary validation of uploaded inputs\n\nExpanded paired code examples corresponding to Figures 2 and 3 are provided on the Supplementary Code Examples page."
+  },
+  {
     "objectID": "reproducibility.html",
     "href": "reproducibility.html",
     "title": "Reproducibility",
@@ -63,62 +217,6 @@
     "text": "Troubleshooting notes\n\nUploaded file is rejected\nCheck that the uploaded file contains the expected column names and structure.\n\n\nPython enrichment does not run\nSome parts of the Python workflow may depend on internet-accessible services. Check server connectivity.\n\n\nEnvironment restores but app still fails\nRecreate the environment from the lock files rather than reusing a partially modified environment.\n\n\nResults differ between R and Python\nThe two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.\nFor the genomics example used in the manuscript, the R implementation should be treated as the reference implementation."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "",
-    "text": "This website supports the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
-  },
-  {
-    "objectID": "index.html#companion-website",
-    "href": "index.html#companion-website",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "",
-    "text": "This website supports the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n[Journal and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
-  },
-  {
-    "objectID": "index.html#worked-example",
-    "href": "index.html#worked-example",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Worked example",
-    "text": "Worked example\nThe worked example used throughout the manuscript is an interactive application for differential gene expression exploration and Gene Ontology enrichment. Two implementations are provided:\n\nan R Shiny implementation, used as the reference implementation for the genomics workflow\na Python Shiny implementation, included as a parallel worked example illustrating the same design principles in a different ecosystem\n\nBoth applications accept a CSV derived from differential expression analysis and support interactive thresholding, visualisation, enrichment analysis, and downloadable reporting.\nThe validation dataset used in the worked example is GSE60450."
-  },
-  {
-    "objectID": "index.html#launch-the-apps",
-    "href": "index.html#launch-the-apps",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Launch the apps",
-    "text": "Launch the apps\n\n\n  \n  \n    📊\n    R Shiny\n    \n      Reference implementation for the worked genomics example, \n      using R Shiny and Bioconductor-based tooling.\n    \n    \n      Open R App →\n    \n  \n\n  \n  \n    🐍\n    Python Shiny\n    \n      Parallel implementation illustrating the same design \n      principles in Python Shiny.\n    \n    \n      Open Python App →"
-  },
-  {
-    "objectID": "index.html#what-this-site-provides",
-    "href": "index.html#what-this-site-provides",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "What this site provides",
-    "text": "What this site provides\n\nMethods: technical context for the worked example, including dataset choice and implementation notes\nSupplementary Code Examples: expanded paired snippets corresponding to Figures 2 and 3 in the manuscript\nReproducibility: environment restoration, setup, local execution, and deployment notes\nAvailability: data, code, repository, and citation information"
-  },
-  {
-    "objectID": "index.html#source-code",
-    "href": "index.html#source-code",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Source code",
-    "text": "Source code\nAll source code for the manuscript companion materials and both application implementations is available in the public GitHub repository:\nGitHub repository"
-  },
-  {
-    "objectID": "index.html#citation",
-    "href": "index.html#citation",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Citation",
-    "text": "Citation\nIf you use the code or applications, please cite the manuscript when bibliographic details become available.\n\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.\n[Journal and DOI]."
-  },
-  {
-    "objectID": "index.html#acknowledgements",
-    "href": "index.html#acknowledgements",
-    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nPatricia Agudelo-Romero The Kids Research Institute Australia\nValidation dataset: GSE60450."
-  },
-  {
     "objectID": "supplementary-code-examples.html",
     "href": "supplementary-code-examples.html",
     "title": "Supplementary Code Examples",
@@ -152,103 +250,5 @@
     "title": "Supplementary Code Examples",
     "section": "Optional extended example — Downloadable reporting",
     "text": "Optional extended example — Downloadable reporting\nThe manuscript discusses downloadable reporting as part of Rule 6. Full implementation details are kept out of the paper body, but the applications support report generation that captures current analysis settings and outputs.\nSee the repository for the complete reporting logic used in the R and Python implementations."
-  },
-  {
-    "objectID": "methods.html",
-    "href": "methods.html",
-    "title": "Methods",
-    "section": "",
-    "text": "The manuscript is a Ten Simple Rules paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.\nThe worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state."
-  },
-  {
-    "objectID": "methods.html#purpose-of-the-worked-example",
-    "href": "methods.html#purpose-of-the-worked-example",
-    "title": "Methods",
-    "section": "",
-    "text": "The manuscript is a Ten Simple Rules paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.\nThe worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state."
-  },
-  {
-    "objectID": "methods.html#validation-dataset",
-    "href": "methods.html#validation-dataset",
-    "title": "Methods",
-    "section": "Validation dataset",
-    "text": "Validation dataset\nThe worked example uses GSE60450, a public mouse mammary gland RNA-seq dataset comparing luminal and basal cell populations across developmental stages.\nThis dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation."
-  },
-  {
-    "objectID": "methods.html#differential-expression-workflow",
-    "href": "methods.html#differential-expression-workflow",
-    "title": "Methods",
-    "section": "Differential expression workflow",
-    "text": "Differential expression workflow\n\nR implementation\nThe R implementation follows a Bioconductor-oriented workflow. Counts are normalised and analysed using a limma-based pipeline, and the resulting table is used as input for the interactive application.\nThis implementation serves as the reference implementation for the genomics workflow used in the manuscript.\n\n\nPython implementation\nThe Python implementation is included to demonstrate the same application-design principles in a Python Shiny environment. It supports the same general interactive workflow, but some analytical steps differ because the surrounding Python ecosystem does not fully mirror the Bioconductor stack used in R.\nFor this reason, the Python implementation should be interpreted as an illustrative parallel implementation rather than as a claim of strict methodological equivalence."
-  },
-  {
-    "objectID": "methods.html#gene-ontology-enrichment",
-    "href": "methods.html#gene-ontology-enrichment",
-    "title": "Methods",
-    "section": "Gene Ontology enrichment",
-    "text": "Gene Ontology enrichment\n\nR implementation\nThe R implementation uses Bioconductor-oriented annotation and enrichment tooling and is suitable for environments where local annotation resources and offline operation are important.\n\n\nPython implementation\nThe Python implementation uses Python-native enrichment tooling and external services where needed. This makes deployment straightforward in some settings, but can introduce internet dependence for parts of the workflow."
-  },
-  {
-    "objectID": "methods.html#why-both-implementations-are-shown",
-    "href": "methods.html#why-both-implementations-are-shown",
-    "title": "Methods",
-    "section": "Why both implementations are shown",
-    "text": "Why both implementations are shown\nThe manuscript does not argue that one framework is universally superior. Instead, it uses both implementations to show that the same design principles can be applied across different ecosystems.\nThe practical choice between frameworks depends on the location of critical dependencies, the surrounding analytical environment, deployment constraints, and the needs of the intended users."
-  },
-  {
-    "objectID": "methods.html#main-practical-differences",
-    "href": "methods.html#main-practical-differences",
-    "title": "Methods",
-    "section": "Main practical differences",
-    "text": "Main practical differences\nFor the worked example in the manuscript, the most relevant differences are:\n\nbioinformatics ecosystem maturity\noffline versus internet-dependent enrichment\nreport-generation workflow\ndeployment and containerisation options\n\nThese trade-offs are summarised in Table 1 of the manuscript."
-  },
-  {
-    "objectID": "methods.html#relationship-to-the-manuscript-figures",
-    "href": "methods.html#relationship-to-the-manuscript-figures",
-    "title": "Methods",
-    "section": "Relationship to the manuscript figures",
-    "text": "Relationship to the manuscript figures\nThis website expands on material that was kept brief in the main manuscript.\n\nFigure 1 presents the ten-rule workflow conceptually\nFigure 2 illustrates separation of data logic from display logic\nFigure 3 illustrates boundary validation of uploaded inputs\n\nExpanded paired code examples corresponding to Figures 2 and 3 are provided on the Supplementary Code Examples page."
-  },
-  {
-    "objectID": "availability.html",
-    "href": "availability.html",
-    "title": "Availability",
-    "section": "",
-    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
-  },
-  {
-    "objectID": "availability.html#code-availability",
-    "href": "availability.html#code-availability",
-    "title": "Availability",
-    "section": "",
-    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
-  },
-  {
-    "objectID": "availability.html#data-availability",
-    "href": "availability.html#data-availability",
-    "title": "Availability",
-    "section": "Data availability",
-    "text": "Data availability\nThe validation dataset used in the worked example is publicly available from GEO:\n\nGSE60450"
-  },
-  {
-    "objectID": "availability.html#live-applications",
-    "href": "availability.html#live-applications",
-    "title": "Availability",
-    "section": "Live applications",
-    "text": "Live applications\nLive application URLs are still being finalised and will be added here when available.\n\nR Shiny implementation: URL to be added\nPython Shiny implementation: URL to be added"
-  },
-  {
-    "objectID": "availability.html#manuscript-citation",
-    "href": "availability.html#manuscript-citation",
-    "title": "Availability",
-    "section": "Manuscript citation",
-    "text": "Manuscript citation\nThe companion website corresponds to the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\n\nJournal details and DOI will be added when available."
-  },
-  {
-    "objectID": "availability.html#recommended-citation-practice",
-    "href": "availability.html#recommended-citation-practice",
-    "title": "Availability",
-    "section": "Recommended citation practice",
-    "text": "Recommended citation practice\nUntil journal details are available, please cite the repository and the manuscript title in descriptive form where needed. Once publication details are available, this page will be updated with the formal citation."
   }
 ]
