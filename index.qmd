@@ -14,6 +14,11 @@ This website supports the manuscript:
 
 The manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity.
 
+## Motivation
+
+This project arose from the challenges in developing a web application for the project ["Innovative Diagnostic Solutions for Viral-Induced Asthma: Towards Timely and Precise Paediatric Care"](https://fhrifund.health.wa.gov.au/News-and-Events/2025/05/07/Pioneering-WA-health-and-medical-innovators-supported), funded by an Innovation Fellowship from the Future Health Research and Innovation (FHRI) Fund, Department of Health, Western Australia (IF2024-25/1). This manuscript draws on those experiences to offer ten practical rules, with the hope of saving others the planning effort and trial and error that inevitably accompany a first implementation.
+
+
 ## Worked example
 
 The worked example used throughout the manuscript is an interactive application for differential gene expression exploration and Gene Ontology enrichment. Two implementations are provided:
@@ -100,7 +105,7 @@ GitHub repository: [https://github.com/agudeloromero/limma-deg-explorer](https:/
 
 If you use the code or applications, please cite the manuscript when bibliographic details become available.
 
-> Agudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.  
+> Agudelo-Romero P, Caparros-Martin J, Bates A, Sikazwe C, Blyth C.  
 > **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.**  
 > [Journal, year  and DOI].
 
@@ -109,3 +114,5 @@ If you use the code or applications, please cite the manuscript when bibliograph
 Patricia Agudelo-Romero |
 Senior Research Fellow |
 The Kids Research Institute Australia
+
+:envelope: Patricia.agudeloRomero@thekids.org
