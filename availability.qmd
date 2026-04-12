@@ -19,8 +19,8 @@ The validation dataset used in the worked example is publicly available from GEO
 
 Live application URLs are still being finalised and will be added here when available.
 
-- **R Shiny implementation**: URL to be added
-- **Python Shiny implementation**: URL to be added
+- **R Shiny implementation**: [https://agudeloromero.shinyapps.io/limma-deg-explorer](https://agudeloromero.shinyapps.io/limma-deg-explorer)
+- **Python Shiny implementation**: [https://huggingface.co/spaces/agudeloromero/limma-deg-explorer](https://huggingface.co/spaces/agudeloromero/limma-deg-explorer)
 
 ## Manuscript citation
 
