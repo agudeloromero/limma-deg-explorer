@@ -14,6 +14,13 @@
     "text": "This website supports the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.\n[Journal, year and DOI].\n\nThe manuscript presents ten general rules for converting a bioinformatics analysis into a shareable interactive web application. This site provides the worked example, expanded implementation notes, supplementary code examples, and reproducibility material that were moved out of the main paper for brevity."
   },
   {
+    "objectID": "index.html#motivation",
+    "href": "index.html#motivation",
+    "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
+    "section": "Motivation",
+    "text": "Motivation\nThis project arose from the challenges in developing a web application for the project “Innovative Diagnostic Solutions for Viral-Induced Asthma: Towards Timely and Precise Paediatric Care”, funded by an Innovation Fellowship from the Future Health Research and Innovation (FHRI) Fund, Department of Health, Western Australia (IF2024-25/1). This manuscript draws on those experiences to offer ten practical rules, with the hope of saving others the planning effort and trial and error that inevitably accompany a first implementation."
+  },
+  {
     "objectID": "index.html#worked-example",
     "href": "index.html#worked-example",
     "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
@@ -46,14 +53,14 @@
     "href": "index.html#citation",
     "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
     "section": "Citation",
-    "text": "Citation\nIf you use the code or applications, please cite the manuscript when bibliographic details become available.\n\nAgudelo-Romero P, Caparros-Martin J, Sikazwe C, Blyth C.\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.\n[Journal, year and DOI]."
+    "text": "Citation\nIf you use the code or applications, please cite the manuscript when bibliographic details become available.\n\nAgudelo-Romero P, Caparros-Martin J, Bates A, Sikazwe C, Blyth C.\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.\n[Journal, year and DOI]."
   },
   {
     "objectID": "index.html#contact",
     "href": "index.html#contact",
     "title": "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
     "section": "Contact",
-    "text": "Contact\nPatricia Agudelo-Romero | Senior Research Fellow | The Kids Research Institute Australia"
+    "text": "Contact\nPatricia Agudelo-Romero | Senior Research Fellow | The Kids Research Institute Australia\n:envelope: Patricia.agudeloRomero@thekids.org"
   },
   {
     "objectID": "availability.html",
