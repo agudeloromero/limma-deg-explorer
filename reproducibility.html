@@ -167,7 +167,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#repository-contents" id="toc-repository-contents" class="nav-link" data-scroll-target="#repository-contents">Repository contents</a></li>
   <li><a href="#restore-the-r-environment" id="toc-restore-the-r-environment" class="nav-link" data-scroll-target="#restore-the-r-environment">Restore the R environment</a></li>
   <li><a href="#restore-the-python-environment" id="toc-restore-the-python-environment" class="nav-link" data-scroll-target="#restore-the-python-environment">Restore the Python environment</a></li>
   <li><a href="#prepare-the-validation-dataset" id="toc-prepare-the-validation-dataset" class="nav-link" data-scroll-target="#prepare-the-validation-dataset">Prepare the validation dataset</a>
@@ -180,7 +179,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#r-shiny" id="toc-r-shiny" class="nav-link" data-scroll-target="#r-shiny">R Shiny</a></li>
   <li><a href="#python-shiny" id="toc-python-shiny" class="nav-link" data-scroll-target="#python-shiny">Python Shiny</a></li>
   </ul></li>
-  <li><a href="#deployment-notes" id="toc-deployment-notes" class="nav-link" data-scroll-target="#deployment-notes">Deployment notes</a></li>
   <li><a href="#troubleshooting-notes" id="toc-troubleshooting-notes" class="nav-link" data-scroll-target="#troubleshooting-notes">Troubleshooting notes</a>
   <ul class="collapse">
   <li><a href="#uploaded-file-is-rejected" id="toc-uploaded-file-is-rejected" class="nav-link" data-scroll-target="#uploaded-file-is-rejected">Uploaded file is rejected</a></li>
@@ -216,17 +214,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally.</p>
-</section>
-<section id="repository-contents" class="level2">
-<h2 class="anchored" data-anchor-id="repository-contents">Repository contents</h2>
-<p>The repository contains:</p>
-<ul>
-<li>the R Shiny implementation</li>
-<li>the Python Shiny implementation</li>
-<li>data-preparation scripts</li>
-<li>dependency-lock files</li>
-<li>manuscript companion website files</li>
-</ul>
 </section>
 <section id="restore-the-r-environment" class="level2">
 <h2 class="anchored" data-anchor-id="restore-the-r-environment">Restore the R environment</h2>
@@ -265,15 +252,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="python-shiny">Python Shiny</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run Python/app.py</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-</section>
-<section id="deployment-notes" class="level2">
-<h2 class="anchored" data-anchor-id="deployment-notes">Deployment notes</h2>
-<p>The manuscript discusses deployment as a general principle rather than prescribing one hosting platform.</p>
-<p>In the worked example:</p>
-<ul>
-<li>the <strong>R Shiny</strong> implementation is suitable for standard Shiny-oriented deployment workflows</li>
-<li>the <strong>Python Shiny</strong> implementation is suitable for Python-oriented deployment workflows, including container-based options</li>
-</ul>
 </section>
 <section id="troubleshooting-notes" class="level2">
 <h2 class="anchored" data-anchor-id="troubleshooting-notes">Troubleshooting notes</h2>

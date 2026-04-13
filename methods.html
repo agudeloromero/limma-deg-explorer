@@ -134,16 +134,6 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#purpose-of-the-worked-example" id="toc-purpose-of-the-worked-example" class="nav-link active" data-scroll-target="#purpose-of-the-worked-example">Purpose of the worked example</a></li>
   <li><a href="#validation-dataset" id="toc-validation-dataset" class="nav-link" data-scroll-target="#validation-dataset">Validation dataset</a></li>
-  <li><a href="#differential-expression-workflow" id="toc-differential-expression-workflow" class="nav-link" data-scroll-target="#differential-expression-workflow">Differential expression workflow</a>
-  <ul class="collapse">
-  <li><a href="#r-implementation" id="toc-r-implementation" class="nav-link" data-scroll-target="#r-implementation">R implementation</a></li>
-  <li><a href="#python-implementation" id="toc-python-implementation" class="nav-link" data-scroll-target="#python-implementation">Python implementation</a></li>
-  </ul></li>
-  <li><a href="#gene-ontology-enrichment" id="toc-gene-ontology-enrichment" class="nav-link" data-scroll-target="#gene-ontology-enrichment">Gene Ontology enrichment</a>
-  <ul class="collapse">
-  <li><a href="#r-implementation-1" id="toc-r-implementation-1" class="nav-link" data-scroll-target="#r-implementation-1">R implementation</a></li>
-  <li><a href="#python-implementation-1" id="toc-python-implementation-1" class="nav-link" data-scroll-target="#python-implementation-1">Python implementation</a></li>
-  </ul></li>
   <li><a href="#why-both-implementations-are-shown" id="toc-why-both-implementations-are-shown" class="nav-link" data-scroll-target="#why-both-implementations-are-shown">Why both implementations are shown</a></li>
   <li><a href="#main-practical-differences" id="toc-main-practical-differences" class="nav-link" data-scroll-target="#main-practical-differences">Main practical differences</a></li>
   <li><a href="#relationship-to-the-manuscript-figures" id="toc-relationship-to-the-manuscript-figures" class="nav-link" data-scroll-target="#relationship-to-the-manuscript-figures">Relationship to the manuscript figures</a></li>
@@ -181,30 +171,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="validation-dataset">Validation dataset</h2>
 <p>The worked example uses <strong>GSE60450</strong>, a public mouse mammary gland RNA-seq dataset comparing luminal and basal cell populations across developmental stages.</p>
 <p>This dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation.</p>
-</section>
-<section id="differential-expression-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="differential-expression-workflow">Differential expression workflow</h2>
-<section id="r-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="r-implementation">R implementation</h3>
-<p>The R implementation follows a Bioconductor-oriented workflow. Counts are normalised and analysed using a limma-based pipeline, and the resulting table is used as input for the interactive application.</p>
-<p>This implementation serves as the reference implementation for the genomics workflow used in the manuscript.</p>
-</section>
-<section id="python-implementation" class="level3">
-<h3 class="anchored" data-anchor-id="python-implementation">Python implementation</h3>
-<p>The Python implementation is included to demonstrate the same application-design principles in a Python Shiny environment. It supports the same general interactive workflow, but some analytical steps differ because the surrounding Python ecosystem does not fully mirror the Bioconductor stack used in R.</p>
-<p>For this reason, the Python implementation should be interpreted as an illustrative parallel implementation rather than as a claim of strict methodological equivalence.</p>
-</section>
-</section>
-<section id="gene-ontology-enrichment" class="level2">
-<h2 class="anchored" data-anchor-id="gene-ontology-enrichment">Gene Ontology enrichment</h2>
-<section id="r-implementation-1" class="level3">
-<h3 class="anchored" data-anchor-id="r-implementation-1">R implementation</h3>
-<p>The R implementation uses Bioconductor-oriented annotation and enrichment tooling and is suitable for environments where local annotation resources and offline operation are important.</p>
-</section>
-<section id="python-implementation-1" class="level3">
-<h3 class="anchored" data-anchor-id="python-implementation-1">Python implementation</h3>
-<p>The Python implementation uses Python-native enrichment tooling and external services where needed. This makes deployment straightforward in some settings, but can introduce internet dependence for parts of the workflow.</p>
-</section>
+<p>Full environment setup and data preparation steps are described on the Reproducibility page. Expanded paired code examples are provided on the Supplementary Code Examples page.</p>
 </section>
 <section id="why-both-implementations-are-shown" class="level2">
 <h2 class="anchored" data-anchor-id="why-both-implementations-are-shown">Why both implementations are shown</h2>
