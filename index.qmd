@@ -19,17 +19,6 @@ The manuscript presents ten general rules for converting a bioinformatics analys
 This project arose from the challenges in developing a web application for the project ["Innovative Diagnostic Solutions for Viral-Induced Asthma: Towards Timely and Precise Paediatric Care"](https://fhrifund.health.wa.gov.au/News-and-Events/2025/05/07/Pioneering-WA-health-and-medical-innovators-supported), funded by an Innovation Fellowship from the Future Health Research and Innovation (FHRI) Fund, Department of Health, Western Australia (IF2024-25/1). This manuscript draws on those experiences to offer ten practical rules, with the hope of saving others the planning effort and trial and error that inevitably accompany a first implementation.
 
 
-## Worked example
-
-The worked example used throughout the manuscript is an interactive application for differential gene expression exploration and Gene Ontology enrichment. Two implementations are provided:
-
-- an **R Shiny** implementation, used as the reference implementation for the genomics workflow
-- a **Python Shiny** implementation, included as a parallel worked example illustrating the same design principles in a different ecosystem
-
-Both applications accept a CSV derived from differential expression analysis and support interactive thresholding, visualisation, enrichment analysis, and downloadable reporting.
-
-The validation dataset used in the worked example is **GSE60450**.
-
 ## Launch the apps
 
 ```{=html}
@@ -94,12 +83,6 @@ The validation dataset used in the worked example is **GSE60450**.
 - **Supplementary Code Examples**: expanded paired snippets corresponding to Figures 2 and 3 in the manuscript
 - **Reproducibility**: environment restoration, setup, local execution, and deployment notes
 - **Availability**: data, code, repository, and citation information
-
-## Source code
-
-All source code for the manuscript companion materials and both application implementations is available in the public GitHub repository:
-
-GitHub repository: [https://github.com/agudeloromero/limma-deg-explorer](https://github.com/agudeloromero/limma-deg-explorer)
 
 ## Citation
 

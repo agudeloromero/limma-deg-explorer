@@ -17,10 +17,8 @@ The validation dataset used in the worked example is publicly available from GEO
 
 ## Live applications
 
-Live application URLs are still being finalised and will be added here when available.
-
-- **R Shiny implementation**: [https://agudeloromero.shinyapps.io/limma-deg-explorer](https://agudeloromero.shinyapps.io/limma-deg-explorer)
-- **Python Shiny implementation**: [https://huggingface.co/spaces/agudeloromero/limma-deg-explorer](https://huggingface.co/spaces/agudeloromero/limma-deg-explorer)
+- **R Shiny implementation**: [Open app](https://agudeloromero.shinyapps.io/limma-deg-explorer)
+- **Python Shiny implementation**: [Open app](https://huggingface.co/spaces/agudeloromero/limma-deg-explorer)
 
 ## Manuscript citation
 
@@ -30,6 +28,3 @@ The companion website corresponds to the manuscript:
 > Agudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.  
 > [Journal, year and DOI].
 
-## Recommended citation practice
-
-Until journal details are available, please cite the repository and the manuscript title in descriptive form where needed. Once publication details are available, this page will be updated with the formal citation.

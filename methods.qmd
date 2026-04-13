@@ -15,29 +15,7 @@ The worked example uses **GSE60450**, a public mouse mammary gland RNA-seq datas
 
 This dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation.
 
-## Differential expression workflow
-
-### R implementation
-
-The R implementation follows a Bioconductor-oriented workflow. Counts are normalised and analysed using a limma-based pipeline, and the resulting table is used as input for the interactive application.
-
-This implementation serves as the reference implementation for the genomics workflow used in the manuscript.
-
-### Python implementation
-
-The Python implementation is included to demonstrate the same application-design principles in a Python Shiny environment. It supports the same general interactive workflow, but some analytical steps differ because the surrounding Python ecosystem does not fully mirror the Bioconductor stack used in R.
-
-For this reason, the Python implementation should be interpreted as an illustrative parallel implementation rather than as a claim of strict methodological equivalence.
-
-## Gene Ontology enrichment
-
-### R implementation
-
-The R implementation uses Bioconductor-oriented annotation and enrichment tooling and is suitable for environments where local annotation resources and offline operation are important.
-
-### Python implementation
-
-The Python implementation uses Python-native enrichment tooling and external services where needed. This makes deployment straightforward in some settings, but can introduce internet dependence for parts of the workflow.
+Full environment setup and data preparation steps are described on the Reproducibility page. Expanded paired code examples are provided on the Supplementary Code Examples page.
 
 ## Why both implementations are shown
 

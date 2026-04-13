@@ -7,16 +7,6 @@ page-layout: article
 
 This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally.
 
-## Repository contents
-
-The repository contains:
-
-- the R Shiny implementation
-- the Python Shiny implementation
-- data-preparation scripts
-- dependency-lock files
-- manuscript companion website files
-
 ## Restore the R environment
 
 The R implementation uses a locked project environment.
@@ -67,15 +57,6 @@ Rscript -e "shiny::runApp('R')"
 ```bash
 shiny run Python/app.py
 ```
-
-## Deployment notes
-
-The manuscript discusses deployment as a general principle rather than prescribing one hosting platform.
-
-In the worked example:
-
-- the **R Shiny** implementation is suitable for standard Shiny-oriented deployment workflows
-- the **Python Shiny** implementation is suitable for Python-oriented deployment workflows, including container-based options
 
 ## Troubleshooting notes
 
