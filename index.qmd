@@ -1,5 +1,5 @@
 ---
-title: "Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications"
+title: "Golden Rules for Turning Bioinformatics Analyses into Interactive Web Applications"
 page-layout: article
 toc: false
 ---
@@ -8,7 +8,7 @@ toc: false
 
 This website supports the manuscript:
 
-> **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications**  
+> **Golden Rules for Turning Bioinformatics Analyses into Interactive Web Applications**  
 > Agudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.  
 > [Journal, year and DOI].
 
@@ -89,7 +89,7 @@ This project arose from the challenges in developing a web application for the p
 If you use the code or applications, please cite the manuscript when bibliographic details become available.
 
 > Agudelo-Romero P, Caparros-Martin J, Bates A, Sikazwe C, Blyth C.  
-> **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications.**  
+> **Golden Rules for Turning Bioinformatics Analyses into Interactive Web Applications.**  
 > [Journal, year  and DOI].
 
 ## Contact
