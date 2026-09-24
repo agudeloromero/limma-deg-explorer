@@ -5,7 +5,7 @@ page-layout: article
 
 ## Purpose of the worked example
 
-The manuscript is a **Ten Simple Rules** paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.
+The manuscript is a **Golden Rules** paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.
 
 The worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state.
 
