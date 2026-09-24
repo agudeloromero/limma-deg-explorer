@@ -24,7 +24,7 @@ The validation dataset used in the worked example is publicly available from GEO
 
 The companion website corresponds to the manuscript:
 
-> **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications**  
+> **Golden Rules for Turning Bioinformatics Analyses into Interactive Web Applications**  
 > Agudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.  
 > [Journal, year and DOI].
 
