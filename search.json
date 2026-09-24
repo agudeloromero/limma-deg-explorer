@@ -1,54 +1,5 @@
 [
   {
-    "objectID": "reproducibility.html",
-    "href": "reproducibility.html",
-    "title": "Reproducibility",
-    "section": "",
-    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
-  },
-  {
-    "objectID": "reproducibility.html#overview",
-    "href": "reproducibility.html#overview",
-    "title": "Reproducibility",
-    "section": "",
-    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
-  },
-  {
-    "objectID": "reproducibility.html#restore-the-r-environment",
-    "href": "reproducibility.html#restore-the-r-environment",
-    "title": "Reproducibility",
-    "section": "Restore the R environment",
-    "text": "Restore the R environment\nThe R implementation uses a locked project environment.\nRscript -e \"renv::restore()\""
-  },
-  {
-    "objectID": "reproducibility.html#restore-the-python-environment",
-    "href": "reproducibility.html#restore-the-python-environment",
-    "title": "Reproducibility",
-    "section": "Restore the Python environment",
-    "text": "Restore the Python environment\nThe Python implementation uses an environment definition plus Python package requirements.\nconda env create -f Python/shiny_app_py_env.yml\nconda activate shiny_app_py\npip install -r Python/requirements.txt"
-  },
-  {
-    "objectID": "reproducibility.html#prepare-the-validation-dataset",
-    "href": "reproducibility.html#prepare-the-validation-dataset",
-    "title": "Reproducibility",
-    "section": "Prepare the validation dataset",
-    "text": "Prepare the validation dataset\nUse the included data-preparation scripts to obtain and format the public validation dataset used in the manuscript.\n\nR workflow\nRscript R/00_setup.R\nRscript R/01_data_prep.R\n\n\nPython workflow\npython Python/00_setup.py\nconda activate shiny_app_py\npython Python/01_data_prep.py"
-  },
-  {
-    "objectID": "reproducibility.html#run-the-applications-locally",
-    "href": "reproducibility.html#run-the-applications-locally",
-    "title": "Reproducibility",
-    "section": "Run the applications locally",
-    "text": "Run the applications locally\n\nR Shiny\nRscript -e \"shiny::runApp('R')\"\n\n\nPython Shiny\nshiny run Python/app.py"
-  },
-  {
-    "objectID": "reproducibility.html#troubleshooting-notes",
-    "href": "reproducibility.html#troubleshooting-notes",
-    "title": "Reproducibility",
-    "section": "Troubleshooting notes",
-    "text": "Troubleshooting notes\n\nUploaded file is rejected\nCheck that the uploaded file contains the expected column names and structure.\n\n\nPython enrichment does not run\nSome parts of the Python workflow may depend on internet-accessible services. Check server connectivity.\n\n\nEnvironment restores but app still fails\nRecreate the environment from the lock files rather than reusing a partially modified environment.\n\n\nResults differ between R and Python\nThe two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.\nFor the genomics example used in the manuscript, the R implementation should be treated as the reference implementation."
-  },
-  {
     "objectID": "methods.html",
     "href": "methods.html",
     "title": "Methods",
@@ -89,6 +40,41 @@
     "title": "Methods",
     "section": "Relationship to the manuscript figures",
     "text": "Relationship to the manuscript figures\nThis website expands on material that was kept brief in the main manuscript.\n\nFigure 1 presents the ten-rule workflow conceptually\nFigure 2 illustrates separation of data logic from display logic\nFigure 3 illustrates boundary validation of uploaded inputs\n\nExpanded paired code examples corresponding to Figures 2 and 3 are provided on the Supplementary Code Examples page."
+  },
+  {
+    "objectID": "supplementary-code-examples.html",
+    "href": "supplementary-code-examples.html",
+    "title": "Supplementary Code Examples",
+    "section": "",
+    "text": "The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.\nThese snippets are not intended to reproduce the entire applications. Full source code is available in the project repository."
+  },
+  {
+    "objectID": "supplementary-code-examples.html#about-this-page",
+    "href": "supplementary-code-examples.html#about-this-page",
+    "title": "Supplementary Code Examples",
+    "section": "",
+    "text": "The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.\nThese snippets are not intended to reproduce the entire applications. Full source code is available in the project repository."
+  },
+  {
+    "objectID": "supplementary-code-examples.html#figure-2-separate-data-logic-from-display-logic",
+    "href": "supplementary-code-examples.html#figure-2-separate-data-logic-from-display-logic",
+    "title": "Supplementary Code Examples",
+    "section": "Figure 2 — Separate data logic from display logic",
+    "text": "Figure 2 — Separate data logic from display logic\nThis example illustrates the principle behind Rule 3: filtering and shared data preparation should occur in reusable reactive objects, while plotting functions should only render the prepared result.\n\nR Shiny\ndegs &lt;- reactive({\n  df &lt;- raw_data()\n  req(df)\n  df[df$adj.P.Val &lt;= input$deg_pval &\n     abs(df$logFC) &gt;= input$deg_lfc, ]\n})\n\noutput$volcano &lt;- renderPlot({\n  df &lt;- degs()\n  ggplot(df, aes(logFC, -log10(adj.P.Val))) +\n    geom_point()\n})\n\n\nPython Shiny\n@reactive.calc\ndef degs():\n    df = raw_data()\n    if df is None:\n        return None\n    return df[\n        (df[\"adj.P.Val\"] &lt;= input.deg_pval()) &\n        (df[\"logFC\"].abs() &gt;= input.deg_lfc())\n    ]\n\n@output\n@render.plot\ndef volcano():\n    df = degs()\n    if df is None:\n        return\n    plt.scatter(df[\"logFC\"], -np.log10(df[\"adj.P.Val\"]))"
+  },
+  {
+    "objectID": "supplementary-code-examples.html#figure-3-validate-inputs-at-the-boundary",
+    "href": "supplementary-code-examples.html#figure-3-validate-inputs-at-the-boundary",
+    "title": "Supplementary Code Examples",
+    "section": "Figure 3 — Validate inputs at the boundary",
+    "text": "Figure 3 — Validate inputs at the boundary\nThis example illustrates the principle behind Rule 4: uploaded files should be checked immediately after import, before downstream filtering, plotting, or enrichment.\n\nR Shiny\nraw_data &lt;- reactive({\n  req(input$file)\n  df &lt;- read.csv(input$file$datapath)\n  required &lt;- c(\"gene\", \"logFC\", \"adj.P.Val\")\n  validate(\n    need(\n      all(required %in% names(df)),\n      \"Uploaded file is missing required columns.\"\n    )\n  )\n  df\n})\n\n\nPython Shiny\n@reactive.calc\ndef raw_data():\n    f = input.file()\n    if f is None:\n        return None\n    df = pd.read_csv(f[0][\"datapath\"])\n    required = [\"gene\", \"logFC\", \"adj.P.Val\"]\n    missing = [c for c in required if c not in df.columns]\n    if missing:\n        return None\n    return df"
+  },
+  {
+    "objectID": "supplementary-code-examples.html#optional-extended-example-downloadable-reporting",
+    "href": "supplementary-code-examples.html#optional-extended-example-downloadable-reporting",
+    "title": "Supplementary Code Examples",
+    "section": "Optional extended example — Downloadable reporting",
+    "text": "Optional extended example — Downloadable reporting\nThe manuscript discusses downloadable reporting as part of Rule 6. Full implementation details are kept out of the paper body, but the applications support report generation that captures current analysis settings and outputs.\nSee the repository for the complete reporting logic used in the R and Python implementations."
   },
   {
     "objectID": "index.html",
@@ -172,41 +158,55 @@
     "href": "availability.html#manuscript-citation",
     "title": "Availability",
     "section": "Manuscript citation",
-    "text": "Manuscript citation\nThe companion website corresponds to the manuscript:\n\nTen Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.\n[Journal, year and DOI]."
+    "text": "Manuscript citation\nThe companion website corresponds to the manuscript:\n\nGolden Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.\n[Journal, year and DOI]."
   },
   {
-    "objectID": "supplementary-code-examples.html",
-    "href": "supplementary-code-examples.html",
-    "title": "Supplementary Code Examples",
+    "objectID": "reproducibility.html",
+    "href": "reproducibility.html",
+    "title": "Reproducibility",
     "section": "",
-    "text": "The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.\nThese snippets are not intended to reproduce the entire applications. Full source code is available in the project repository."
+    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
   },
   {
-    "objectID": "supplementary-code-examples.html#about-this-page",
-    "href": "supplementary-code-examples.html#about-this-page",
-    "title": "Supplementary Code Examples",
+    "objectID": "reproducibility.html#overview",
+    "href": "reproducibility.html#overview",
+    "title": "Reproducibility",
     "section": "",
-    "text": "The main manuscript includes only short paired examples to illustrate selected design principles without overwhelming the paper. This page provides expanded versions of those examples.\nThese snippets are not intended to reproduce the entire applications. Full source code is available in the project repository."
+    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
   },
   {
-    "objectID": "supplementary-code-examples.html#figure-2-separate-data-logic-from-display-logic",
-    "href": "supplementary-code-examples.html#figure-2-separate-data-logic-from-display-logic",
-    "title": "Supplementary Code Examples",
-    "section": "Figure 2 — Separate data logic from display logic",
-    "text": "Figure 2 — Separate data logic from display logic\nThis example illustrates the principle behind Rule 3: filtering and shared data preparation should occur in reusable reactive objects, while plotting functions should only render the prepared result.\n\nR Shiny\ndegs &lt;- reactive({\n  df &lt;- raw_data()\n  req(df)\n  df[df$adj.P.Val &lt;= input$deg_pval &\n     abs(df$logFC) &gt;= input$deg_lfc, ]\n})\n\noutput$volcano &lt;- renderPlot({\n  df &lt;- degs()\n  ggplot(df, aes(logFC, -log10(adj.P.Val))) +\n    geom_point()\n})\n\n\nPython Shiny\n@reactive.calc\ndef degs():\n    df = raw_data()\n    if df is None:\n        return None\n    return df[\n        (df[\"adj.P.Val\"] &lt;= input.deg_pval()) &\n        (df[\"logFC\"].abs() &gt;= input.deg_lfc())\n    ]\n\n@output\n@render.plot\ndef volcano():\n    df = degs()\n    if df is None:\n        return\n    plt.scatter(df[\"logFC\"], -np.log10(df[\"adj.P.Val\"]))"
+    "objectID": "reproducibility.html#restore-the-r-environment",
+    "href": "reproducibility.html#restore-the-r-environment",
+    "title": "Reproducibility",
+    "section": "Restore the R environment",
+    "text": "Restore the R environment\nThe R implementation uses a locked project environment.\nRscript -e \"renv::restore()\""
   },
   {
-    "objectID": "supplementary-code-examples.html#figure-3-validate-inputs-at-the-boundary",
-    "href": "supplementary-code-examples.html#figure-3-validate-inputs-at-the-boundary",
-    "title": "Supplementary Code Examples",
-    "section": "Figure 3 — Validate inputs at the boundary",
-    "text": "Figure 3 — Validate inputs at the boundary\nThis example illustrates the principle behind Rule 4: uploaded files should be checked immediately after import, before downstream filtering, plotting, or enrichment.\n\nR Shiny\nraw_data &lt;- reactive({\n  req(input$file)\n  df &lt;- read.csv(input$file$datapath)\n  required &lt;- c(\"gene\", \"logFC\", \"adj.P.Val\")\n  validate(\n    need(\n      all(required %in% names(df)),\n      \"Uploaded file is missing required columns.\"\n    )\n  )\n  df\n})\n\n\nPython Shiny\n@reactive.calc\ndef raw_data():\n    f = input.file()\n    if f is None:\n        return None\n    df = pd.read_csv(f[0][\"datapath\"])\n    required = [\"gene\", \"logFC\", \"adj.P.Val\"]\n    missing = [c for c in required if c not in df.columns]\n    if missing:\n        return None\n    return df"
+    "objectID": "reproducibility.html#restore-the-python-environment",
+    "href": "reproducibility.html#restore-the-python-environment",
+    "title": "Reproducibility",
+    "section": "Restore the Python environment",
+    "text": "Restore the Python environment\nThe Python implementation uses an environment definition plus Python package requirements.\nconda env create -f Python/shiny_app_py_env.yml\nconda activate shiny_app_py\npip install -r Python/requirements.txt"
   },
   {
-    "objectID": "supplementary-code-examples.html#optional-extended-example-downloadable-reporting",
-    "href": "supplementary-code-examples.html#optional-extended-example-downloadable-reporting",
-    "title": "Supplementary Code Examples",
-    "section": "Optional extended example — Downloadable reporting",
-    "text": "Optional extended example — Downloadable reporting\nThe manuscript discusses downloadable reporting as part of Rule 6. Full implementation details are kept out of the paper body, but the applications support report generation that captures current analysis settings and outputs.\nSee the repository for the complete reporting logic used in the R and Python implementations."
+    "objectID": "reproducibility.html#prepare-the-validation-dataset",
+    "href": "reproducibility.html#prepare-the-validation-dataset",
+    "title": "Reproducibility",
+    "section": "Prepare the validation dataset",
+    "text": "Prepare the validation dataset\nUse the included data-preparation scripts to obtain and format the public validation dataset used in the manuscript.\n\nR workflow\nRscript R/00_setup.R\nRscript R/01_data_prep.R\n\n\nPython workflow\npython Python/00_setup.py\nconda activate shiny_app_py\npython Python/01_data_prep.py"
+  },
+  {
+    "objectID": "reproducibility.html#run-the-applications-locally",
+    "href": "reproducibility.html#run-the-applications-locally",
+    "title": "Reproducibility",
+    "section": "Run the applications locally",
+    "text": "Run the applications locally\n\nR Shiny\nRscript -e \"shiny::runApp('R')\"\n\n\nPython Shiny\nshiny run Python/app.py"
+  },
+  {
+    "objectID": "reproducibility.html#troubleshooting-notes",
+    "href": "reproducibility.html#troubleshooting-notes",
+    "title": "Reproducibility",
+    "section": "Troubleshooting notes",
+    "text": "Troubleshooting notes\n\nUploaded file is rejected\nCheck that the uploaded file contains the expected column names and structure.\n\n\nPython enrichment does not run\nSome parts of the Python workflow may depend on internet-accessible services. Check server connectivity.\n\n\nEnvironment restores but app still fails\nRecreate the environment from the lock files rather than reusing a partially modified environment.\n\n\nResults differ between R and Python\nThe two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.\nFor the genomics example used in the manuscript, the R implementation should be treated as the reference implementation."
   }
 ]
