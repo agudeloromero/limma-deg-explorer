@@ -2,7 +2,7 @@
 
 Parallel R Shiny [2] and Python Shiny [3] applications for interactive differential gene expression and Gene Ontology enrichment analysis. Companion code for the manuscript:
 
-> **Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications** [1]  
+> **Golden Rules for Turning Bioinformatics Analyses into Interactive Web Applications** [1]  
 > Agudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.  
 > [journal, year, doi] — to be updated on acceptance
 
