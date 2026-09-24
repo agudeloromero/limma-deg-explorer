@@ -153,7 +153,7 @@ The two implementations illustrate the same application-design principles but us
 
 ## References
 
-1. Agudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C. Ten Simple Rules for Turning Bioinformatics Analyses into Interactive Web Applications. [journal, year, doi] — to be updated on acceptance.
+1. Agudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C. Golden Rules for Turning Bioinformatics Analyses into Interactive Web Applications. [journal, year, doi] — to be updated on acceptance.
 
 2. Chang W, Cheng J, Allaire J, Sievert C, Schloerke B, Xie Y, Allen J, McPherson J, Dipert A, Borges B. shiny: Web Application Framework for R. R package version 1.8.0. 2023. https://CRAN.R-project.org/package=shiny
 
