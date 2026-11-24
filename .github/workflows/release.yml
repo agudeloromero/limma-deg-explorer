@@ -1,0 +1,118 @@
+# Runs when a version tag such as v1.0.0 is pushed:
+#   1. checks that the tag matches the version recorded in the code
+#   2. runs the full CI (lint + tests for both apps)
+#   3. builds and publishes Docker images to GitHub Container Registry
+#   4. creates the GitHub Release (notes taken from CHANGELOG.md),
+#      which Zenodo archives with a DOI once the repository is enabled there
+#   5. deploys the Python app to Hugging Face and the R app to shinyapps.io
+name: Release
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  version:
+    name: Tag matches version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash .github/scripts/check_version.sh "$GITHUB_REF_NAME"
+
+  ci:
+    needs: version
+    uses: ./.github/workflows/ci.yml
+
+  images:
+    name: Docker image (${{ matrix.app }})
+    needs: ci
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - app: python
+            image: limma-deg-explorer-py
+          - app: R
+            image: limma-deg-explorer-r
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build arguments
+        id: args
+        run: |
+          if [ "${{ matrix.app }}" = "R" ]; then
+            test -f Shiny_app/R/renv.lock || { echo "::error::Shiny_app/R/renv.lock is missing (run 00_setup.R)"; exit 1; }
+            echo "build_args=R_VERSION=$(jq -r .R.Version Shiny_app/R/renv.lock)" >> "$GITHUB_OUTPUT"
+          else
+            echo "build_args=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ghcr.io/${{ github.repository_owner }}/${{ matrix.image }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: Shiny_app/${{ matrix.app }}
+          build-args: ${{ steps.args.outputs.build_args }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha,scope=${{ matrix.app }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.app }}
+
+  github-release:
+    name: GitHub Release
+    needs: images
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Release notes from CHANGELOG.md
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          awk -v v="$version" '
+            $0 ~ "^## \\[" v "\\]" {on=1; next}
+            on && /^## \[/ {exit}
+            on && /^\[/ {exit}
+            on {print}
+          ' CHANGELOG.md > notes.md
+          cat >> notes.md <<NOTES
+
+          ### Docker images
+          \`\`\`
+          docker run --rm -p 7860:7860 ghcr.io/${GITHUB_REPOSITORY_OWNER}/limma-deg-explorer-py:${version}
+          docker run --rm -p 3838:3838 ghcr.io/${GITHUB_REPOSITORY_OWNER}/limma-deg-explorer-r:${version}
+          \`\`\`
+          NOTES
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" --notes-file notes.md --verify-tag
+
+  deploy-python:
+    needs: github-release
+    uses: ./.github/workflows/deploy-hf-space.yml
+    secrets: inherit
+
+  deploy-r:
+    needs: github-release
+    uses: ./.github/workflows/deploy-shinyapps.yml
+    secrets: inherit
