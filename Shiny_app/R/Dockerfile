@@ -11,6 +11,7 @@ FROM rocker/shiny:${R_VERSION}
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libcurl4-openssl-dev libssl-dev libxml2-dev libfontconfig1-dev \
         libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev \
+        libtiff-dev libjpeg-dev libglpk-dev libuv1-dev cmake \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /srv/shiny-server/*
 
