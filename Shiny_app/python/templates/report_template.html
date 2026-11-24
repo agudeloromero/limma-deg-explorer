@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--
+  report_template.html  (Jinja2)  —  Rule 6: figures-only HTML report
+
+  Author:      Patricia Agudelo-Romero
+  Institution: The Kids Research Institute Australia
+
+  Figures are rendered to PNG in report.py and embedded as base64,
+  so the report is a single self-contained file that opens offline.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limma DEG analysis report</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+           max-width: 960px; margin: 0 auto; padding: 24px 32px; color: #222; line-height: 1.6; }
+    h1 { color: #1F4E79; border-bottom: 3px solid #1F4E79; padding-bottom: 8px; }
+    h2 { color: #2E74B5; border-bottom: 1px solid #BDD7EE; padding-bottom: 4px; margin-top: 40px; }
+    h3 { color: #1F4E79; margin-top: 28px; }
+    .meta { color: #666; margin-top: -10px; font-size: 0.9em; }
+    .note { background: #EBF3FB; border-left: 5px solid #2E74B5; padding: 12px 16px;
+            border-radius: 4px; margin: 18px 0; font-size: 0.9em; }
+    .warn { background: #FFF4E5; border-left: 5px solid #E67E22; padding: 10px 14px;
+            border-radius: 4px; margin: 12px 0; font-size: 0.9em; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.88em; }
+    th { background: #2E74B5; color: white; padding: 8px 10px; text-align: left; }
+    td { border: 1px solid #ddd; padding: 6px 10px; }
+    tr:nth-child(even) { background: #F7FBFF; }
+    .fig { text-align: center; margin: 20px 0; }
+    .fig img { max-width: 100%; border: 1px solid #e5e5e5; border-radius: 4px; }
+    .no-result { color: #888; font-style: italic; padding: 8px 0; }
+    .methods { background: #F8F9FA; border: 1px solid #dee2e6; border-radius: 4px;
+               padding: 16px 20px; font-size: 0.9em; color: #444; }
+    .summary-boxes { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+    .sbox { padding: 8px 16px; border-radius: 6px; font-weight: bold; }
+    .box-total { background: #F0F0F0; color: #444; }
+    .box-up { background: #EDE0F2; color: #7B2D8B; }
+    .box-down { background: #DCF0E6; color: #2E8B57; }
+    footer { margin-top: 48px; padding-top: 12px; border-top: 1px solid #ddd;
+             font-size: 0.82em; color: #888; }
+  </style>
+</head>
+<body>
+
+<h1>Limma DEG analysis report</h1>
+<p class="meta"><strong>Generated:</strong> {{ date }} &nbsp;|&nbsp;
+  Limma DEG Explorer (Python Shiny) v{{ versions.app }} &nbsp;|&nbsp;
+  Input: <code>{{ input_name }}</code></p>
+
+<div class="note">
+  <strong>Files in this folder:</strong>
+  <code>DEG_results_*.csv</code> (filtered DEG table) &nbsp;|&nbsp;
+  <code>GO_enrichment_*.xlsx</code> (GO_BP, GO_MF and GO_CC sheets)
+</div>
+
+<h2>Analysis parameters</h2>
+<table>
+  <tr><th>Parameter</th><th>Value</th></tr>
+  <tr><td>DEG adj. P-value cutoff</td><td>&le; {{ deg_pval }}</td></tr>
+  <tr><td>DEG |log&#8322;FC| cutoff</td><td>&ge; {{ deg_lfc }}</td></tr>
+  <tr><td>Enrichment adj. P-value cutoff</td><td>&le; {{ enr_pval }}</td></tr>
+  <tr><td>Genes in input table</td><td>{{ n_total }}</td></tr>
+  <tr><td>DEGs (up / down)</td><td>{{ n_degs }} ({{ n_up }} / {{ n_dn }})</td></tr>
+  {% for s in go_sections %}
+  <tr><td>{{ s.label }} terms</td><td>{{ s.n_terms }}</td></tr>
+  {% endfor %}
+</table>
+
+<div class="summary-boxes">
+  <span class="sbox box-total">{{ n_degs }} DEGs</span>
+  <span class="sbox box-up">&#9650; {{ n_up }} up</span>
+  <span class="sbox box-down">&#9660; {{ n_dn }} down</span>
+</div>
+
+<h2>Volcano plot</h2>
+<p>Purple: logFC &gt; 0; green: logFC &lt; 0; grey: not significant at the cutoffs above.
+   The five most significant genes in each direction are labelled.</p>
+<div class="fig"><img src="data:image/png;base64,{{ volcano_b64 }}" alt="Volcano plot" width="700"></div>
+
+<h2>Top ranked genes</h2>
+{% if barplot_b64 %}
+<p>Genes ranked by sign(log&#8322;FC) &times; &minus;log&#8321;&#8320;(adj. P-value).
+   The full table is in <code>DEG_results_*.csv</code>.</p>
+<div class="fig"><img src="data:image/png;base64,{{ barplot_b64 }}" alt="Top ranked genes" width="620"></div>
+{% else %}
+<p class="no-result">No DEGs at the current cutoffs.</p>
+{% endif %}
+
+<h2>GO enrichment</h2>
+<p>Top 15 terms per ontology. Full tables with gene lists are in <code>GO_enrichment_*.xlsx</code>.</p>
+{% for s in go_sections %}
+<h3>{{ s.label }}</h3>
+{% if s.error %}<div class="warn">{{ s.error }}</div>{% endif %}
+{% if s.img %}
+<div class="fig"><img src="data:image/png;base64,{{ s.img }}" alt="{{ s.label }}" width="750"></div>
+{% elif not s.error %}
+<p class="no-result">No enriched terms at adj. P-value &le; {{ enr_pval }}.</p>
+{% endif %}
+{% endfor %}
+
+<h2>Methods</h2>
+<div class="methods">
+  <p>Differentially expressed genes (DEGs) were taken from a limma results table
+  (Ritchie <em>et al.</em> 2015) and selected using Benjamini&ndash;Hochberg adjusted
+  P-value &le; {{ deg_pval }} and |log&#8322;FC| &ge; {{ deg_lfc }}.</p>
+  <p>Gene Ontology over-representation analysis was run with gseapy {{ versions.gseapy }}
+  (Fang <em>et al.</em> 2023) through the Enrichr web service (Chen <em>et al.</em> 2013;
+  libraries: {{ go_libraries }}). All {{ n_total }} genes in the input table were used
+  as the background set. Gene symbols were matched case-insensitively to the Enrichr
+  libraries. Terms with adjusted P-value &le; {{ enr_pval }} are reported.</p>
+  <p>The R implementation of this application uses clusterProfiler with the offline
+  org.Mm.eg.db annotation instead, so term lists can differ between the two versions.</p>
+  <p>Software: Python {{ versions.python }}, shiny {{ versions.shiny }},
+  pandas {{ versions.pandas }}, matplotlib {{ versions.matplotlib }}.</p>
+</div>
+
+<footer>
+  Generated by the Limma DEG Explorer (Python Shiny) &mdash; {{ date }}.
+  https://github.com/agudeloromero/limma-deg-explorer
+</footer>
+
+</body>
+</html>
