@@ -1,0 +1,71 @@
+# Publishes Shiny_app/python to the Hugging Face Space, so GitHub is the
+# single source of truth for the deployed Python app.
+# Runs automatically after each release (release.yml) and can also be run
+# by hand from the Actions tab.
+# One-time setup: create a write token at huggingface.co/settings/tokens and
+# add it to this repository as the secret HF_TOKEN
+# (Settings -> Secrets and variables -> Actions). Without it, this step is
+# skipped with a warning.
+name: Deploy Python app to Hugging Face
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      HF_SPACE: agudeloromero/limma-deg-explorer
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check prerequisites
+        id: check
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          if [ -z "$HF_TOKEN" ]; then
+            echo "::warning::HF_TOKEN secret not set; skipping the Hugging Face deployment"
+            echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          test -f Shiny_app/python/data/GSE60450_limma.csv || {
+            echo "::error::Run Shiny_app/R/01_data_prep.R and commit the CSV first"; exit 1; }
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: Push to the Space
+        if: steps.check.outputs.skip == 'false'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git clone "https://user:${HF_TOKEN}@huggingface.co/spaces/${HF_SPACE}" space
+          rsync -a --delete \
+            --exclude .git --exclude .gitattributes --exclude README.md \
+            --exclude tests --exclude __pycache__ --exclude 'requirements-dev.txt' \
+            --exclude shiny_app_py_env.yml \
+            Shiny_app/python/ space/
+          cat > space/README.md <<'MD'
+          ---
+          title: Limma DEG Explorer
+          emoji: 🧬
+          colorFrom: blue
+          colorTo: green
+          sdk: docker
+          app_port: 7860
+          pinned: false
+          license: mit
+          ---
+
+          Python Shiny implementation of the Limma DEG Explorer.
+          Source code: https://github.com/agudeloromero/limma-deg-explorer
+          MD
+          cd space
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Space already up to date"; exit 0; fi
+          git commit -m "Sync from GitHub ${GITHUB_SHA::7}"
+          git push
