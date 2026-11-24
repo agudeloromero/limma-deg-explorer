@@ -1,0 +1,31 @@
+# ── macOS ───────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# ── Editors ─────────────────────────────────────────────────
+.vscode/
+.idea/
+
+# ── R ───────────────────────────────────────────────────────
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+Shiny_app/R/renv/
+rsconnect/
+
+# ── Python ──────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# ── Raw GEO downloads (re-created by 01_data_prep.R) ────────
+Shiny_app/R/data/raw/
+
+# ── Quarto website build ────────────────────────────────────
+/.quarto/
+/_site/
