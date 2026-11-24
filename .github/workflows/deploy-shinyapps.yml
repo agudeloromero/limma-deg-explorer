@@ -1,0 +1,61 @@
+# Publishes Shiny_app/R to shinyapps.io with the package versions in renv.lock.
+# Runs automatically after each release (release.yml) and can also be run
+# by hand from the Actions tab.
+# One-time setup (Settings -> Secrets and variables -> Actions), from
+# shinyapps.io -> Account -> Tokens: secrets SHINYAPPS_ACCOUNT,
+# SHINYAPPS_TOKEN and SHINYAPPS_SECRET. Without them, this step is skipped
+# with a warning.
+name: Deploy R app to shinyapps.io
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Shiny_app/R
+    env:
+      SHINYAPPS_ACCOUNT: ${{ secrets.SHINYAPPS_ACCOUNT }}
+      SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+      SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check prerequisites
+        id: check
+        run: |
+          if [ -z "$SHINYAPPS_ACCOUNT" ] || [ -z "$SHINYAPPS_TOKEN" ] || [ -z "$SHINYAPPS_SECRET" ]; then
+            echo "::warning::shinyapps.io secrets not set; skipping the shinyapps.io deployment"
+            echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          test -f renv.lock || { echo "::error::renv.lock is missing (run 00_setup.R)"; exit 1; }
+          echo "skip=false" >> "$GITHUB_OUTPUT"
+
+      - name: R version from renv.lock
+        if: steps.check.outputs.skip == 'false'
+        id: rver
+        run: echo "version=$(jq -r .R.Version renv.lock)" >> "$GITHUB_OUTPUT"
+
+      - if: steps.check.outputs.skip == 'false'
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ steps.rver.outputs.version }}
+          use-public-rspm: true
+
+      - name: Restore the locked package versions
+        if: steps.check.outputs.skip == 'false'
+        run: |
+          # Linux binaries from Posit Package Manager instead of source builds
+          codename="$(lsb_release -cs)"
+          export RENV_CONFIG_REPOS_OVERRIDE="https://packagemanager.posit.co/cran/__linux__/${codename}/latest"
+          Rscript -e 'install.packages("renv"); renv::restore(lockfile = "renv.lock", library = .libPaths()[1], prompt = FALSE)'
+
+      - name: Deploy
+        if: steps.check.outputs.skip == 'false'
+        run: Rscript 02_deploy.R
