@@ -1,45 +1,38 @@
 [
   {
-    "objectID": "methods.html",
-    "href": "methods.html",
-    "title": "Methods",
+    "objectID": "availability.html",
+    "href": "availability.html",
+    "title": "Availability",
     "section": "",
-    "text": "The manuscript is a Golden Rules paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.\nThe worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state."
+    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository\nThe code is released under the MIT License. Citation metadata are provided in CITATION.cff."
   },
   {
-    "objectID": "methods.html#purpose-of-the-worked-example",
-    "href": "methods.html#purpose-of-the-worked-example",
-    "title": "Methods",
+    "objectID": "availability.html#code-availability",
+    "href": "availability.html#code-availability",
+    "title": "Availability",
     "section": "",
-    "text": "The manuscript is a Golden Rules paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.\nThe worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state."
+    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository\nThe code is released under the MIT License. Citation metadata are provided in CITATION.cff."
   },
   {
-    "objectID": "methods.html#validation-dataset",
-    "href": "methods.html#validation-dataset",
-    "title": "Methods",
-    "section": "Validation dataset",
-    "text": "Validation dataset\nThe worked example uses GSE60450, a public mouse mammary gland RNA-seq dataset comparing luminal and basal cell populations across developmental stages.\nThis dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation.\nFull environment setup and data preparation steps are described on the Reproducibility page. Expanded paired code examples are provided on the Supplementary Code Examples page."
+    "objectID": "availability.html#data-availability",
+    "href": "availability.html#data-availability",
+    "title": "Availability",
+    "section": "Data availability",
+    "text": "Data availability\nThe validation dataset used in the worked example is publicly available from GEO:\n\nGSE60450 (Fu et al. 2015). The limma-voom results used as the reference input are produced by Shiny_app/R/01_data_prep.R and included in both application folders."
   },
   {
-    "objectID": "methods.html#why-both-implementations-are-shown",
-    "href": "methods.html#why-both-implementations-are-shown",
-    "title": "Methods",
-    "section": "Why both implementations are shown",
-    "text": "Why both implementations are shown\nThe manuscript does not argue that one framework is universally superior. Instead, it uses both implementations to show that the same design principles can be applied across different ecosystems.\nThe practical choice between frameworks depends on the location of critical dependencies, the surrounding analytical environment, deployment constraints, and the needs of the intended users."
+    "objectID": "availability.html#live-applications",
+    "href": "availability.html#live-applications",
+    "title": "Availability",
+    "section": "Live applications",
+    "text": "Live applications\n\nR Shiny implementation: Open app\nPython Shiny implementation: Open app"
   },
   {
-    "objectID": "methods.html#main-practical-differences",
-    "href": "methods.html#main-practical-differences",
-    "title": "Methods",
-    "section": "Main practical differences",
-    "text": "Main practical differences\nFor the worked example in the manuscript, the most relevant differences are:\n\nbioinformatics ecosystem maturity\noffline versus internet-dependent enrichment\nreport-generation workflow\ndeployment and containerisation options\n\nThese trade-offs are summarised in Table 1 of the manuscript."
-  },
-  {
-    "objectID": "methods.html#relationship-to-the-manuscript-figures",
-    "href": "methods.html#relationship-to-the-manuscript-figures",
-    "title": "Methods",
-    "section": "Relationship to the manuscript figures",
-    "text": "Relationship to the manuscript figures\nThis website expands on material that was kept brief in the main manuscript.\n\nFigure 1 presents the ten-rule workflow conceptually\nFigure 2 illustrates separation of data logic from display logic\nFigure 3 illustrates boundary validation of uploaded inputs\n\nExpanded paired code examples corresponding to Figures 2 and 3 are provided on the Supplementary Code Examples page."
+    "objectID": "availability.html#manuscript-citation",
+    "href": "availability.html#manuscript-citation",
+    "title": "Availability",
+    "section": "Manuscript citation",
+    "text": "Manuscript citation\nThe companion website corresponds to the manuscript:\n\nGolden Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.\n[Journal, year and DOI]."
   },
   {
     "objectID": "supplementary-code-examples.html",
@@ -123,90 +116,104 @@
     "href": "index.html#contact",
     "title": "Golden Rules for Turning Bioinformatics Analyses into Interactive Web Applications",
     "section": "Contact",
-    "text": "Contact\nPatricia Agudelo-Romero | Senior Research Fellow | The Kids Research Institute Australia\n✉️ Patricia.agudeloRomero@thekids.org"
+    "text": "Contact\nPatricia Agudelo-Romero | Senior Research Fellow | The Kids Research Institute Australia\n✉️ patricia.agudeloromero@thekids.org.au"
   },
   {
-    "objectID": "availability.html",
-    "href": "availability.html",
-    "title": "Availability",
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "Methods",
     "section": "",
-    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
+    "text": "The manuscript is a Golden Rules paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.\nThe worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state."
   },
   {
-    "objectID": "availability.html#code-availability",
-    "href": "availability.html#code-availability",
-    "title": "Availability",
+    "objectID": "methods.html#purpose-of-the-worked-example",
+    "href": "methods.html#purpose-of-the-worked-example",
+    "title": "Methods",
     "section": "",
-    "text": "All source code for the worked example applications and the companion website is available in the public GitHub repository:\nGitHub repository"
+    "text": "The manuscript is a Golden Rules paper, not a software benchmarking study. The R Shiny and Python Shiny applications are provided as worked examples to illustrate transferable design principles for turning a bioinformatics analysis into an interactive web application.\nThe worked example used throughout the manuscript is a differential gene expression and Gene Ontology enrichment application that allows users to upload a results table, explore thresholds interactively, visualise outputs, and download a report capturing the current analysis state."
   },
   {
-    "objectID": "availability.html#data-availability",
-    "href": "availability.html#data-availability",
-    "title": "Availability",
-    "section": "Data availability",
-    "text": "Data availability\nThe validation dataset used in the worked example is publicly available from GEO:\n\nGSE60450"
+    "objectID": "methods.html#validation-dataset",
+    "href": "methods.html#validation-dataset",
+    "title": "Methods",
+    "section": "Validation dataset",
+    "text": "Validation dataset\nThe worked example uses GSE60450, a public mouse mammary gland RNA-seq dataset comparing luminal and basal cell populations across developmental stages.\nThis dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation.\nThe reference input used by both applications is produced by Shiny_app/R/01_data_prep.R. The script downloads the gene-level counts and sample annotation from GEO, matches count columns to samples by sample name, keeps expressed genes with filterByExpr, applies TMM normalisation, and fits a limma-voom model with design ~ stage + celltype (virgin, pregnant and lactating stages; basal and luminal cells). The contrast reported is basal versus luminal, so a positive log2 fold change means higher expression in basal cells."
   },
   {
-    "objectID": "availability.html#live-applications",
-    "href": "availability.html#live-applications",
-    "title": "Availability",
-    "section": "Live applications",
-    "text": "Live applications\n\nR Shiny implementation: Open app\nPython Shiny implementation: Open app"
+    "objectID": "methods.html#go-enrichment",
+    "href": "methods.html#go-enrichment",
+    "title": "Methods",
+    "section": "GO enrichment",
+    "text": "GO enrichment\nBoth applications run over-representation analysis for the three GO ontologies and use every gene in the uploaded table as the background set. The R application uses clusterProfiler with the offline org.Mm.eg.db annotation. The Python application sends the gene lists to the Enrichr web service through gseapy. Because the annotation sources differ, the term lists are similar but not identical.\nFull environment setup and data preparation steps are described on the Reproducibility page. Expanded paired code examples are provided on the Supplementary Code Examples page."
   },
   {
-    "objectID": "availability.html#manuscript-citation",
-    "href": "availability.html#manuscript-citation",
-    "title": "Availability",
-    "section": "Manuscript citation",
-    "text": "Manuscript citation\nThe companion website corresponds to the manuscript:\n\nGolden Rules for Turning Bioinformatics Analyses into Interactive Web Applications\nAgudelo-Romero P, Caparros-Martin JA, Bates A, Sikazwe C, Blyth C.\n[Journal, year and DOI]."
+    "objectID": "methods.html#why-both-implementations-are-shown",
+    "href": "methods.html#why-both-implementations-are-shown",
+    "title": "Methods",
+    "section": "Why both implementations are shown",
+    "text": "Why both implementations are shown\nThe manuscript does not argue that one framework is universally superior. Instead, it uses both implementations to show that the same design principles can be applied across different ecosystems.\nThe practical choice between frameworks depends on the location of critical dependencies, the surrounding analytical environment, deployment constraints, and the needs of the intended users."
+  },
+  {
+    "objectID": "methods.html#main-practical-differences",
+    "href": "methods.html#main-practical-differences",
+    "title": "Methods",
+    "section": "Main practical differences",
+    "text": "Main practical differences\nFor the worked example in the manuscript, the most relevant differences are:\n\nbioinformatics ecosystem maturity\noffline versus internet-dependent enrichment\nreport-generation workflow\ndeployment and containerisation options\n\nThese trade-offs are summarised in Table 1 of the manuscript."
+  },
+  {
+    "objectID": "methods.html#relationship-to-the-manuscript-figures",
+    "href": "methods.html#relationship-to-the-manuscript-figures",
+    "title": "Methods",
+    "section": "Relationship to the manuscript figures",
+    "text": "Relationship to the manuscript figures\nThis website expands on material that was kept brief in the main manuscript.\n\nFigure 1 presents the ten-rule workflow conceptually\nFigure 2 illustrates separation of data logic from display logic\nFigure 3 illustrates boundary validation of uploaded inputs\n\nExpanded paired code examples corresponding to Figures 2 and 3 are provided on the Supplementary Code Examples page."
   },
   {
     "objectID": "reproducibility.html",
     "href": "reproducibility.html",
     "title": "Reproducibility",
     "section": "",
-    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
+    "text": "This page explains how to restore the software environments, rebuild the reference dataset, run the applications and their tests, and deploy them. All commands are run from the folder shown."
   },
   {
     "objectID": "reproducibility.html#overview",
     "href": "reproducibility.html#overview",
     "title": "Reproducibility",
     "section": "",
-    "text": "This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally."
+    "text": "This page explains how to restore the software environments, rebuild the reference dataset, run the applications and their tests, and deploy them. All commands are run from the folder shown."
   },
   {
-    "objectID": "reproducibility.html#restore-the-r-environment",
-    "href": "reproducibility.html#restore-the-r-environment",
+    "objectID": "reproducibility.html#r-application-shiny_appr",
+    "href": "reproducibility.html#r-application-shiny_appr",
     "title": "Reproducibility",
-    "section": "Restore the R environment",
-    "text": "Restore the R environment\nThe R implementation uses a locked project environment.\nRscript -e \"renv::restore()\""
+    "section": "R application (Shiny_app/R)",
+    "text": "R application (Shiny_app/R)\n\nRestore the environment\nPackage versions are locked in renv.lock:\nRscript -e \"renv::restore()\"\nOn a new machine you can instead install everything and write a new lockfile with:\nRscript 00_setup.R\n\n\nBuild the reference dataset\nRscript 01_data_prep.R\nThis downloads GSE60450 from GEO, runs limma-voom and writes data/GSE60450_limma.csv for both applications. It takes about two minutes on a laptop.\n\n\nRun and test\nRscript -e \"shiny::runApp()\"\nRscript tests/testthat.R"
   },
   {
-    "objectID": "reproducibility.html#restore-the-python-environment",
-    "href": "reproducibility.html#restore-the-python-environment",
+    "objectID": "reproducibility.html#python-application-shiny_apppython",
+    "href": "reproducibility.html#python-application-shiny_apppython",
     "title": "Reproducibility",
-    "section": "Restore the Python environment",
-    "text": "Restore the Python environment\nThe Python implementation uses an environment definition plus Python package requirements.\nconda env create -f Python/shiny_app_py_env.yml\nconda activate shiny_app_py\npip install -r Python/requirements.txt"
+    "section": "Python application (Shiny_app/python)",
+    "text": "Python application (Shiny_app/python)\n\nRestore the environment\nconda env create -f shiny_app_py_env.yml\nconda activate shiny_app_py\nor, without conda:\npython3.11 -m venv .venv\nsource .venv/bin/activate\npip install -r requirements-dev.txt\n\n\nRun and test\nshiny run app.py\npytest -q"
   },
   {
-    "objectID": "reproducibility.html#prepare-the-validation-dataset",
-    "href": "reproducibility.html#prepare-the-validation-dataset",
+    "objectID": "reproducibility.html#continuous-integration-and-releases",
+    "href": "reproducibility.html#continuous-integration-and-releases",
     "title": "Reproducibility",
-    "section": "Prepare the validation dataset",
-    "text": "Prepare the validation dataset\nUse the included data-preparation scripts to obtain and format the public validation dataset used in the manuscript.\n\nR workflow\nRscript R/00_setup.R\nRscript R/01_data_prep.R\n\n\nPython workflow\npython Python/00_setup.py\nconda activate shiny_app_py\npython Python/01_data_prep.py"
+    "section": "Continuous integration and releases",
+    "text": "Continuous integration and releases\nEvery push runs a version check, linting (lintr, ruff) and both test suites on GitHub Actions (.github/workflows/ci.yml). Pushing a version tag such as v1.0.0 runs the release workflow: it repeats these checks, publishes Docker images of both applications to GitHub Container Registry, creates a GitHub Release from CHANGELOG.md, and redeploys both applications. Each release can be archived on Zenodo with its own DOI."
   },
   {
-    "objectID": "reproducibility.html#run-the-applications-locally",
-    "href": "reproducibility.html#run-the-applications-locally",
+    "objectID": "reproducibility.html#deployment",
+    "href": "reproducibility.html#deployment",
     "title": "Reproducibility",
-    "section": "Run the applications locally",
-    "text": "Run the applications locally\n\nR Shiny\nRscript -e \"shiny::runApp('R')\"\n\n\nPython Shiny\nshiny run Python/app.py"
+    "section": "Deployment",
+    "text": "Deployment\n\n\n\n\n\n\n\n\nApplication\nTarget\nHow\n\n\n\n\nR\nshinyapps.io\nautomatic on release, or Rscript 02_deploy.R (credentials in ~/.Renviron)\n\n\nPython\nHugging Face Spaces\nautomatic on release, or the Deploy Python app to Hugging Face workflow\n\n\nEither\nAny container host\ndocker run ghcr.io/agudeloromero/limma-deg-explorer-py:1.0.0 (or -r), or build from the Dockerfile in the app folder"
   },
   {
-    "objectID": "reproducibility.html#troubleshooting-notes",
-    "href": "reproducibility.html#troubleshooting-notes",
+    "objectID": "reproducibility.html#troubleshooting",
+    "href": "reproducibility.html#troubleshooting",
     "title": "Reproducibility",
-    "section": "Troubleshooting notes",
-    "text": "Troubleshooting notes\n\nUploaded file is rejected\nCheck that the uploaded file contains the expected column names and structure.\n\n\nPython enrichment does not run\nSome parts of the Python workflow may depend on internet-accessible services. Check server connectivity.\n\n\nEnvironment restores but app still fails\nRecreate the environment from the lock files rather than reusing a partially modified environment.\n\n\nResults differ between R and Python\nThe two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.\nFor the genomics example used in the manuscript, the R implementation should be treated as the reference implementation."
+    "section": "Troubleshooting",
+    "text": "Troubleshooting\n\nThe uploaded file is rejected\nThe message names the missing or invalid column. Column names are case-sensitive: gene, logFC and adj.P.Val are required.\n\n\nPython GO enrichment does not run\nThe Python application queries the Enrichr web service, so the server must have internet access. The other tabs and the download still work, and the report records that enrichment could not be run.\n\n\nResults differ between R and Python\nThe two applications illustrate the same design principles with different libraries. GO term lists differ because the annotation sources differ (org.Mm.eg.db versus Enrichr). For the genomics example in the manuscript, the R application is the reference implementation."
   }
 ]

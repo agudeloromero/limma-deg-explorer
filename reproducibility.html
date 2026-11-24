@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -73,14 +73,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="./">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-55617497126496852ff9f5a59253c640.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-cb61c712ca1a7fe70a83faed8e4da2d7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,19 +115,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="assets/styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Interactive Web Apps for Bioinformatics</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -162,6 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
 </div>
+            <div id="quarto-search" class="" title="Search"></div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -170,35 +171,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#restore-the-r-environment" id="toc-restore-the-r-environment" class="nav-link" data-scroll-target="#restore-the-r-environment">Restore the R environment</a></li>
-  <li><a href="#restore-the-python-environment" id="toc-restore-the-python-environment" class="nav-link" data-scroll-target="#restore-the-python-environment">Restore the Python environment</a></li>
-  <li><a href="#prepare-the-validation-dataset" id="toc-prepare-the-validation-dataset" class="nav-link" data-scroll-target="#prepare-the-validation-dataset">Prepare the validation dataset</a>
+  <li><a href="#r-application-shiny_appr" id="toc-r-application-shiny_appr" class="nav-link" data-scroll-target="#r-application-shiny_appr">R application (<code>Shiny_app/R</code>)</a>
   <ul class="collapse">
-  <li><a href="#r-workflow" id="toc-r-workflow" class="nav-link" data-scroll-target="#r-workflow">R workflow</a></li>
-  <li><a href="#python-workflow" id="toc-python-workflow" class="nav-link" data-scroll-target="#python-workflow">Python workflow</a></li>
+  <li><a href="#restore-the-environment" id="toc-restore-the-environment" class="nav-link" data-scroll-target="#restore-the-environment">Restore the environment</a></li>
+  <li><a href="#build-the-reference-dataset" id="toc-build-the-reference-dataset" class="nav-link" data-scroll-target="#build-the-reference-dataset">Build the reference dataset</a></li>
+  <li><a href="#run-and-test" id="toc-run-and-test" class="nav-link" data-scroll-target="#run-and-test">Run and test</a></li>
   </ul></li>
-  <li><a href="#run-the-applications-locally" id="toc-run-the-applications-locally" class="nav-link" data-scroll-target="#run-the-applications-locally">Run the applications locally</a>
+  <li><a href="#python-application-shiny_apppython" id="toc-python-application-shiny_apppython" class="nav-link" data-scroll-target="#python-application-shiny_apppython">Python application (<code>Shiny_app/python</code>)</a>
   <ul class="collapse">
-  <li><a href="#r-shiny" id="toc-r-shiny" class="nav-link" data-scroll-target="#r-shiny">R Shiny</a></li>
-  <li><a href="#python-shiny" id="toc-python-shiny" class="nav-link" data-scroll-target="#python-shiny">Python Shiny</a></li>
+  <li><a href="#restore-the-environment-1" id="toc-restore-the-environment-1" class="nav-link" data-scroll-target="#restore-the-environment-1">Restore the environment</a></li>
+  <li><a href="#run-and-test-1" id="toc-run-and-test-1" class="nav-link" data-scroll-target="#run-and-test-1">Run and test</a></li>
   </ul></li>
-  <li><a href="#troubleshooting-notes" id="toc-troubleshooting-notes" class="nav-link" data-scroll-target="#troubleshooting-notes">Troubleshooting notes</a>
+  <li><a href="#continuous-integration-and-releases" id="toc-continuous-integration-and-releases" class="nav-link" data-scroll-target="#continuous-integration-and-releases">Continuous integration and releases</a></li>
+  <li><a href="#deployment" id="toc-deployment" class="nav-link" data-scroll-target="#deployment">Deployment</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
   <ul class="collapse">
-  <li><a href="#uploaded-file-is-rejected" id="toc-uploaded-file-is-rejected" class="nav-link" data-scroll-target="#uploaded-file-is-rejected">Uploaded file is rejected</a></li>
-  <li><a href="#python-enrichment-does-not-run" id="toc-python-enrichment-does-not-run" class="nav-link" data-scroll-target="#python-enrichment-does-not-run">Python enrichment does not run</a></li>
-  <li><a href="#environment-restores-but-app-still-fails" id="toc-environment-restores-but-app-still-fails" class="nav-link" data-scroll-target="#environment-restores-but-app-still-fails">Environment restores but app still fails</a></li>
+  <li><a href="#the-uploaded-file-is-rejected" id="toc-the-uploaded-file-is-rejected" class="nav-link" data-scroll-target="#the-uploaded-file-is-rejected">The uploaded file is rejected</a></li>
+  <li><a href="#python-go-enrichment-does-not-run" id="toc-python-go-enrichment-does-not-run" class="nav-link" data-scroll-target="#python-go-enrichment-does-not-run">Python GO enrichment does not run</a></li>
   <li><a href="#results-differ-between-r-and-python" id="toc-results-differ-between-r-and-python" class="nav-link" data-scroll-target="#results-differ-between-r-and-python">Results differ between R and Python</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/agudeloromero/limma-deg-explorer/blob/main/reproducibility.qmd" class="toc-action"><i class="bi bi-github"></i>View source</a></li><li><a href="https://github.com/agudeloromero/limma-deg-explorer/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content" tabindex="-1">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -221,64 +222,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally.</p>
+<p>This page explains how to restore the software environments, rebuild the reference dataset, run the applications and their tests, and deploy them. All commands are run from the folder shown.</p>
 </section>
-<section id="restore-the-r-environment" class="level2">
-<h2 class="anchored" data-anchor-id="restore-the-r-environment">Restore the R environment</h2>
-<p>The R implementation uses a locked project environment.</p>
+<section id="r-application-shiny_appr" class="level2">
+<h2 class="anchored" data-anchor-id="r-application-shiny_appr">R application (<code>Shiny_app/R</code>)</h2>
+<section id="restore-the-environment" class="level3">
+<h3 class="anchored" data-anchor-id="restore-the-environment">Restore the environment</h3>
+<p>Package versions are locked in <code>renv.lock</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"renv::restore()"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>On a new machine you can instead install everything and write a new lockfile with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> 00_setup.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="restore-the-python-environment" class="level2">
-<h2 class="anchored" data-anchor-id="restore-the-python-environment">Restore the Python environment</h2>
-<p>The Python implementation uses an environment definition plus Python package requirements.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> Python/shiny_app_py_env.yml</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate shiny_app_py</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> Python/requirements.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="build-the-reference-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="build-the-reference-dataset">Build the reference dataset</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> 01_data_prep.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This downloads GSE60450 from GEO, runs limma-voom and writes <code>data/GSE60450_limma.csv</code> for both applications. It takes about two minutes on a laptop.</p>
 </section>
-<section id="prepare-the-validation-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="prepare-the-validation-dataset">Prepare the validation dataset</h2>
-<p>Use the included data-preparation scripts to obtain and format the public validation dataset used in the manuscript.</p>
-<section id="r-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="r-workflow">R workflow</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/00_setup.R</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> R/01_data_prep.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="python-workflow" class="level3">
-<h3 class="anchored" data-anchor-id="python-workflow">Python workflow</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Python/00_setup.py</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate shiny_app_py</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> Python/01_data_prep.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="run-and-test" class="level3">
+<h3 class="anchored" data-anchor-id="run-and-test">Run and test</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"shiny::runApp()"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> tests/testthat.R</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="run-the-applications-locally" class="level2">
-<h2 class="anchored" data-anchor-id="run-the-applications-locally">Run the applications locally</h2>
-<section id="r-shiny" class="level3">
-<h3 class="anchored" data-anchor-id="r-shiny">R Shiny</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> <span class="at">-e</span> <span class="st">"shiny::runApp('R')"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="python-application-shiny_apppython" class="level2">
+<h2 class="anchored" data-anchor-id="python-application-shiny_apppython">Python application (<code>Shiny_app/python</code>)</h2>
+<section id="restore-the-environment-1" class="level3">
+<h3 class="anchored" data-anchor-id="restore-the-environment-1">Restore the environment</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> env create <span class="at">-f</span> shiny_app_py_env.yml</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate shiny_app_py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>or, without conda:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3.11</span> <span class="at">-m</span> venv .venv</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .venv/bin/activate</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements-dev.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="python-shiny" class="level3">
-<h3 class="anchored" data-anchor-id="python-shiny">Python Shiny</h3>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run Python/app.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="run-and-test-1" class="level3">
+<h3 class="anchored" data-anchor-id="run-and-test-1">Run and test</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">shiny</span> run app.py</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">-q</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="troubleshooting-notes" class="level2">
-<h2 class="anchored" data-anchor-id="troubleshooting-notes">Troubleshooting notes</h2>
-<section id="uploaded-file-is-rejected" class="level3">
-<h3 class="anchored" data-anchor-id="uploaded-file-is-rejected">Uploaded file is rejected</h3>
-<p>Check that the uploaded file contains the expected column names and structure.</p>
+<section id="continuous-integration-and-releases" class="level2">
+<h2 class="anchored" data-anchor-id="continuous-integration-and-releases">Continuous integration and releases</h2>
+<p>Every push runs a version check, linting (lintr, ruff) and both test suites on GitHub Actions (<code>.github/workflows/ci.yml</code>). Pushing a version tag such as <code>v1.0.0</code> runs the release workflow: it repeats these checks, publishes Docker images of both applications to GitHub Container Registry, creates a GitHub Release from <code>CHANGELOG.md</code>, and redeploys both applications. Each release can be archived on Zenodo with its own DOI.</p>
 </section>
-<section id="python-enrichment-does-not-run" class="level3">
-<h3 class="anchored" data-anchor-id="python-enrichment-does-not-run">Python enrichment does not run</h3>
-<p>Some parts of the Python workflow may depend on internet-accessible services. Check server connectivity.</p>
+<section id="deployment" class="level2">
+<h2 class="anchored" data-anchor-id="deployment">Deployment</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Application</th>
+<th>Target</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>R</td>
+<td>shinyapps.io</td>
+<td>automatic on release, or <code>Rscript 02_deploy.R</code> (credentials in <code>~/.Renviron</code>)</td>
+</tr>
+<tr class="even">
+<td>Python</td>
+<td>Hugging Face Spaces</td>
+<td>automatic on release, or the <em>Deploy Python app to Hugging Face</em> workflow</td>
+</tr>
+<tr class="odd">
+<td>Either</td>
+<td>Any container host</td>
+<td><code>docker run ghcr.io/agudeloromero/limma-deg-explorer-py:1.0.0</code> (or <code>-r</code>), or build from the <code>Dockerfile</code> in the app folder</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="environment-restores-but-app-still-fails" class="level3">
-<h3 class="anchored" data-anchor-id="environment-restores-but-app-still-fails">Environment restores but app still fails</h3>
-<p>Recreate the environment from the lock files rather than reusing a partially modified environment.</p>
+<section id="troubleshooting" class="level2">
+<h2 class="anchored" data-anchor-id="troubleshooting">Troubleshooting</h2>
+<section id="the-uploaded-file-is-rejected" class="level3">
+<h3 class="anchored" data-anchor-id="the-uploaded-file-is-rejected">The uploaded file is rejected</h3>
+<p>The message names the missing or invalid column. Column names are case-sensitive: <code>gene</code>, <code>logFC</code> and <code>adj.P.Val</code> are required.</p>
+</section>
+<section id="python-go-enrichment-does-not-run" class="level3">
+<h3 class="anchored" data-anchor-id="python-go-enrichment-does-not-run">Python GO enrichment does not run</h3>
+<p>The Python application queries the Enrichr web service, so the server must have internet access. The other tabs and the download still work, and the report records that enrichment could not be run.</p>
 </section>
 <section id="results-differ-between-r-and-python" class="level3">
 <h3 class="anchored" data-anchor-id="results-differ-between-r-and-python">Results differ between R and Python</h3>
-<p>The two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.</p>
-<p>For the genomics example used in the manuscript, the R implementation should be treated as the reference implementation.</p>
+<p>The two applications illustrate the same design principles with different libraries. GO term lists differ because the annotation sources differ (org.Mm.eg.db versus Enrichr). For the genomics example in the manuscript, the R application is the reference implementation.</p>
 
 
 </section>
@@ -359,11 +392,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
         var filterRegex = new RegExp("https:\/\/agudeloromero\.github\.io\/limma-deg-explorer\/");
+      const newWindowLabel = "(opens in a new tab)";
+      const newWindowNoteId = "quarto-ext-newwindow-label";
+      // Links reference one hidden label through aria-describedby, so the
+      // announcement never changes their accessible name.
+      var describeNewWindow = (link) => {
+        if (!window.document.getElementById(newWindowNoteId)) {
+          var newWindowNote = window.document.createElement("span");
+          newWindowNote.id = newWindowNoteId;
+          newWindowNote.hidden = true;
+          newWindowNote.textContent = newWindowLabel;
+          window.document.body.appendChild(newWindowNote);
+        }
+        var describedBy = (link.getAttribute("aria-describedby") || "").split(/\s+/).filter(Boolean);
+        if (!describedBy.includes(newWindowNoteId)) {
+          describedBy.push(newWindowNoteId);
+          link.setAttribute("aria-describedby", describedBy.join(" "));
+        }
+      }
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -377,8 +429,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             if (link.getAttribute("rel") === null) {
               link.setAttribute("rel", "noopener");
             }
+            describeNewWindow(link);
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -392,6 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -554,44 +669,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -689,6 +814,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       }
     }
   });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
   </script>
 </div> <!-- /content -->
 
