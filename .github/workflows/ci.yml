@@ -72,7 +72,7 @@ jobs:
             libpng-dev libtiff-dev libjpeg-dev
 
       - name: Cache R packages
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: ${{ env.R_LIBS_USER }}
           key: r-${{ runner.os }}-${{ steps.rver.outputs.version }}-${{ hashFiles('Shiny_app/R/renv.lock') }}
