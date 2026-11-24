@@ -1,5 +1,11 @@
 project:
   type: website
+  render:
+    - index.qmd
+    - methods.qmd
+    - supplementary-code-examples.qmd
+    - reproducibility.qmd
+    - availability.qmd
 
 website:
   title: "Interactive Web Apps for Bioinformatics"
