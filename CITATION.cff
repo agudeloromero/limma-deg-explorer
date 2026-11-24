@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the manuscript below."
+title: "limma-deg-explorer: parallel R Shiny and Python Shiny apps for differential expression and GO enrichment"
+version: 1.0.0
+license: MIT
+repository-code: "https://github.com/agudeloromero/limma-deg-explorer"
+url: "https://agudeloromero.github.io/limma-deg-explorer"
+authors:
+  - family-names: Agudelo-Romero
+    given-names: Patricia
+    email: patricia.agudeloromero@thekids.org.au
+    affiliation: "The Kids Research Institute Australia"
+  - family-names: Caparros-Martin
+    given-names: J. A.
+  - family-names: Bates
+    given-names: A.
+  - family-names: Sikazwe
+    given-names: C.
+  - family-names: Blyth
+    given-names: C.
+keywords:
+  - Shiny
+  - bioinformatics
+  - differential expression
+  - limma
+  - Gene Ontology
+preferred-citation:
+  type: article
+  title: "Golden Rules for Turning Bioinformatics Analyses into Interactive Web Applications"
+  authors:
+    - family-names: Agudelo-Romero
+      given-names: Patricia
+    - family-names: Caparros-Martin
+      given-names: J. A.
+    - family-names: Bates
+      given-names: A.
+    - family-names: Sikazwe
+      given-names: C.
+    - family-names: Blyth
+      given-names: C.
+  year: 2026
+  notes: "Journal and DOI to be added on acceptance."
