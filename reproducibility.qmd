@@ -5,75 +5,85 @@ page-layout: article
 
 ## Overview
 
-This page provides practical information for restoring the environments, preparing the validation dataset, and running the worked-example applications locally.
+This page explains how to restore the software environments, rebuild the reference dataset, run the applications and their tests, and deploy them. All commands are run from the folder shown.
 
-## Restore the R environment
+## R application (`Shiny_app/R`)
 
-The R implementation uses a locked project environment.
+### Restore the environment
+
+Package versions are locked in `renv.lock`:
 
 ```bash
 Rscript -e "renv::restore()"
 ```
 
-## Restore the Python environment
-
-The Python implementation uses an environment definition plus Python package requirements.
+On a new machine you can instead install everything and write a new lockfile with:
 
 ```bash
-conda env create -f Python/shiny_app_py_env.yml
+Rscript 00_setup.R
+```
+
+### Build the reference dataset
+
+```bash
+Rscript 01_data_prep.R
+```
+
+This downloads GSE60450 from GEO, runs limma-voom and writes `data/GSE60450_limma.csv` for both applications. It takes about two minutes on a laptop.
+
+### Run and test
+
+```bash
+Rscript -e "shiny::runApp()"
+Rscript tests/testthat.R
+```
+
+## Python application (`Shiny_app/python`)
+
+### Restore the environment
+
+```bash
+conda env create -f shiny_app_py_env.yml
 conda activate shiny_app_py
-pip install -r Python/requirements.txt
 ```
 
-## Prepare the validation dataset
-
-Use the included data-preparation scripts to obtain and format the public validation dataset used in the manuscript.
-
-### R workflow
+or, without conda:
 
 ```bash
-Rscript R/00_setup.R
-Rscript R/01_data_prep.R
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-dev.txt
 ```
 
-### Python workflow
+### Run and test
 
 ```bash
-python Python/00_setup.py
-conda activate shiny_app_py
-python Python/01_data_prep.py
+shiny run app.py
+pytest -q
 ```
 
-## Run the applications locally
+## Continuous integration and releases
 
-### R Shiny
+Every push runs a version check, linting (lintr, ruff) and both test suites on GitHub Actions (`.github/workflows/ci.yml`). Pushing a version tag such as `v1.0.0` runs the release workflow: it repeats these checks, publishes Docker images of both applications to GitHub Container Registry, creates a GitHub Release from `CHANGELOG.md`, and redeploys both applications. Each release can be archived on Zenodo with its own DOI.
 
-```bash
-Rscript -e "shiny::runApp('R')"
-```
+## Deployment
 
-### Python Shiny
+| Application | Target | How |
+|---|---|---|
+| R | shinyapps.io | automatic on release, or `Rscript 02_deploy.R` (credentials in `~/.Renviron`) |
+| Python | Hugging Face Spaces | automatic on release, or the *Deploy Python app to Hugging Face* workflow |
+| Either | Any container host | `docker run ghcr.io/agudeloromero/limma-deg-explorer-py:1.0.0` (or `-r`), or build from the `Dockerfile` in the app folder |
 
-```bash
-shiny run Python/app.py
-```
+## Troubleshooting
 
-## Troubleshooting notes
+### The uploaded file is rejected
 
-### Uploaded file is rejected
+The message names the missing or invalid column. Column names are case-sensitive: `gene`, `logFC` and `adj.P.Val` are required.
 
-Check that the uploaded file contains the expected column names and structure.
+### Python GO enrichment does not run
 
-### Python enrichment does not run
-
-Some parts of the Python workflow may depend on internet-accessible services. Check server connectivity.
-
-### Environment restores but app still fails
-
-Recreate the environment from the lock files rather than reusing a partially modified environment.
+The Python application queries the Enrichr web service, so the server must have internet access. The other tabs and the download still work, and the report records that enrichment could not be run.
 
 ### Results differ between R and Python
 
-The two implementations are intended to illustrate the same application-design principles, not strict one-to-one analytical identity at every step of the workflow.
-
-For the genomics example used in the manuscript, the R implementation should be treated as the reference implementation.
+The two applications illustrate the same design principles with different libraries. GO term lists differ because the annotation sources differ (org.Mm.eg.db versus Enrichr). For the genomics example in the manuscript, the R application is the reference implementation.
