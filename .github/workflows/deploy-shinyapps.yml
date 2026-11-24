@@ -48,6 +48,14 @@ jobs:
           r-version: ${{ steps.rver.outputs.version }}
           use-public-rspm: true
 
+      - name: System libraries
+        if: steps.check.outputs.skip == 'false'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libcurl4-openssl-dev libssl-dev libxml2-dev \
+            libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev \
+            libpng-dev libtiff-dev libjpeg-dev libglpk-dev libuv1-dev cmake
+
       - name: Restore the locked package versions
         if: steps.check.outputs.skip == 'false'
         run: |
