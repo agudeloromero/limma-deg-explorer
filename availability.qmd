@@ -9,11 +9,13 @@ All source code for the worked example applications and the companion website is
 
 [GitHub repository](https://github.com/agudeloromero/limma-deg-explorer)
 
+The code is released under the MIT License. Citation metadata are provided in `CITATION.cff`.
+
 ## Data availability
 
 The validation dataset used in the worked example is publicly available from GEO:
 
-- **GSE60450**
+- **GSE60450** (Fu *et al.* 2015). The limma-voom results used as the reference input are produced by `Shiny_app/R/01_data_prep.R` and included in both application folders.
 
 ## Live applications
 
