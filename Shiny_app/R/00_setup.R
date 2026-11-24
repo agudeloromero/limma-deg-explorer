@@ -41,18 +41,17 @@ if (length(missing_cran) > 0) install.packages(missing_cran, repos = repos)
 missing_bioc <- setdiff(bioc_pkgs, rownames(installed.packages()))
 if (length(missing_bioc) > 0) BiocManager::install(missing_bioc, update = FALSE, ask = FALSE)
 
-# renv can only lock a consistent set of Bioconductor packages
-bioc_ok <- BiocManager::valid()
-if (!isTRUE(bioc_ok)) {
-  print(bioc_ok)
-  stop("Bioconductor packages come from different releases (see above). ",
-       "Update them to one release, e.g. for R 4.5:\n",
-       "  Rscript -e 'BiocManager::install(version = \"3.22\", ask = FALSE)'\n",
-       "then run 00_setup.R again.", call. = FALSE)
-}
-
-# Lock the versions of every package the project's R files use
-renv::snapshot(type = "implicit", prompt = FALSE)
+# Lock the versions of every package the project's R files use.
+# Older-than-latest packages are fine: renv records what is installed and tested.
+tryCatch(
+  renv::snapshot(type = "implicit", prompt = FALSE),
+  error = function(e) {
+    stop(conditionMessage(e),
+         "\nrenv lists the problem packages above. If they come from a different ",
+         "Bioconductor release, reinstall them with BiocManager::install(), ",
+         "then run 00_setup.R again.", call. = FALSE)
+  }
+)
 
 message("\nSetup complete. renv.lock written.",
         "\nNext:  Rscript 01_data_prep.R   (builds data/GSE60450_limma.csv)",
