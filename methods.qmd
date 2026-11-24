@@ -15,6 +15,12 @@ The worked example uses **GSE60450**, a public mouse mammary gland RNA-seq datas
 
 This dataset was chosen because it is public, citable, and suitable for demonstrating a complete interactive workflow from differential expression results to downstream interpretation.
 
+The reference input used by both applications is produced by `Shiny_app/R/01_data_prep.R`. The script downloads the gene-level counts and sample annotation from GEO, matches count columns to samples by sample name, keeps expressed genes with `filterByExpr`, applies TMM normalisation, and fits a limma-voom model with design `~ stage + celltype` (virgin, pregnant and lactating stages; basal and luminal cells). The contrast reported is basal versus luminal, so a positive log~2~ fold change means higher expression in basal cells.
+
+## GO enrichment
+
+Both applications run over-representation analysis for the three GO ontologies and use every gene in the uploaded table as the background set. The R application uses clusterProfiler with the offline org.Mm.eg.db annotation. The Python application sends the gene lists to the Enrichr web service through gseapy. Because the annotation sources differ, the term lists are similar but not identical.
+
 Full environment setup and data preparation steps are described on the Reproducibility page. Expanded paired code examples are provided on the Supplementary Code Examples page.
 
 ## Why both implementations are shown
