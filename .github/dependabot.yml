@@ -1,0 +1,19 @@
+# Monthly pull requests to keep GitHub Actions and Python dependencies up to date.
+# Each one runs the CI, so an update is only merged if both apps still pass.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: pip
+    directory: /Shiny_app/python
+    schedule:
+      interval: monthly
+    groups:
+      python:
+        patterns: ["*"]
