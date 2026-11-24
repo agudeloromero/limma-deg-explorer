@@ -21,7 +21,7 @@ jobs:
     env:
       HF_SPACE: agudeloromero/limma-deg-explorer
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Check prerequisites
         id: check

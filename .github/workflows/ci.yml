@@ -10,12 +10,17 @@ on:
 permissions:
   contents: read
 
+# A newer push to the same branch cancels the older, unfinished run
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   version:
     name: Version is consistent
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: bash .github/scripts/check_version.sh
 
   python:
@@ -25,8 +30,8 @@ jobs:
       run:
         working-directory: Shiny_app/python
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
@@ -46,35 +51,47 @@ jobs:
       run:
         working-directory: Shiny_app/R
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: r-lib/actions/setup-pandoc@v2
+
+      # Test exactly the package versions recorded in renv.lock
+      - name: R version from renv.lock
+        id: rver
+        run: echo "version=$(jq -r .R.Version renv.lock)" >> "$GITHUB_OUTPUT"
+
       - uses: r-lib/actions/setup-r@v2
         with:
-          r-version: "4.4"
+          r-version: ${{ steps.rver.outputs.version }}
           use-public-rspm: true
-      - uses: r-lib/actions/setup-r-dependencies@v2
+
+      - name: System libraries
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libcurl4-openssl-dev libssl-dev libxml2-dev \
+            libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev \
+            libpng-dev libtiff-dev libjpeg-dev
+
+      - name: Cache R packages
+        uses: actions/cache@v4
         with:
-          working-directory: Shiny_app/R
-          packages: |
-            any::shiny
-            any::DT
-            any::ggplot2
-            any::ggrepel
-            any::rmarkdown
-            any::knitr
-            any::openxlsx
-            any::zip
-            any::rlang
-            any::testthat
-            any::withr
-            any::lintr
-            bioc::clusterProfiler
-            bioc::org.Mm.eg.db
+          path: ${{ env.R_LIBS_USER }}
+          key: r-${{ runner.os }}-${{ steps.rver.outputs.version }}-${{ hashFiles('Shiny_app/R/renv.lock') }}
+
+      - name: Restore the locked package versions
+        run: |
+          # Linux binaries from Posit Package Manager instead of source builds
+          codename="$(lsb_release -cs)"
+          export RENV_CONFIG_REPOS_OVERRIDE="https://packagemanager.posit.co/cran/__linux__/${codename}/latest"
+          Rscript -e 'if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")' \
+                  -e 'renv::restore(lockfile = "renv.lock", library = .libPaths()[1], prompt = FALSE)' \
+                  -e 'if (!requireNamespace("lintr", quietly = TRUE)) install.packages("lintr")'
+
       - name: Lint
         run: |
           lints <- lintr::lint_dir(".")
           print(lints)
           if (length(lints) > 0) quit(status = 1)
         shell: Rscript {0}
+
       - name: Test
         run: Rscript tests/testthat.R
