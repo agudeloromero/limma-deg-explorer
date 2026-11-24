@@ -1,59 +1,59 @@
 # ============================================================
-# 00_setup.R
+# 00_setup.R  —  Install dependencies and lock them
+# Rule 8 — Lock your dependencies before you share
 #
 # Author:      Patricia Agudelo-Romero
 # Email:       patricia.agudeloromero@thekids.org.au
 # Institution: The Kids Research Institute Australia
 #
-# Rule 8 — Lock your dependencies before you share
-# Run this ONCE before launching the app for the first time.
+# Run once from this folder (Shiny_app/R):
+#   Rscript 00_setup.R
+#
+# 1. Installs the CRAN and Bioconductor packages used by the app,
+#    the data preparation script and the tests.
+# 2. Writes renv.lock, which records the exact version of every
+#    package. Commit renv.lock; others restore it with
+#      Rscript -e 'renv::restore()'
 # ============================================================
 
-# ── 1. CRAN packages ─────────────────────────────────────────
+repos <- c(CRAN = "https://cloud.r-project.org")
+
 cran_pkgs <- c(
-  "shiny",       # reactive web framework
-  "ggplot2",     # plotting
-  "dplyr",       # data manipulation
-  "statmod",     # required by limma's eBayes()
-  "DT",          # interactive tables
-  "rmarkdown",   # report generation
-  "knitr",       # report engine
-  "ggrepel",     # non-overlapping volcano labels
-  "openxlsx",   # multi-sheet Excel output for GO enrichment
-  "renv"         # dependency locking (Rule 8)
+  "shiny", "DT",               # app framework and interactive tables
+  "ggplot2", "ggrepel",        # plots and non-overlapping labels
+  "rmarkdown", "knitr",        # HTML report
+  "openxlsx", "zip",           # Excel output and zip folder
+  "rlang",                     # cache keys for GO results
+  "statmod",                   # used by limma
+  "testthat", "withr",         # tests
+  "renv", "rsconnect",         # dependency locking and deployment
+  "BiocManager"
+)
+bioc_pkgs <- c(
+  "limma", "edgeR",            # differential expression (01_data_prep.R)
+  "clusterProfiler",           # GO enrichment (offline)
+  "org.Mm.eg.db", "AnnotationDbi"   # mouse annotation
 )
 
-install.packages(cran_pkgs, repos = "https://cloud.r-project.org")
+missing_cran <- setdiff(cran_pkgs, rownames(installed.packages()))
+if (length(missing_cran) > 0) install.packages(missing_cran, repos = repos)
 
-# ── 2. Bioconductor packages ─────────────────────────────────
-if (!require("BiocManager", quietly = TRUE))
-  install.packages("BiocManager")
+missing_bioc <- setdiff(bioc_pkgs, rownames(installed.packages()))
+if (length(missing_bioc) > 0) BiocManager::install(missing_bioc, update = FALSE, ask = FALSE)
 
-BiocManager::install(c(
-  "clusterProfiler",   # KEGG / GO enrichment
-  "org.Mm.eg.db",      # mouse gene annotation (offline, no API call)
-  "AnnotationDbi",     # mapIds() for Entrez ID → gene symbol conversion
-  "enrichplot",        # enrichment visualisation
-  "edgeR",             # count normalisation and voom weights
-  "limma",             # DEG analysis (for data_prep script)
-  "GEOquery"           # download GSE60450 (Rule 7 validation)
-))
+# renv can only lock a consistent set of Bioconductor packages
+bioc_ok <- BiocManager::valid()
+if (!isTRUE(bioc_ok)) {
+  print(bioc_ok)
+  stop("Bioconductor packages come from different releases (see above). ",
+       "Update them to one release, e.g. for R 4.5:\n",
+       "  Rscript -e 'BiocManager::install(version = \"3.22\", ask = FALSE)'\n",
+       "then run 00_setup.R again.", call. = FALSE)
+}
 
-# ── 3. Lock environment with renv (Rule 8) ───────────────────
-# Run after installing all packages above.
-# renv::init()        # initialise renv in this project folder
-# renv::snapshot()    # write renv.lock
+# Lock the versions of every package the project's R files use
+renv::snapshot(type = "implicit", prompt = FALSE)
 
-# ── 4. Confirm project structure ─────────────────────────────
-# Expected layout:
-#   limma_app/
-#   ├── 00_setup.R              <- this file
-#   ├── 01_data_prep.R          <- download & prepare GSE83272
-#   ├── app.R                   <- main Shiny application
-#   ├── templates/
-#   │   └── report_template.Rmd <- parameterised HTML report
-#   ├── data/
-#   │   └── GSE83272_limma.csv  <- produced by 01_data_prep.R
-#   └── renv.lock               <- produced by renv::snapshot()
-
-message("Setup complete. Run 01_data_prep.R next to prepare the test dataset.")
+message("\nSetup complete. renv.lock written.",
+        "\nNext:  Rscript 01_data_prep.R   (builds data/GSE60450_limma.csv)",
+        "\nThen:  Rscript -e 'shiny::runApp()'")
