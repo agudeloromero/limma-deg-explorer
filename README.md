@@ -3,6 +3,7 @@
 [![CI](https://github.com/agudeloromero/limma-deg-explorer/actions/workflows/ci.yml/badge.svg)](https://github.com/agudeloromero/limma-deg-explorer/actions/workflows/ci.yml)
 [![Release](https://img.shields.io/github/v/release/agudeloromero/limma-deg-explorer)](https://github.com/agudeloromero/limma-deg-explorer/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![DOI](https://zenodo.org/badge/1202665873.svg)](https://doi.org/10.5281/zenodo.24504305)
 
 Parallel **R Shiny** and **Python Shiny** applications for exploring limma differential
 expression results and Gene Ontology (GO) enrichment. Companion code for the manuscript:
@@ -218,6 +219,8 @@ also has a `Dockerfile`.
 ## Licence and contact
 
 Code released under the [MIT License](LICENSE). Citation metadata: [`CITATION.cff`](CITATION.cff).
+Archived on Zenodo: [10.5281/zenodo.24504305](https://doi.org/10.5281/zenodo.24504305)
+(all versions); v1.0.0 is [10.5281/zenodo.24504306](https://doi.org/10.5281/zenodo.24504306).
 
 Patricia Agudelo-Romero — patricia.agudeloromero@thekids.org.au
 The Kids Research Institute Australia, Perth, Western Australia
