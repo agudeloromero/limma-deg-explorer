@@ -1,112 +1,44 @@
-**Author:** Patricia Agudelo-Romero  
-**Institution:** The Kids Research Institute Australia  
-**Contact:** patricia.agudeloromero@thekids.org.au
+# Limma DEG Explorer — R Shiny
 
----
-# Limma DEG Interactive Explorer — R Shiny
----
+Reference implementation of the Limma DEG Explorer. See the
+[repository README](../../README.md) for the overview, input format and the
+differences from the Python version.
 
+> **Rule 10:** this app describes the decisions a user makes (thresholds,
+> ontology, what to download), not how the code works. Technical notes live
+> in the code comments.
 
-> **Rule 10:** This README describes what the app helps you *decide*,
-> not how the code works. Technical documentation belongs in comments.
+## Run locally
 
----
+From this folder, with R ≥ 4.4:
 
-## What this app does
+```bash
+Rscript 00_setup.R            # once: install packages and write renv.lock
+Rscript 01_data_prep.R        # once: build data/GSE60450_limma.csv from GEO
+Rscript -e "shiny::runApp()"
+```
 
-You have a limma differential expression result. Your collaborator wants
-to know which genes matter — but they can't run R. This app turns your
-CSV into a point-and-click explorer they can use from any browser, with
-no installation required.
+Open the RStudio project `shiny_r_app.Rproj` to work on the app interactively.
 
-**The user journey:**
+## Files
 
-1. **Upload** your limma output (CSV with gene, logFC, adj.P.Val)
-2. **Filter DEGs** — drag the adjusted P-value and |log2FC| sliders
-3. **Explore** — volcano plot and bar plot update live as you filter
-4. **Enrich** — run KEGG, GO-BP, or GO-MF enrichment on the filtered gene list
-5. **Filter enrichment** — choose P-value or adj. P-value cutoff independently
-6. **Download** — get a self-contained HTML report capturing all settings and results
-
----
-
-## Required input format
-
-Your CSV must contain these columns (case-sensitive):
-
-| Column | Description |
+| File | Purpose |
 |---|---|
-| `gene` | HGNC gene symbols (e.g. TP53, BRCA1) |
-| `logFC` | log2 fold change |
-| `AveExpr` | average expression across samples |
-| `P.Value` | unadjusted P-value |
-| `adj.P.Val` | Benjamini–Hochberg adjusted P-value |
+| `app.R` | User interface and server (reactive pipeline) |
+| `helpers.R` | Validation, filtering, GO enrichment, plots and the results folder |
+| `templates/report_template.Rmd` | HTML report included in the download |
+| `data/GSE60450_limma.csv` | Reference input, produced by `01_data_prep.R` |
+| `tests/` | testthat tests: `Rscript tests/testthat.R` |
+| `.lintr` | lintr settings: `Rscript -e "lintr::lint_dir()"` |
+| `00_setup.R` | Installs CRAN and Bioconductor packages, writes `renv.lock` |
+| `01_data_prep.R` | limma-voom analysis of GSE60450 (writes the CSV for both apps) |
+| `02_deploy.R` | Publishes the app to shinyapps.io |
+| `Dockerfile` | Container image based on `rocker/shiny` and `renv.lock` |
 
-This is the default output of `limma::topTable()`. No reformatting needed.
+## GO enrichment
 
----
-
-## Quick start (local)
-
-```r
-# 1. Install dependencies (once)
-source("00_setup.R")
-
-# 2. Prepare the validation dataset (optional but recommended)
-source("01_data_prep.R")
-
-# 3. Launch the app
-shiny::runApp(".")
-```
-
----
-
-## Reproducing the paper results
-
-The app was validated against GSE83272 (breast cancer vs. normal, GEO).
-Run `01_data_prep.R` to download and process this dataset automatically.
-The output CSV (`data/GSE83272_limma.csv`) is the file used in the paper.
-
-**Default filter settings used in the paper:**
-- adj.P.Val ≤ 0.05
-- |log2FC| ≥ 1.0
-- Gene set: KEGG (Human)
-- Enrichment filter: adj. P-value ≤ 0.05
-
----
-
-## Deployment
-
-```r
-source("02_deploy.R")   # follow prompts for ShinyApps.io or Docker
-```
-
-Live app: **[URL to be added after deployment]**
-
----
-
-## File structure
-
-```
-limma_app/
-├── 00_setup.R              — install dependencies
-├── 01_data_prep.R          — download and prepare GSE83272
-├── app.R                   — Shiny application (Rules 2–6, 9–10)
-├── 02_deploy.R             — deployment to ShinyApps.io / Docker
-├── templates/
-│   └── report_template.Rmd — parameterised HTML report (Rule 6)
-├── data/
-│   └── GSE83272_limma.csv  — test dataset (produced by 01_data_prep.R)
-└── renv.lock               — locked dependency versions (Rule 8)
-```
-
----
-
-## Citation
-
-If you use this application or the accompanying paper in your work,
-please cite:
-
-> [Author names]. Ten Simple Rules for Deploying Bioinformatics Analyses
-> as Interactive Web Applications, with a Comparison of R and Python Shiny.
-> PLOS Computational Biology. [Year]. doi:[to be assigned]
+`clusterProfiler::enrichGO()` with the offline `org.Mm.eg.db` annotation. Gene symbols
+are mapped to Entrez IDs, every gene in the uploaded table is used as the background,
+and P-values are adjusted with Benjamini–Hochberg. The app's enrichment slider is the
+only significance filter (clusterProfiler's own cutoffs are set to 1). Results are
+cached, so changing the slider re-filters instantly.
