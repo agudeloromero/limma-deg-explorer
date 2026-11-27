@@ -9,15 +9,19 @@ authors:
   - family-names: Agudelo-Romero
     given-names: Patricia
     email: patricia.agudeloromero@thekids.org.au
-    affiliation: "The Kids Research Institute Australia"
+    affiliation: "Wal-yan Respiratory Research Centre, The Kids Research Institute Australia, Perth, Western Australia, Australia; School of Molecular Sciences, The University of Western Australia, Perth, Western Australia, Australia; European Virus Bioinformatics Centre, Friedrich-Schiller-Universität Jena, Jena, Thuringia, Germany"
   - family-names: Caparros-Martin
-    given-names: J. A.
+    given-names: Jose A.
+    affiliation: "Wal-yan Respiratory Research Centre, The Kids Research Institute Australia, Perth, Western Australia, Australia; Curtin Health Innovation Research Institute (CHIRI), Curtin University, Perth, Western Australia, Australia; School of Medicine, The University of Western Australia, Perth, Western Australia, Australia"
   - family-names: Bates
-    given-names: A.
+    given-names: Amber
+    affiliation: "Wal-yan Respiratory Research Centre, The Kids Research Institute Australia, Perth, Western Australia, Australia"
   - family-names: Sikazwe
-    given-names: C.
+    given-names: Chisha
+    affiliation: "PathWest Laboratory Medicine WA, Perth, Western Australia, Australia"
   - family-names: Blyth
-    given-names: C.
+    given-names: Christopher
+    affiliation: "Department of Infectious Diseases, Perth Children’s Hospital, Perth, Western Australia, Australia; Wesfarmers Centre of Vaccines and Infectious Disease, The Kids Research Institute Australia, Perth, Western Australia, Australia; School of Medicine, The University of Western Australia, Perth, Western Australia, Australia"
 keywords:
   - Shiny
   - bioinformatics
@@ -31,12 +35,13 @@ preferred-citation:
     - family-names: Agudelo-Romero
       given-names: Patricia
     - family-names: Caparros-Martin
-      given-names: J. A.
+      given-names: Jose A.
     - family-names: Bates
-      given-names: A.
+      given-names: Amber
     - family-names: Sikazwe
-      given-names: C.
+      given-names: Chisha
     - family-names: Blyth
-      given-names: C.
+      given-names: Christopher
   year: 2026
-  notes: "Journal and DOI to be added on acceptance."
+  status: in-preparation
+  notes: "Planned for Frontiers in Bioinformatics; journal and DOI to be added on acceptance."
